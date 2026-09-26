@@ -11,7 +11,7 @@ import { site } from '../data/site';
     <ul class="footer-links">
       <li><a class="btn" href={`mailto:${site.email}`}>Email me</a></li>
       {site.linkedin && <li><a class="btn ghost" href={site.linkedin} rel="noopener" target="_blank">LinkedIn ↗</a></li>}
-      <li><a class="btn ghost" href="/resume">Resume ↗</a></li>
+      <li><a class="btn ghost" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume ↗</a></li>
     </ul>
   </div>
   <div class="wrap footer-base">

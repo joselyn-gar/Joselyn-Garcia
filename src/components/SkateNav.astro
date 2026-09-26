@@ -1,0 +1,41 @@
+---
+// Live rebuild of Joselyn's redesigned SKATE for Girls nav, with numbered design decisions.
+---
+<div class="sn" aria-label="Redesigned SKATE for Girls navigation (interactive demo)">
+  <div class="sn-bar">Spring 2026 Programs are now OPEN!</div>
+  <nav class="sn-nav" aria-label="Demo navigation">
+    <span class="sn-logo" aria-hidden="true">S.K.A.T.E.</span>
+    <span class="sn-links">
+      <a href="#sn" tabindex="-1">About</a><a href="#sn" tabindex="-1">Programs</a><a href="#sn" tabindex="-1">Impact</a><a href="#sn" tabindex="-1">News Room</a>
+      <i class="pin p1">1</i>
+    </span>
+    <span class="sn-ctas">
+      <a class="sn-donate" href="#sn" tabindex="-1">Donate</a><a class="sn-contact" href="#sn" tabindex="-1">Contact</a>
+      <i class="pin p2">2</i>
+    </span>
+    <i class="pin p3">3</i>
+  </nav>
+</div>
+
+<style>
+  .sn { --p: #c94cf0; --a: #d9f6f5; border-radius: 22px; overflow: hidden; box-shadow: 0 20px 60px rgba(26, 26, 26, 0.12); text-align: left; background: #fff; }
+  .sn-bar { background: var(--p); color: #fff; text-align: center; font-size: 0.82rem; padding: 6px; text-decoration: underline; }
+  .sn-nav { position: relative; display: flex; align-items: center; gap: 24px; padding: 18px 28px; background: var(--a); }
+  .sn-logo { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; border: 3px solid var(--p); color: var(--p); font: 800 0.55rem var(--sans); }
+  .sn-links { position: relative; display: flex; gap: 22px; margin-left: auto; }
+  .sn-links a { color: var(--p); font-weight: 700; font-size: 1.05rem; text-decoration: none; padding: 6px 2px; border-bottom: 2px solid transparent; transition: border-color 0.2s; }
+  .sn-links a:hover { border-color: var(--p); }
+  .sn-ctas { position: relative; display: flex; gap: 10px; margin-left: 20px; }
+  .sn-ctas a { font-weight: 700; font-size: 1rem; text-decoration: none; padding: 9px 18px; border-radius: 999px; transition: transform 0.2s; }
+  .sn-ctas a:hover { transform: translateY(-2px); }
+  .sn-donate { background: var(--p); color: #fff; box-shadow: 0 6px 16px rgba(201, 76, 240, 0.35); }
+  .sn-contact { border: 2px solid var(--p); color: var(--p); }
+  .pin { position: absolute; top: -14px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 0.75rem var(--sans); font-style: normal; box-shadow: 0 0 0 3px #fff; }
+  .p1 { left: -18px; } .p2 { right: -12px; } .p3 { left: 16px; top: 6px; }
+  @media (max-width: 760px) {
+    .sn-nav { flex-wrap: wrap; gap: 12px; padding: 16px; }
+    .sn-links { margin-left: 0; order: 3; width: 100%; justify-content: space-between; gap: 8px; }
+    .sn-links a { font-size: 0.9rem; }
+    .sn-ctas { margin-left: auto; }
+  }
+</style>

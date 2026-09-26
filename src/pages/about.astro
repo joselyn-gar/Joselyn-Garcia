@@ -22,7 +22,7 @@ const hobbies = [
   { front: 'Pinterest boards', back: 'Collecting aesthetics and ideas. Half my projects start as a board.', color: 'lyft' },
   { front: 'Fragrance layering', back: 'Mixing scents by season. Fall is Lush Sticky Dates with a hint of Calvin Klein Escape.', color: 'jdel' },
   { front: 'Board games', back: 'Hence the dice following your cursor.', color: 'stl' },
-  { front: 'Junk journaling', back: 'Tickets, scraps, and stickers, glued into something that tells a story.', color: 'releaf' },
+  { front: 'Vibe coding', back: 'Building things like this site, one idea at a time.', color: 'skate' },
 ];
 ---
 <Base title="About" active="about" description="About Joselyn Garcia: WashU Marketing + Entrepreneurship student, HCI minor, founder of ReLeaf Candles.">
@@ -45,14 +45,15 @@ const hobbies = [
         through compartment design, and it’s the approach I’ve carried into every project since.
       </p>
       <p>
-        Alongside that, I’m involved with WUTV, WUMA, WashUX, and Net Impact, and I work as the
-        <strong>Digital and Website Lead Intern at the Skandalaris Center</strong>, where I focus on improving the user
-        experience and building cohesive wireframes.
+        I’m the <strong>Digital Content and Website Lead Intern at the Skandalaris Center</strong>, a
+        <strong>UX Consultant</strong> in the Center for Experiential Learning practicum, and an
+        <strong>Adobe Student Ambassador</strong>. I’m also on WUTV’s PR team, where a brand refresh grew membership
+        from <strong>3 to 20</strong>, and I’m involved with WashUX, WUMA, and Net Impact. Hablo español, too.
       </p>
       <p>My mission: make a positive impact in the ventures I lead, the teams I collaborate with, and the industries I pursue.</p>
       <div class="cta">
         <a class="btn" href={`mailto:${site.email}`}>Email me</a>
-        <a class="btn ghost" href="/resume">Resume ↗</a>
+        <a class="btn ghost" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume ↗</a>
         {site.linkedin && <a class="btn ghost" href={site.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>}
       </div>
     </div>
@@ -104,9 +105,10 @@ const hobbies = [
   .block { padding-top: 96px; }
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
   .cards.five { grid-template-columns: repeat(5, 1fr); }
+  .cards.five :global(.f) { font-size: 1.05rem; }
   .tools { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
   .tools li { display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; background: var(--white); border: 1.5px solid var(--ink); animation: float 5s ease-in-out var(--d) infinite; }
-  .tools b { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.1; }
+  .tools b { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
   .tools span { font-size: 0.82rem; color: var(--ink-3); }
   @keyframes float { 50% { transform: translateY(-5px); } }
   .narrow { max-width: 640px; }

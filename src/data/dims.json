@@ -1,7 +1,7 @@
 {
  "/images/about/portrait.webp": [
-  265,
-  228
+  900,
+  858
  ],
  "/images/design/kiki-bouba.webp": [
   1100,
@@ -24,8 +24,8 @@
   1424
  ],
  "/images/jdel/bottle.webp": [
-  365,
-  357
+  1280,
+  800
  ],
  "/images/lyft/billboard.webp": [
   1600,
@@ -115,6 +115,10 @@
   1600,
   900
  ],
+ "/images/skate/final-hero.webp": [
+  614,
+  345
+ ],
  "/images/skate/final.webp": [
   614,
   2000
@@ -126,6 +130,14 @@
  "/images/skate/impact-options.webp": [
   1600,
   900
+ ],
+ "/images/skate/original-home.webp": [
+  1600,
+  921
+ ],
+ "/images/skate/original-nav.webp": [
+  1600,
+  165
  ],
  "/images/stl/logo.webp": [
   164,
@@ -202,10 +214,6 @@
  "/media/releaf-booth.jpg": [
   720,
   720
- ],
- "/media/releaf-journey.jpg": [
-  640,
-  640
  ],
  "/media/skandalaris-ie-awards.jpg": [
   540,

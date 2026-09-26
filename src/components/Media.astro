@@ -14,9 +14,9 @@ interface Props {
 const { src, alt, ratio = 'wide', caption, eager = false, zoom = true } = Astro.props;
 const [w, h] = (dims as Record<string, number[]>)[src] ?? [];
 // small source files stay at natural size instead of being stretched blurry
-const small = w && w < 700;
+const small = w && w < 500;
 ---
-<figure class={`media ${ratio}`}>
+<figure class={`media r-${ratio}`}>
   <div class="shell">
   <div class="frame" tabindex={ratio === 'page' ? 0 : undefined} aria-label={ratio === 'page' ? `${alt} (scrollable)` : undefined}>
     <img
@@ -43,13 +43,13 @@ const small = w && w < 700;
     border-radius: var(--radius); border: 1.5px solid var(--ink);
     background: var(--tint); box-shadow: var(--shadow);
   }
-  .wide .frame { aspect-ratio: 16 / 9; }
-  .square .frame { aspect-ratio: 1; }
-  .portrait .frame { aspect-ratio: 4 / 5; }
+  .r-wide .frame { aspect-ratio: 16 / 9; }
+  .r-square .frame { aspect-ratio: 1; }
+  .r-portrait .frame { aspect-ratio: 4 / 5; }
   .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
   .frame img.small { width: auto; height: auto; max-height: 100%; margin: auto; }
-  .page .frame { aspect-ratio: 3 / 4; display: block; overflow-y: auto; overscroll-behavior: contain; background: var(--white); }
-  .page .frame img { position: static; height: auto; object-fit: initial; }
+  .r-page .frame { aspect-ratio: 3 / 4; display: block; overflow-y: auto; overscroll-behavior: contain; background: var(--white); }
+  .r-page .frame img { position: static; height: auto; object-fit: initial; }
   .shell { position: relative; }
   .hint { position: absolute; right: 12px; bottom: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(26, 26, 26, 0.82); color: #fff; font-size: 0.75rem; font-weight: 600; pointer-events: none; }
   figcaption { font-size: 0.88rem; color: var(--ink-3); margin-top: 10px; line-height: 1.45; }

@@ -9,18 +9,20 @@ export type Entry = {
   answer?: string;
 };
 
+const strip = (s: string) => s.replace(/<[^>]+>/g, '');
+
 const work: Entry[] = items.map((i) => ({
   title: i.title,
   href: i.href,
   group: 'Work',
-  keywords: [i.short, i.summary, i.role, ...i.tags, i.kind].join(' '),
-  answer: i.summary,
+  keywords: [i.short, strip(i.summary), i.role, ...i.tags, i.kind].join(' '),
+  answer: strip(i.summary),
 }));
 
 const pages: Entry[] = [
   { title: 'About me', href: '/about', group: 'Pages', keywords: 'about bio who story strengths clifton hobbies' },
   { title: 'All projects', href: '/projects', group: 'Pages', keywords: 'projects case studies work portfolio' },
-  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun textiles posters writing' },
+  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun textiles posters fragrance' },
 ];
 pages.push({ title: 'Resume', href: '/resume', group: 'Pages', keywords: 'resume cv experience pdf' });
 

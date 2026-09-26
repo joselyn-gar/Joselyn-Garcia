@@ -8,51 +8,54 @@ import Video from '../../components/Video.astro';
   section="playground"
   eyebrow="Posters, reels + recap videos"
   title="Design + Social"
-  summary="Four-plus years of content creation. I currently run social for the WashU Skandalaris Center and WUTV, and I got my start with my high school’s ASB and ReLeaf Candles."
+  summary="4+ years of content creation. I run social for the WashU Skandalaris Center and WUTV."
+  toc={false}
   snapshot={[
     ['Clients', 'Skandalaris Center, WUTV'],
-    ['Before that', 'West High ASB, ReLeaf Candles'],
-    ['Formats', 'Reels, TikToks, posters, banners'],
+    ['Reach', '1,000+ avg. views per Skandalaris post'],
+    ['Growth', 'WUTV membership 3 → 20'],
     ['Editing since', '2020'],
   ]}
 >
   <section id="posters" class="case-section">
-    <h2 data-short="Posters">Posters + flyers</h2>
-    <p>
-      I design flyers that drive sign-ups, Instagram banners that make a club’s focus obvious, and mock ads that
-      strengthen a brand’s visual story. Click any poster to see it larger.
-    </p>
-    <div class="wall wide">
-      <div class="poster"><Media src="/images/design/kiki-bouba.webp" alt="Poster: Find the Kiki to your Bouba. Apply for the SVC, due Jan 28, with chrome star and blob shapes and a QR code" ratio="portrait" /><p class="cap"><span class="tag">Skandalaris Center</span> Recruiting for the Skandalaris Venture Competition. The bouba/kiki effect (spiky vs. round shapes) pitches finding a co-founder who complements you.</p></div>
-      <div class="poster"><Media src="/images/design/tinydesk-black.webp" alt="Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black" ratio="portrait" /><p class="cap"><span class="tag">WUTV</span> Tiny Desk Concert, direction A.</p></div>
-      <div class="poster"><Media src="/images/design/tinydesk-blue.webp" alt="Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code" ratio="portrait" /><p class="cap"><span class="tag">WUTV</span> Tiny Desk Concert, direction B. Two directions for one brief.</p></div>
-      <div class="poster"><Media src="/images/design/perform.webp" alt="Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts with a QR code" ratio="portrait" /><p class="cap"><span class="tag">WUTV</span> Performer call for Tiny Desk Concerts.</p></div>
-      <div class="poster"><Media src="/images/design/mod-portrait.webp" alt="Posterized illustration of a 60s mod woman in round sunglasses and a circle-print top, with the photo reference inset" ratio="portrait" /><p class="cap"><span class="tag">Personal</span> A posterized 60s mod portrait, drawn from a photo reference.</p></div>
+    <h2>Posters + flyers</h2>
+    <p class="lead-in">Flyers that drive <strong>sign-ups</strong>. Click any poster to see it full size.</p>
+    <div class="wall">
+      <div class="poster"><Media src="/images/design/tinydesk-black.webp" alt="Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black" ratio="portrait" /><p class="cap"><strong>WUTV</strong> · Tiny Desk Concert, <strong>direction A</strong></p></div>
+      <div class="poster"><Media src="/images/design/tinydesk-blue.webp" alt="Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code" ratio="portrait" /><p class="cap"><strong>WUTV</strong> · Same brief, <strong>direction B</strong></p></div>
+      <div class="poster"><Media src="/images/design/kiki-bouba.webp" alt="Poster: Find the Kiki to your Bouba. Apply for the SVC, due Jan 28, with chrome star and blob shapes and a QR code" ratio="portrait" /><p class="cap"><strong>Skandalaris Center</strong> · SVC recruiting. The <strong>bouba/kiki effect</strong> pitches finding a co-founder who complements you.</p></div>
+      <div class="poster"><Media src="/images/design/perform.webp" alt="Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts with a QR code" ratio="portrait" /><p class="cap"><strong>WUTV</strong> · <strong>Performer call</strong> for Tiny Desk Concerts</p></div>
+      <div class="poster solo"><Media src="/images/design/mod-portrait.webp" alt="Posterized illustration of a 60s mod woman in round sunglasses and a circle-print top, with the photo reference inset" ratio="portrait" /><p class="cap"><strong>Personal</strong> · A posterized <strong>60s mod portrait</strong> from a photo reference</p></div>
     </div>
   </section>
 
   <section id="video" class="case-section">
-    <h2 data-short="Reels">Reels + recap videos</h2>
-    <p>
-      What started as a hobby in 2020, making film edits for fun, became a real passion. Today I make recap videos and
-      reels that take behind-the-scenes editing, thoughtful sequencing, and an eye for pacing and emotion.
-    </p>
-    <div class="reels wide">
-      <Video name="skandalaris-welcome" frame="phone" tag="Skandalaris" label="Animated welcome post: Welcome! Your journey starts here" caption="Motion welcome post for new followers." />
-      <Video name="skandalaris-ie-awards" frame="phone" tag="Skandalaris" label="TikTok promoting the WashU I&E Awards on April 15" caption="Event promo for the WashU I&E Awards." />
-      <Video name="wutv-tiny-desk" frame="phone" tag="WUTV" label="TikTok: Everything will be okay if you sign up for our Tiny Desk Concert" caption="Sign-up push for the Tiny Desk Concert." />
-      <Video name="asb-home-game" frame="phone" tag="West High ASB" label="First home game recap reel from the stands" caption="First home game recap." />
-      <Video name="asb-staff-breakfast" frame="phone" tag="West High ASB" label="Staff appreciation breakfast recap reel" caption="Staff appreciation breakfast recap." />
+    <h2>Reels + recap videos</h2>
+    <p class="lead-in">Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
+    <div class="reels">
+      <Video name="skandalaris-welcome" frame="phone" label="Animated welcome post: Welcome! Your journey starts here" caption="Skandalaris · Welcome post" />
+      <Video name="skandalaris-ie-awards" frame="phone" label="TikTok promoting the WashU I&E Awards on April 15" caption="Skandalaris · I&E Awards promo" />
+      <Video name="wutv-tiny-desk" frame="phone" label="TikTok: Everything will be okay if you sign up for our Tiny Desk Concert" caption="WUTV · Tiny Desk sign-ups" />
+    </div>
+    <h3 class="sub">Where it started</h3>
+    <div class="reels">
+      <Video name="asb-home-game" frame="phone" label="First home game recap reel from the stands" caption="West High ASB · Home game recap" />
+      <Video name="asb-staff-breakfast" frame="phone" label="Staff appreciation breakfast recap reel" caption="West High ASB · Staff breakfast recap" />
     </div>
   </section>
 </CaseLayout>
 
 <style>
-  .wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 18px; margin: 28px 0; }
-  .cap { font-size: 0.86rem; color: var(--ink-2); margin: 10px 0 0; line-height: 1.45; }
-  .cap .tag { margin-right: 4px; }
-  @media (max-width: 760px) { .wall { grid-template-columns: repeat(2, 1fr); } }
-  .reels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 24px; }
-  @media (max-width: 1000px) { .reels { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 640px) { .reels { grid-template-columns: repeat(2, 1fr); } }
+  .case-section { max-width: 980px; margin-inline: auto; }
+  .lead-in { max-width: var(--read); }
+  .wall { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 28px; margin: 28px 0 0; }
+  .poster.solo { grid-column: 1 / -1; width: calc(50% - 14px); margin-inline: auto; }
+  .cap { font-size: 0.95rem; color: var(--ink-2); margin: 12px 0 0; line-height: 1.45; }
+  .reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 28px 0 0; }
+  .sub { margin: 48px 0 0; }
+  @media (max-width: 640px) {
+    .wall { grid-template-columns: 1fr; }
+    .poster.solo { width: 100%; }
+    .reels { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
 </style>

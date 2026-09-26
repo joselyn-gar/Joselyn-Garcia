@@ -37,11 +37,6 @@ import Steps from '../../components/Steps.astro';
   <section id="how" class="case-section">
     <h2 data-short="How it works">How it works</h2>
     <p>ReLeaf kits come with everything you need to grow something once your candle is done burning.</p>
-    <Steps steps={[
-      { label: 'Light it', text: 'Enjoy your candle like any other.' },
-      { label: 'Twist it', text: 'Clean the jar and twist the bottom to reveal drainage holes and a hidden seed compartment.' },
-      { label: 'Grow it', text: 'Add the provided soil and click the lid onto the base as a water plate. Or bury the whole thing: it biodegrades in a few months.' },
-    ]} />
     <Media src="/images/releaf/how-it-works.webp" alt="Illustrated three-step guide: light the candle, twist the bottom to reveal seeds, add soil and watch it grow" ratio="wide" />
   </section>
 
@@ -107,12 +102,10 @@ import Steps from '../../components/Steps.astro';
       <Video name="releaf-booth" label="Walkthrough of the ReLeaf trade show booth" caption="Booth walkthrough." />
     </div>
     <div class="stats">
-      <div class="stat"><b>Finalist</b><span>Skandalaris Venture Competition at WashU, as a freshman</span></div>
+      <div class="stat"><b>Top 16</b><span>of 131 teams, Skandalaris Venture Competition finalist</span></div>
+      <div class="stat"><b>146</b><span>survey responses + 6 customer-discovery interviews</span></div>
+      <div class="stat"><b>26</b><span>customers and 3 potential investors from trade shows</span></div>
       <div class="stat"><b>Winner</b><span>IdeaBounce, through live pitching</span></div>
-      <div class="stat"><b>Official</b><span>Now a real company, with a pilot program planned in California</span></div>
-    </div>
-    <div class="journey">
-      <Video name="releaf-journey" label="Highlight reel of the ReLeaf journey: trade shows, pitching on stage, and awards" caption="The journey so far: trade shows, pitches, and a few awards along the way." />
     </div>
   </section>
 
@@ -132,6 +125,5 @@ import Steps from '../../components/Steps.astro';
   .palette { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
   .palette li { aspect-ratio: 1; border-radius: 14px; background: var(--sw); display: flex; align-items: flex-end; padding: 8px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }
   .palette span { font-size: 0.72rem; background: rgba(255, 255, 255, 0.85); padding: 2px 6px; border-radius: 6px; }
-  .journey { max-width: 380px; margin-top: 20px; }
   @media (max-width: 640px) { .palette { grid-template-columns: repeat(3, 1fr); } }
 </style>

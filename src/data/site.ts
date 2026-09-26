@@ -8,8 +8,8 @@ export const site = {
   email: 'Joselyng485@gmail.com',
   // TODO(Joselyn): paste your LinkedIn URL. The link stays hidden until this is set.
   linkedin: '' as string,
-  // TODO(Joselyn): drop resume.pdf into public/files/ and set this to '/files/resume.pdf'.
-  resume: '' as string,
+  // Replace public/files/resume.pdf to update the resume everywhere.
+  resume: '/files/resume.pdf' as string,
   // TODO(Joselyn): paste your Pinterest board link to show it on About.
   pinterest: '' as string,
 };

@@ -7,7 +7,7 @@ export type Item = {
   kind: 'Case study' | 'Playground';
   color: string; // CSS var prefix, e.g. 'lyft' -> --lyft, --lyft-tint, --lyft-text
   face: 1 | 2 | 3 | 4 | 5 | 6; // die face shown when the dice cursor hovers the tile
-  summary: string;
+  summary: string; // may contain <strong> for key words
   role: string;
   tags: string[];
   cover: string;
@@ -23,7 +23,7 @@ export const items: Item[] = [
     kind: 'Case study',
     color: 'lyft',
     face: 1,
-    summary: 'A feature concept that turns every bike ride into a city adventure, built on infrastructure Lyft already owns.',
+    summary: 'A <strong>feature concept</strong> that turns every bike ride into a city adventure, built on <strong>infrastructure Lyft already owns</strong>.',
     role: 'Ideation lead, slide design, all mockups',
     tags: ['UX', 'Gamification', 'Strategy'],
     cover: '/images/lyft/hero.webp',
@@ -37,11 +37,11 @@ export const items: Item[] = [
     kind: 'Case study',
     color: 'releaf',
     face: 2,
-    summary: 'The startup I founded: a candle jar that twists open into a planter once the candle burns out.',
+    summary: 'The <strong>startup I founded</strong>: a candle jar that <strong>twists open into a planter</strong> once the candle burns out.',
     role: 'Founder + CEO',
     tags: ['Product', 'Brand', 'Startup'],
     cover: '/images/releaf/lineup.webp',
-    stats: [['Skandalaris Venture Comp.', 'Finalist'], ['IdeaBounce', 'Winner'], ['Next', 'CA pilot']],
+    stats: [['Skandalaris Venture Comp.', 'Top 16 of 131'], ['Survey responses', '146'], ['Customers', '26']],
   },
   {
     slug: 'skate-for-girls',
@@ -51,10 +51,10 @@ export const items: Item[] = [
     kind: 'Case study',
     color: 'skate',
     face: 3,
-    summary: 'A consulting-style website redesign for a nonprofit, built to be shipped on their existing Wix site.',
+    summary: 'A <strong>UX consulting</strong> redesign for a nonprofit, built to ship on their <strong>existing Wix site</strong>.',
     role: 'Homepage design lead + UX research',
     tags: ['UX research', 'Web design', 'Nonprofit'],
-    cover: '/images/skate/final.webp',
+    cover: '/images/skate/final-hero.webp',
     stats: [['Survey responses', '38'], ["Couldn't find Donate", '45%'], ['Deliverable', 'Prototype']],
   },
   {
@@ -65,7 +65,7 @@ export const items: Item[] = [
     kind: 'Case study',
     color: 'stl',
     face: 4,
-    summary: 'A social campaign and effectiveness study for St. Louis’s proposed Circularity District.',
+    summary: 'A <strong>social campaign</strong> and <strong>effectiveness study</strong> for St. Louis’s proposed Circularity District.',
     role: 'Campaign strategy, design + research',
     tags: ['Marketing', 'Research', 'Social'],
     cover: '/images/stl/slide-2.webp',
@@ -79,7 +79,7 @@ export const items: Item[] = [
     kind: 'Playground',
     color: 'tex',
     face: 5,
-    summary: 'Two surface-design prints, from mood board to colorways to a bodice mockup.',
+    summary: 'Two <strong>surface-design prints</strong>, from mood board to colorways to a <strong>bodice mockup</strong>.',
     role: 'Surface design',
     tags: ['Print', 'Fashion', 'Illustration'],
     cover: '/images/textiles/bead-singer.webp',
@@ -93,11 +93,11 @@ export const items: Item[] = [
     kind: 'Playground',
     color: 'design',
     face: 6,
-    summary: 'Posters, reels, and recap videos for WUTV, the Skandalaris Center, and more.',
+    summary: '<strong>Posters</strong>, <strong>reels</strong>, and recap videos for <strong>WUTV</strong> and the <strong>Skandalaris Center</strong>.',
     role: 'Content creator + designer',
     tags: ['Social', 'Posters', 'Video'],
     cover: '/images/design/kiki-bouba.webp',
-    stats: [['Creating content', '4+ yrs'], ['Clients', 'WUTV, Skandalaris'], ['Editing since', '2020']],
+    stats: [['Avg. post views', '1,000+'], ['WUTV members', '3 → 20'], ['Creating content', '4+ yrs']],
   },
   {
     slug: 'jdel',
@@ -107,25 +107,11 @@ export const items: Item[] = [
     kind: 'Playground',
     color: 'jdel',
     face: 1,
-    summary: 'A dream perfume brand named for my mom and me, concepted with AI image generation.',
+    summary: 'A dream <strong>perfume brand</strong> named for my mom and me, concepted with <strong>AI image generation</strong>.',
     role: 'Brand + product concept',
     tags: ['Beauty', 'AI', 'Brand'],
     cover: '/images/jdel/bottle.webp',
     stats: [['Category', 'Fragrance'], ['Tools', 'AI + prompt design'], ['Status', 'Dream brand']],
-  },
-  {
-    slug: 'raised-on-the-blur',
-    href: '/playground/raised-on-the-blur',
-    title: 'Raised on the Blur',
-    short: 'Writing',
-    kind: 'Playground',
-    color: 'write',
-    face: 2,
-    summary: 'A research paper on AI-generated media, the attention economy, and what it means for Gen Z.',
-    role: 'Research + writing',
-    tags: ['Writing', 'AI', 'HCI'],
-    cover: '',
-    stats: [['Spot AI content', '~55%'], ['Deepfake growth', '3,000%'], ['Pages', '16']],
   },
 ];
 
