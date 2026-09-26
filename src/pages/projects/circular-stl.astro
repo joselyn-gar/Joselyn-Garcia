@@ -1,101 +1,81 @@
 ---
-import CaseLayout from '../../layouts/CaseLayout.astro';
-import Media from '../../components/Media.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 ---
-<CaseLayout
+<ProductLayout
   slug="circular-stl"
-  eyebrow="Marketing campaign + research · CircularSTL"
-  title="Reaching St. Louis: #AroundSTL"
-  summary="A social media campaign and advertising effectiveness study for CircularSTL’s proposed Circularity District, a place where the city’s unused stuff stays in circulation instead of in landfills."
-  snapshot={[
-    ['Client', 'CircularSTL + Circularity District Task Force'],
-    ['Team', 'Joselyn Garcia, Maddie Elhaik, Gia Grillo'],
-    ['Channel', 'Instagram carousel'],
-    ['Study', '16-question survey, 31 respondents'],
+  eyebrow="Real client · Sustainability in Business"
+  title="#AroundSTL"
+  tagline="A social campaign that helps St. Louis see <strong>unused stuff as value</strong>, for CircularSTL’s proposed Circularity District."
+  hero="/images/stl/hero.webp"
+  heroAlt="The four #AroundSTL Instagram posts side by side"
+  summary={[
+    ['The problem', 'People didn’t understand what a <strong>Circularity District</strong> was.'],
+    ['What I did', 'Headed <strong>ideation</strong>, the <strong>mockups</strong>, and the <strong>survey</strong>.'],
+    ['The result', '<strong>4.15/5</strong> favorability, and a <strong>happy client</strong>.'],
   ]}
 >
-  <section id="challenge" class="case-section">
-    <h2 data-short="The challenge">The challenge</h2>
-    <p>
-      The Circularity District asks people to think differently about the stuff in their closets. CircularSTL’s own
-      symposium reports pointed to a clear gap: the public needed education, outreach, and a shift in understanding.
-    </p>
-    <div class="callout"><p>“Maintaining consistent, non-partisan, relatable messaging is essential to shift public understanding.” <br /><span class="muted">2025 CircularSTL Symposium Report, Action Area 6</span></p></div>
-    <p>Our core questions: what makes a Circularity District feel valuable to consumers, and how can advertising show that value in a way that feels relevant and motivating?</p>
+  <section class="chapter">
+    <span class="num">Why this problem</span>
+    <p class="pull">“I took this class for my <span class="hl">love of sustainability</span>. We got a real client, and my team chose marketing.”</p>
+    <p>Team: <strong>Joselyn Garcia</strong>, Maddie Elhaik, Gia Grillo, for CircularSTL and the Circularity District Task Force.</p>
   </section>
 
-  <section id="channel" class="case-section">
-    <h2 data-short="Picking a channel">Picking a channel</h2>
-    <p>We compared three formats before designing anything.</p>
-    <div class="features">
-      <div class="feature"><h3>Posters</h3><p>Good recall in high-traffic spots, but geographically fixed. Too narrow for a district meant to serve all of St. Louis.</p></div>
-      <div class="feature"><h3>Email</h3><p>Strong ROI, but it needs an audience that already exists. Better for retention later.</p></div>
-      <div class="feature"><h3>Social</h3><p><strong>Our pick.</strong> Geo-targeting, broad reach, two-way conversation, and visual-first storytelling.</p></div>
-    </div>
-    <p>
-      The strategy was anchored in the Ellen MacArthur Foundation’s <em>Marketing Playbook for a Circular Economy</em>:
-      make circular behavior irresistible. So we framed the District as a financial win for everyday residents, not only
-      an environmental one, and studied Patagonia’s “Don’t Buy This Jacket” and Nike’s “Move to Zero” along the way.
-    </p>
-  </section>
-
-  <section id="campaign" class="case-section">
-    <h2 data-short="The campaign">The campaign</h2>
-    <p class="quote">“What goes around should come back around.”</p>
-    <p>
-      The tagline nods to St. Louis sayings like “In St. Louis, For St. Louis” and to resale brand What Goes Around Comes
-      Around, where “around” quietly hints at circularity. The four-post carousel follows a rule of four: a relatable
-      hook, a statistic, what the District offers, and a call to action.
-    </p>
-    <ol class="carousel">
-      <li><Media ratio="portrait" src="/images/stl/slide-1.webp" alt="Post 1: Let's talk junk. Your stuff is worth way more." /><span><b>1. The hook</b> Reframe how people see their unused things.</span></li>
-      <li><Media ratio="portrait" src="/images/stl/slide-2.webp" alt="Post 2: The average household has $3,100 in unused items" /><span><b>2. The math</b> $3,100 in unused items per household (OfferUp 2025).</span></li>
-      <li><Media ratio="portrait" src="/images/stl/slide-3.webp" alt="Post 3: The Circularity District, where STL can donate, repair and circulate, all in one place" /><span><b>3. What it does</b> Donate, repair, circulate, all in one place.</span></li>
-      <li><Media ratio="portrait" src="/images/stl/slide-4.webp" alt="Post 4: In St. Louis, what goes around should come back around" /><span><b>4. The call</b> Build a circular economy rooted in St. Louis.</span></li>
+  <section class="chapter tinted">
+    <span class="num">01 · Channel</span>
+    <h2>Pick where people already are.</h2>
+    <p>CircularSTL’s own report called out a <strong>messaging gap</strong>. We compared three channels before designing anything.</p>
+    <ol class="band ideas" style="--n:3">
+      <li class="out"><b>Posters</b><span>Good recall, but stuck in one place.</span></li>
+      <li class="out"><b>Email</b><span>Needs an audience that already exists.</span></li>
+      <li class="kept"><b>Instagram</b><span>Geo-targeted, visual, and built for <strong>conversation</strong>.</span></li>
     </ol>
-    <p>
-      Color did deliberate work: red for urgency on the statistics, green for sustainability and the positive outcome,
-      and muted tones to ground it. A cluttered room made the message personal, and bold white type kept it readable on a phone.
-    </p>
+    <div class="learn"><b>What I learned</b><p>Choose the channel before the creative. It decides everything after.</p></div>
   </section>
 
-  <section id="results" class="case-section">
-    <h2 data-short="Results">What we found</h2>
-    <p>We tested the campaign with a before-and-after survey, sent to WashU students, faculty, friends, and coworkers, April 17 to 21, 2026. Respondents ranged from 18 to 55.</p>
-    <div class="stats">
-      <div class="stat"><b>4.15/5</b><span>average favorability toward the Circularity District</span></div>
-      <div class="stat"><b>3.70/5</b><span>average compellingness score for the campaign</span></div>
-      <div class="stat"><b>~80%</b><span>agreed the tagline conveyed a circular economy</span></div>
-      <div class="stat"><b>10%</b><span>felt the campaign was distinctly rooted in St. Louis</span></div>
+  <section class="chapter">
+    <span class="num">02 · The campaign</span>
+    <h2>What goes around should come back around.</h2>
+    <p>We framed circularity as a <strong>money win</strong>, not only a green one. Four posts: hook, math, what it does, call to action.</p>
+    <div class="band cols four">
+      <figure><img src="/images/stl/slide-1.webp" alt="Post 1: Let's talk junk. Your stuff is worth way more." loading="lazy" /><figcaption><strong>Hook</strong></figcaption></figure>
+      <figure><img src="/images/stl/slide-2.webp" alt="Post 2: The average household has $3,100 in unused items" loading="lazy" /><figcaption><strong>The math</strong></figcaption></figure>
+      <figure><img src="/images/stl/slide-3.webp" alt="Post 3: Donate, repair, circulate, all in one place" loading="lazy" /><figcaption><strong>What it does</strong></figcaption></figure>
+      <figure><img src="/images/stl/slide-4.webp" alt="Post 4: In St. Louis, what goes around should come back around" loading="lazy" /><figcaption><strong>The call</strong></figcaption></figure>
     </div>
-    <p>
-      People called the District itself “great,” “useful,” and “needed.” The $3,100 statistic was the single most
-      effective element. The honest gap: the campaign didn’t feel local enough, and several people confused the District
-      with Goodwill or basic recycling.
-    </p>
+    <div class="learn"><b>What I learned</b><p>People act on personal value. Lead with what’s in it for them.</p></div>
   </section>
 
-  <section id="next" class="case-section">
-    <h2 data-short="Recommendations">Recommendations</h2>
-    <ul>
-      <li><strong>Lead with financial value.</strong> Personal economic benefit reaches the widest audience.</li>
-      <li><strong>Go more St. Louis.</strong> Neighborhoods, landmarks, local data, and community partners.</li>
-      <li><strong>Name the difference.</strong> Show why a full-service hub isn’t just another donation center.</li>
-      <li><strong>Say less per slide.</strong> One idea per slide, brighter color, bolder stats.</li>
-      <li><strong>Give a next step.</strong> A website, mailing list, or event, plus a “Learn more” bar on paid posts.</li>
-    </ul>
-    <p>
-      The part I value most: testing showed where our work fell short, and those gaps became the most useful
-      recommendations for CircularSTL.
-    </p>
+  <section class="chapter tinted">
+    <span class="num">03 · Testing</span>
+    <h2>We asked the community.</h2>
+    <p>A <strong>16-question survey</strong>, 31 respondents, before and after seeing the campaign.</p>
+    <div class="band bigstats">
+      <div><b>4.15</b><span>out of 5 favorability</span></div>
+      <div><b>~80%</b><span>said the tagline read as circular</span></div>
+      <div><b>10%</b><span>felt it was rooted in St. Louis</span></div>
+    </div>
+    <div class="band mycall">
+      <span class="num">The honest gap</span>
+      <p class="pull">Only 10% felt it was <span class="hl">St. Louis</span>. Some confused it with Goodwill.</p>
+      <p class="answer">So our recommendations: go more local, name what makes the District different, and give a clear next step.</p>
+    </div>
+    <div class="learn"><b>What I learned</b><p>Testing is most useful when it shows you where you fell short.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">04 · The client</span>
+    <h2>Making the client happy.</h2>
+    <p>We shared the survey results in our final presentation, and <strong>the client was happy</strong>. That’s the part I love most: <strong>client-facing work</strong>.</p>
     <p><a class="btn ghost" href="/files/circular-stl-report.pdf" target="_blank" rel="noopener">Read the full report (PDF) ↗</a></p>
   </section>
-</CaseLayout>
 
-<style>
-  .carousel { list-style: none; padding: 0; margin: 28px auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .carousel li { display: flex; flex-direction: column; gap: 10px; }
-  .carousel span { font-size: 0.86rem; color: var(--ink-2); line-height: 1.4; }
-  .carousel b { display: block; color: var(--ink); }
-  @media (max-width: 860px) { .carousel { grid-template-columns: repeat(2, 1fr); } }
-</style>
+  <section class="chapter tinted">
+    <span class="num">Takeaways</span>
+    <h2>What I’m taking with me.</h2>
+    <ol class="band takeaways-big" style="max-width:var(--text)">
+      <li>Entrepreneurial problems are freeing. I like tackling them.</li>
+      <li>Real clients raise the bar, in a good way.</li>
+      <li>Community feedback turns a pitch into proof.</li>
+    </ol>
+  </section>
+</ProductLayout>

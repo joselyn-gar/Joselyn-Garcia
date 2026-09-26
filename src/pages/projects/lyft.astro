@@ -122,20 +122,6 @@ import Video from '../../components/Video.astro';
 </ProductLayout>
 
 <style>
-  .hl { color: var(--accent-text); }
-  .pull em { font-style: normal; color: var(--accent-text); }
-  .ideas { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: left; }
-  .ideas li { padding: 22px; border-radius: 20px; background: var(--white); }
-  .ideas b { display: block; font-family: var(--serif); font-size: 1.15rem; margin-bottom: 6px; }
-  .ideas span { font-size: 0.95rem; color: var(--ink-2); }
-  .ideas .out { opacity: 0.55; }
-  .ideas .out b { text-decoration: line-through; text-decoration-thickness: 2px; }
-  .ideas .kept { background: var(--accent-text); color: #fff; box-shadow: 0 16px 40px rgba(255, 0, 191, 0.25); }
-  .ideas .kept span, .ideas .kept strong { color: #fff; }
-  .mycall { margin-top: 88px; padding: 48px 32px; border-radius: 28px; background: var(--white); }
-  .mycall .num { margin-bottom: 18px; }
-  .mycall .answer { color: var(--ink-2); font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
-  @media (max-width: 860px) { .ideas { grid-template-columns: repeat(2, 1fr); } }
   .vids { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; align-items: center; text-align: left; }
   @media (max-width: 760px) { .vids { grid-template-columns: 1fr; } }
 </style>
