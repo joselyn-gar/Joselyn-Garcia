@@ -1,160 +1,104 @@
 ---
-import CaseLayout from '../../layouts/CaseLayout.astro';
-import Img from '../../components/Img.astro';
-import Media from '../../components/Media.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 import Video from '../../components/Video.astro';
 ---
-<CaseLayout
+<ProductLayout
   slug="lyft"
   eyebrow="Course case competition · Management 1000"
   title="Lyft Explore"
-  summary="A feature concept pitching Lyft on turning every bike ride into a city adventure, driving engagement, loyalty, and a new revenue stream built entirely on existing infrastructure."
+  tagline="A feature concept that turns <strong>every bike ride into a city adventure</strong>, built on infrastructure Lyft already owns."
   hero="/images/lyft/hero.webp"
   heroAlt="Lyft Explore logo with a pink gem and two leaderboard screens"
-  snapshot={[
-    ['My role', 'Headed ideation, slide design, and every mockup'],
-    ['Context', 'Class case competition'],
-    ['Focus', 'Micromobility growth'],
-    ['Modeling', 'Excel + Google Sheets'],
+  summary={[
+    ['The problem', 'Lyft bikes averaged <strong>2 rides a day</strong>, and <strong>~90%</strong> of revenue came from rideshare.'],
+    ['What I did', 'Headed <strong>ideation</strong>, designed the <strong>slides</strong>, and made <strong>every mockup</strong>.'],
+    ['The result', 'A gamified feature projected at <strong>720% ROI</strong>.'],
   ]}
 >
-  <section id="overview" class="case-section">
-    <h2 data-short="Overview">Project overview</h2>
-    <p>
-      This case competition in my Management 1000 course challenged us to dig deep into Lyft’s business model and find
-      real room to grow.
-    </p>
-    <div class="stats">
-      <div class="stat"><b>2</b><span>rides per bike, per day. Nowhere near enough to cover fixed infrastructure costs.</span></div>
-      <div class="stat"><b>~90%</b><span>of Lyft’s total revenue came from rideshare, leaving bikes and scooters as a costly side project.</span></div>
+  <section class="chapter">
+    <span class="num">01 · Research</span>
+    <h2>Start with the business.</h2>
+    <p>I read Lyft’s <strong>10-K filings</strong>, micromobility market data, and <strong>Gen Z research</strong> before sketching anything.</p>
+    <div class="band bigstats">
+      <div><b>2</b><span>rides per bike, per day</span></div>
+      <div><b>$9.61B</b><span>micromobility market by 2030, and no one owns it</span></div>
+      <div><b>65%</b><span>of Pokémon GO players are 18 to 34</span></div>
     </div>
-    <p>
-      Rather than blending in with competitors like Lime and Bird, who offer the same bikes, the same maps, and the same
-      pricing, I focused on a differentiator that fits Lyft’s core values: <strong>community</strong> and
-      <strong>getting people out there exploring</strong>.
-    </p>
-    <p>
-      The solution gamifies urban exploration through a GemPoints rewards system, turning every bike ride into an
-      adventure while building on infrastructure Lyft already owns.
-    </p>
+    <div class="learn"><b>What I learned</b><p>Read the filings first. The numbers showed me the gap before any idea did.</p></div>
   </section>
 
-  <section id="research" class="case-section">
-    <h2 data-short="Research">1. Deep research + discovery</h2>
-    <p>
-      The process followed a deliberate sequence: absorb everything about Lyft, find where the real opportunity was,
-      then design something that felt native to who Lyft already is.
-    </p>
-    <p>
-      I read Lyft’s 10-K filings, micromobility market data, Gen Z behavioral research, and competitor positioning,
-      looking for growth that competitors weren’t addressing.
-    </p>
-    <div class="stats">
-      <div class="stat"><b>$4.5B → $9.61B</b><span>global micromobility market, 2025 to 2030. No single company owns the space.</span></div>
-      <div class="stat"><b>65%</b><span>of Pokémon GO’s 106M monthly users are 18 to 34, Lyft’s core demographic.</span></div>
-      <div class="stat"><b>+150%</b><span>boost in user engagement from gamification, alongside a 25.3% lift in sales.</span></div>
-    </div>
+  <section class="chapter tinted">
+    <span class="num">02 · The wedge</span>
+    <h2>Don’t compete on bikes.</h2>
+    <p>Lime and Bird offer the <strong>same bikes, maps, and prices</strong>. Lyft stands for <strong>community and exploration</strong>, so I built on that.</p>
+    <figure class="band">
+      <img src="/images/lyft/moodboard.webp" alt="Mood board: Pokémon GO map, Strava leaderboard, Lyft Media event icons, Nike Run Club leaderboard, and a hidden gem video thumbnail" loading="lazy" />
+      <figcaption>Inspiration: <strong>Pokémon GO</strong>, <strong>Strava</strong>, <strong>Snap Map</strong>, and Lyft Media’s own event mode.</figcaption>
+    </figure>
+    <div class="learn"><b>What I learned</b><p>You can’t win on features alone. Build on what the brand already stands for.</p></div>
   </section>
 
-  <section id="wedge" class="case-section">
-    <h2 data-short="Inspiration">2. Finding the wedge</h2>
-    <p>
-      The goal was not to copy competitors. It was to find a differentiator that matched Lyft’s existing brand identity:
-      community, movement, and exploration. I pulled references for tone and interaction patterns from four places.
-    </p>
-    <div class="features">
-      <div class="feature"><h3>Location play</h3><p>Pokémon GO turns real places into reasons to go outside.</p></div>
-      <div class="feature"><h3>Friendly competition</h3><p>Strava and Nike Run Club leaderboards keep people coming back.</p></div>
-      <div class="feature"><h3>Branded map moments</h3><p>Lyft Media already swaps vehicle icons during movie premieres.</p></div>
+  <section class="chapter">
+    <span class="num">03 · The solution</span>
+    <h2>Every ride is a hidden gem.</h2>
+    <p>Lyft Explore lives inside the <strong>existing Lyft map</strong>. No new app, no new hardware.</p>
+    <figure class="band">
+      <img src="/images/lyft/evolution.webp" alt="Three phones: today's Lyft bikes map, the gem concept map, and the final dark map with a sponsored gem" loading="lazy" />
+      <figcaption><strong>Today’s map</strong> → <strong>gem concept</strong> → <strong>final</strong> dark map with a sponsored spot.</figcaption>
+    </figure>
+    <ol class="band decisions">
+      <li><i>1</i><div><b>Gem Pinpoints</b><span>Sponsored and community hot spots, using the <strong>icon system Lyft Media already runs</strong>.</span></div></li>
+      <li><i>2</i><div><b>Regional leaderboard</b><span>Riders compete for <strong>Lyft credit</strong>: $50, $30, $15. Sponsors can add prizes.</span></div></li>
+      <li><i>3</i><div><b>Points that plug in</b><span>An optional layer that joins <strong>Lyft Rewards</strong> instead of running separately.</span></div></li>
+    </ol>
+    <figure class="band">
+      <img src="/images/lyft/final-screens.webp" alt="Final screens: a brand-sponsored leaderboard, the Lyft leaderboard, and the map with a 300-point gem" loading="lazy" />
+    </figure>
+    <div class="band cols">
+      <figure><img src="/images/lyft/kiosk-map.webp" alt="Bike dock kiosk showing a sponsored leaderboard next to the app map" loading="lazy" /><figcaption>On the <strong>dock kiosk</strong></figcaption></figure>
+      <figure><img src="/images/lyft/handlebar.webp" alt="Lyft bike handlebar screen showing the gem map" loading="lazy" /><figcaption>On the <strong>handlebar screen</strong></figcaption></figure>
     </div>
-    <Media src="/images/lyft/moodboard.webp" alt="Mood board: Pokémon GO map, Strava leaderboard, Lyft Media event icons, Nike Run Club leaderboard, and a hidden gem video thumbnail" ratio="wide" caption="Mood board of similar platforms: Pokémon GO, Strava, Snap Map, Nike Run Club, and Lyft Media’s event mode." />
+    <div class="learn"><b>What I learned</b><p>Designing inside real infrastructure is harder, and far more convincing.</p></div>
   </section>
 
-  <section id="solution" class="case-section">
-    <h2 data-short="Solution">3. Proposing Lyft Explore</h2>
-    <p>
-      We landed on <strong>Lyft Explore</strong>, a UI/UX layer built directly into the existing Lyft app map.
-      Gem Pinpoints, sponsored and community hot spots, appear on the map using the same icon mechanic Lyft Media
-      already uses for event sponsorships.
-    </p>
-    <Media src="/images/lyft/evolution.webp" alt="Three phones: today's Lyft bikes map, the gem concept map, and the final dark map with a sponsored gem" ratio="wide" caption="From today’s map, to the gem concept, to the final dark-mode map with a sponsored location." />
-    <div class="features">
-      <div class="feature"><h3>Gem Pinpoints</h3><p>Sponsored and community hot spots on the map, pointing riders toward places worth seeing.</p></div>
-      <div class="feature"><h3>Gem Points</h3><p>An optional points layer earned per ride, built to plug into Lyft’s existing rewards programs.</p></div>
-      <div class="feature"><h3>Leaderboard</h3><p>A regional leaderboard where riders compete for Lyft credit. Sponsors can add their own prizes.</p></div>
+  <section class="chapter tinted">
+    <span class="num">04 · Campaign</span>
+    <h2>On the street and in the feed.</h2>
+    <p><strong>Billboards</strong> near the docks, plus <strong>creator-style video</strong> that shows what a ride feels like.</p>
+    <div class="band cols">
+      <figure><img src="/images/lyft/campaign.webp" alt="Campaign key visual: Every ride is a hidden gem, with a Lyft scooter" loading="lazy" /></figure>
+      <figure><img src="/images/lyft/billboard.webp" alt="Digital billboard mockup of the campaign outside a building" loading="lazy" /></figure>
     </div>
-    <p>
-      Lyft already runs its own rewards: a points-based Lyft Rewards program since 2018, and Lyft Cash Rewards,
-      launched in late 2025. The points layer would integrate with that infrastructure instead of running separately.
-    </p>
-    <Media src="/images/lyft/payout.webp" alt="Brand-sponsored and Lyft leaderboards beside a base reward payout: 1st $50, 2nd $30, 3rd $15 in Lyft credit" ratio="wide" caption="Base reward payout in Lyft credit: 1st $50, 2nd $30, 3rd $15. A sponsoring brand can add a prize on top." />
+    <div class="band vids">
+      <Video name="lyft-ride-concept" label="Concept video: riders exploring the city while a gem floats overhead and the leaderboard updates" caption="How we imagine a ride." />
+      <Video name="lyft-explore-with-me" frame="bare" label="Creator-style social video: Come explore with me, Lyft Explore edition" caption="“Come explore with me.”" />
+    </div>
+    <div class="learn"><b>What I learned</b><p>A feature needs a story before anyone will use it.</p></div>
   </section>
 
-  <section id="design" class="case-section">
-    <h2 data-short="Final design">The final screens</h2>
-    <Media src="/images/lyft/final-screens.webp" alt="Final screens: a brand-sponsored leaderboard, the Lyft leaderboard, and the map with a 300-point gem" ratio="wide" />
-    <p>It also lives beyond the phone, on the dock kiosk and the bike’s handlebar screen.</p>
-    <div class="row row-2">
-      <Media src="/images/lyft/kiosk-map.webp" alt="Bike dock kiosk showing a sponsored leaderboard next to the app map" ratio="wide" />
-      <Media src="/images/lyft/handlebar.webp" alt="Lyft bike handlebar screen showing the gem map" ratio="wide" />
+  <section class="chapter">
+    <span class="num">05 · Results</span>
+    <h2>The business case.</h2>
+    <div class="band bigstats">
+      <div><b>720%</b><span>projected ROI</span></div>
+      <div><b>87.7%</b><span>profit margin</span></div>
+      <div><b>$317M</b><span>5-year profit, up from $213M</span></div>
     </div>
+    <p class="note">Projected in Excel and Google Sheets using Divvy bike data and Lyft’s segment revenue.</p>
   </section>
 
-  <section id="campaign" class="case-section">
-    <h2 data-short="Campaign">Campaign: on the street and in the feed</h2>
-    <p class="quote">“Every ride is a hidden gem.”</p>
-    <p>Get rewarded for exploring. The launch idea pairs out-of-home screens near docks with creator-style social video.</p>
-    <div class="row row-2">
-      <Media src="/images/lyft/campaign.webp" alt="Campaign key visual: Every ride is a hidden gem, with a Lyft scooter" ratio="wide" />
-      <Media src="/images/lyft/billboard.webp" alt="Digital billboard mockup of the campaign outside a building" ratio="wide" />
-    </div>
-    <p>In the feed, <strong>creator-style video</strong> shows what a ride feels like.</p>
-    <div class="campaign-vids">
-      <Video name="lyft-ride-concept" label="Concept video: riders exploring the city while a gem floats overhead and the leaderboard updates" caption="How we imagine it: every ride earns points toward the regional leaderboard." />
-      <Video name="lyft-explore-with-me" frame="bare" label="Creator-style social video: Come explore with me, Lyft Explore edition" caption="Social concept: “Come explore with me, Lyft Explore edition.”" />
-    </div>
+  <section class="chapter">
+    <span class="num">Takeaways</span>
+    <h2>What I’m taking with me.</h2>
+    <ol class="band takeaways-big" style="max-width:var(--text)">
+      <li>Keep revenue at the center of every creative decision.</li>
+      <li>Borrow from brand values before borrowing from competitors.</li>
+      <li>Next time, test with real riders. This ran on secondary research.</li>
+    </ol>
   </section>
-
-  <section id="why" class="case-section">
-    <h2 data-short="Why it matters">Why it matters</h2>
-    <p>
-      Lyft’s differentiation rests on connection and community rather than price, since Uber already competes hard on
-      cost. Gem Pinpoints extend that idea to micromobility: they act as a guide, pointing riders toward real places
-      worth visiting, so a ride becomes a way to actually explore the city.
-    </p>
-    <p>
-      A fair critique of gamifying a mobility app is that it could keep people glued to their phones. But with Gem
-      Pinpoints, the app is only the guide, not the destination. Points are earned by riding a bike or scooter to a
-      real location, so the app points people outward instead of pulling them further in.
-    </p>
-  </section>
-
-  <section id="results" class="case-section">
-    <h2 data-short="Results">Projected results</h2>
-    <p>Projections were built in Excel and Google Sheets using Divvy bike usage data and Lyft’s segment revenue as a share of total revenue.</p>
-    <div class="stats solid">
-      <div class="stat"><b>720% ROI</b><span>Break-even within the first year</span></div>
-      <div class="stat"><b>87.7% margin</b><span>Existing infrastructure makes it possible</span></div>
-      <div class="stat"><b>$213M → $317M</b><span>Projected 5-year profit</span></div>
-    </div>
-  </section>
-
-  <section id="reflection" class="case-section">
-    <h2 data-short="Reflection">Reflection</h2>
-    <p>
-      What I found most meaningful was the room to bring entrepreneurial thinking into an existing brand: building an
-      innovative proposal from the ground up while keeping revenue at the center of every decision. It’s a different
-      kind of challenge than executing inside an existing brand system, and it’s part of why I enjoy work that sits at
-      the intersection of ideas and business case.
-    </p>
-    <p>
-      This project relied on secondary research and comparisons to other products, not conversations with actual Lyft
-      riders. That’s a limitation worth naming, and one I keep in mind for how this project fits alongside the rest of my work.
-    </p>
-  </section>
-</CaseLayout>
+</ProductLayout>
 
 <style>
-  .campaign-vids { display: grid; grid-template-columns: 1.9fr 1fr; gap: 20px; align-items: start; margin-top: 24px; }
-  @media (max-width: 760px) { .campaign-vids { grid-template-columns: 1fr; } }
+  .vids { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; align-items: center; text-align: left; }
+  @media (max-width: 760px) { .vids { grid-template-columns: 1fr; } }
 </style>
