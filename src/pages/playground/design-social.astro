@@ -1,61 +1,67 @@
 ---
-import CaseLayout from '../../layouts/CaseLayout.astro';
-import Media from '../../components/Media.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 import Video from '../../components/Video.astro';
+
+const posters = [
+  ['/images/design/tinydesk-black.webp', 'Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black', '<strong>WUTV</strong> · Tiny Desk, <strong>direction A</strong>'],
+  ['/images/design/tinydesk-blue.webp', 'Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code', '<strong>WUTV</strong> · Same brief, <strong>direction B</strong>'],
+  ['/images/design/kiki-bouba.webp', 'Poster: Find the Kiki to your Bouba. Apply for the SVC, with chrome star and blob shapes', '<strong>Skandalaris</strong> · The <strong>bouba/kiki effect</strong> pitches finding a co-founder'],
+  ['/images/design/perform.webp', 'Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts', '<strong>WUTV</strong> · <strong>Performer call</strong>'],
+];
 ---
-<CaseLayout
+<ProductLayout
   slug="design-social"
   section="playground"
   eyebrow="Posters, reels + recap videos"
   title="Design + Social"
-  summary="4+ years of content creation. I run social for the WashU Skandalaris Center and WUTV."
-  toc={false}
-  snapshot={[
-    ['Clients', 'Skandalaris Center, WUTV'],
-    ['Reach', '1,000+ avg. views per Skandalaris post'],
-    ['Growth', 'WUTV membership 3 → 20'],
-    ['Editing since', '2020'],
+  tagline="<strong>4+ years</strong> of content. I run social for the <strong>Skandalaris Center</strong> and <strong>WUTV</strong>."
+  hero="/images/design/hero.webp"
+  heroAlt="Four posters side by side: two WUTV Tiny Desk directions, the Kiki to your Bouba poster, and a performer call"
+  summary={[
+    ['Reach', '<strong>1,000+</strong> average views per Skandalaris post.'],
+    ['Growth', 'A WUTV brand refresh grew membership <strong>3 → 20</strong>.'],
+    ['Since', 'Editing video since <strong>2020</strong>.'],
   ]}
 >
-  <section id="posters" class="case-section">
-    <h2>Posters + flyers</h2>
-    <p class="lead-in">Flyers that drive <strong>sign-ups</strong>. Click any poster to see it full size.</p>
-    <div class="wall">
-      <div class="poster"><Media src="/images/design/tinydesk-black.webp" alt="Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black" ratio="portrait" /><p class="cap"><strong>WUTV</strong> · Tiny Desk Concert, <strong>direction A</strong></p></div>
-      <div class="poster"><Media src="/images/design/tinydesk-blue.webp" alt="Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code" ratio="portrait" /><p class="cap"><strong>WUTV</strong> · Same brief, <strong>direction B</strong></p></div>
-      <div class="poster"><Media src="/images/design/kiki-bouba.webp" alt="Poster: Find the Kiki to your Bouba. Apply for the SVC, due Jan 28, with chrome star and blob shapes and a QR code" ratio="portrait" /><p class="cap"><strong>Skandalaris Center</strong> · SVC recruiting. The <strong>bouba/kiki effect</strong> pitches finding a co-founder who complements you.</p></div>
-      <div class="poster"><Media src="/images/design/perform.webp" alt="Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts with a QR code" ratio="portrait" /><p class="cap"><strong>WUTV</strong> · <strong>Performer call</strong> for Tiny Desk Concerts</p></div>
-      <div class="poster solo"><Media src="/images/design/mod-portrait.webp" alt="Posterized illustration of a 60s mod woman in round sunglasses and a circle-print top, with the photo reference inset" ratio="portrait" /><p class="cap"><strong>Personal</strong> · A posterized <strong>60s mod portrait</strong> from a photo reference</p></div>
+  <section class="chapter">
+    <span class="num">01 · Posters</span>
+    <h2>Made to get sign-ups.</h2>
+    <p>Two directions for one brief is how I work: <strong>explore, then pick</strong>.</p>
+    <div class="band posters">
+      {posters.map(([src, alt, cap]) => (
+        <figure><img src={src} alt={alt} loading="lazy" /><figcaption set:html={cap}></figcaption></figure>
+      ))}
+    </div>
+    <figure class="band"><img src="/images/design/mod-portrait.webp" alt="Posterized illustration of a 60s mod woman in round sunglasses with the photo reference inset" loading="lazy" class="narrow" /><figcaption><strong>Personal</strong> · A 60s mod portrait from a photo reference</figcaption></figure>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">02 · Reels</span>
+    <h2>Pacing is everything.</h2>
+    <p>Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
+    <div class="band reels">
+      <Video name="skandalaris-welcome" frame="phone" label="Animated welcome post: Welcome! Your journey starts here" caption="Skandalaris · Welcome post" />
+      <Video name="skandalaris-ie-awards" frame="phone" label="TikTok promoting the WashU I&E Awards" caption="Skandalaris · I&E Awards" />
+      <Video name="wutv-tiny-desk" frame="phone" label="TikTok: sign up for our Tiny Desk Concert" caption="WUTV · Tiny Desk sign-ups" />
     </div>
   </section>
 
-  <section id="video" class="case-section">
-    <h2>Reels + recap videos</h2>
-    <p class="lead-in">Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
-    <div class="reels">
-      <Video name="skandalaris-welcome" frame="phone" label="Animated welcome post: Welcome! Your journey starts here" caption="Skandalaris · Welcome post" />
-      <Video name="skandalaris-ie-awards" frame="phone" label="TikTok promoting the WashU I&E Awards on April 15" caption="Skandalaris · I&E Awards promo" />
-      <Video name="wutv-tiny-desk" frame="phone" label="TikTok: Everything will be okay if you sign up for our Tiny Desk Concert" caption="WUTV · Tiny Desk sign-ups" />
-    </div>
-    <h3 class="sub">Where it started</h3>
-    <div class="reels">
-      <Video name="asb-home-game" frame="phone" label="First home game recap reel from the stands" caption="West High ASB · Home game recap" />
-      <Video name="asb-staff-breakfast" frame="phone" label="Staff appreciation breakfast recap reel" caption="West High ASB · Staff breakfast recap" />
+  <section class="chapter">
+    <span class="num">Where it started</span>
+    <h2>High school ASB.</h2>
+    <p>Recaps for <strong>West High ASB</strong>, where I first learned to tell a story in 15 seconds.</p>
+    <div class="band reels two">
+      <Video name="asb-home-game" frame="phone" label="First home game recap reel" caption="Home game recap" />
+      <Video name="asb-staff-breakfast" frame="phone" label="Staff appreciation breakfast recap reel" caption="Staff breakfast recap" />
     </div>
   </section>
-</CaseLayout>
+</ProductLayout>
 
 <style>
-  .case-section { max-width: 980px; margin-inline: auto; }
-  .lead-in { max-width: var(--read); }
-  .wall { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 28px; margin: 28px 0 0; }
-  .poster.solo { grid-column: 1 / -1; width: calc(50% - 14px); margin-inline: auto; }
-  .cap { font-size: 0.95rem; color: var(--ink-2); margin: 12px 0 0; line-height: 1.45; }
-  .reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 28px 0 0; }
-  .sub { margin: 48px 0 0; }
-  @media (max-width: 640px) {
-    .wall { grid-template-columns: 1fr; }
-    .poster.solo { width: 100%; }
-    .reels { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  }
+  .posters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; text-align: left; }
+  .posters figure { margin: 0; }
+  img.narrow { max-width: 460px; margin: 0 auto; }
+  .reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: left; }
+  .reels.two { grid-template-columns: repeat(2, 1fr); max-width: 640px; }
+  @media (max-width: 640px) { .posters { grid-template-columns: 1fr; } .reels { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
 </style>

@@ -1,71 +1,59 @@
 ---
-import CaseLayout from '../../layouts/CaseLayout.astro';
-import Img from '../../components/Img.astro';
-import Media from '../../components/Media.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 ---
-<CaseLayout
+<ProductLayout
   slug="textiles"
   section="playground"
   eyebrow="Surface design + textiles course"
-  title="Textiles + Print Design"
-  summary="Two repeat prints, taken from mood board to palette to colorways to a final garment mockup."
+  title="Textiles"
+  tagline="Two repeat prints, from <strong>mood board</strong> to <strong>colorways</strong> to a garment."
   hero="/images/textiles/creamsicle-bodice.webp"
   heroAlt="Creamsicle geometric print as a bodice on a dress form and on a model"
-  snapshot={[
-    ['Course', 'Surface design + textiles'],
-    ['Practices', 'Crochet, knitwear, tapestry, dye'],
-    ['Medium', 'Digital repeat prints'],
-    ['Output', '2 prints, 1 bodice concept'],
+  summary={[
+    ['The course', '<strong>Crochet</strong>, knitwear, tapestry, and <strong>dye</strong> techniques.'],
+    ['What I made', 'Two <strong>repeat prints</strong> and a <strong>bodice</strong> concept.'],
+    ['The twist', 'I defined a <strong>target customer</strong> before choosing colors.'],
   ]}
 >
-  <section id="course" class="case-section">
-    <h2 data-short="The course">The course</h2>
-    <p>
-      My surface design and textiles course explores craftsmanship across a wide range of material practices: crochet,
-      knitwear, tapestry, dye techniques, and experiments with non-traditional materials. It’s all about texture,
-      structure, and form through hands-on making, and it’s shaped a design approach grounded in material curiosity.
-    </p>
+  <section class="chapter">
+    <span class="num">01 · Creamsicle</span>
+    <h2>Loud, joyful, a little too much.</h2>
+    <p>A homage to designer <strong>Matty Bovan</strong>: 60s and 70s shapes, plaid, and the color of a creamsicle.</p>
+    <figure class="band"><img src="/images/textiles/creamsicle-moodboard.webp" alt="Mood board with Matty Bovan looks, retro geometric patterns, plaid, a creamsicle, and an aqua to orange palette" loading="lazy" /><figcaption>Mood board</figcaption></figure>
   </section>
 
-  <section id="creamsicle" class="case-section">
-    <h2 data-short="Creamsicle print">Print 1: Creamsicle</h2>
-    <p>
-      A loud, joyful geometric print paying homage to designer Matty Bovan. It pulls from 60s and 70s shapes, plaid,
-      and the color of a creamsicle.
-    </p>
-    <Media src="/images/textiles/creamsicle-moodboard.webp" alt="Mood board with Matty Bovan looks, retro geometric patterns, plaid, a creamsicle, and an aqua to orange palette" ratio="wide" caption="Mood board." />
-
-    <h3>Who it’s for</h3>
-    <p>This is where the marketer in me showed up. Before the colorways, I defined the customer.</p>
-    <div class="features">
-      <div class="feature"><h3>Core consumer</h3><p>18 to 30, expressive and curious. Builds outfits from thrifted pieces, handmade elements, and unique prints.</p></div>
-      <div class="feature"><h3>Psychographics</h3><p>Clashing colors, silhouettes that feel alive, and “too much” in a good way. Nostalgia and play guide their style.</p></div>
-      <div class="feature"><h3>Why they buy</h3><p>Prints that feel collectible and emotional, and remind them of a 90s and early-2000s childhood.</p></div>
-    </div>
-    <p class="muted">Market tier: experimental designer. Geographic focus: NYC, LA, London, Seoul, and anywhere with strong art, music, and DIY culture.</p>
-
-    <Media src="/images/textiles/creamsicle-colorways.webp" alt="Three colorways in pink, burgundy and jewel tones, beside the final creamsicle orange, aqua and cream version" ratio="wide" caption="Three colorways, and the final creamsicle version on the right." />
-    <p>The final colorway went onto its intended use: a <strong>bodice</strong>.</p>
-    <Media src="/images/textiles/creamsicle-bodice.webp" alt="The final print on a bodice, shown on a dress form and on a model" ratio="wide" caption="Intended use: a bodice." />
-    <p>And the finished <strong>bodice mockup</strong>, shown flat.</p>
-    <div class="row row-solo">
-      <Media src="/images/textiles/creamsicle-bodice-flat.webp" alt="The printed bodice shown flat against a gray wall" ratio="portrait" caption="The final bodice mockup." />
-    </div>
+  <section class="chapter tinted">
+    <span class="num">02 · Who it’s for</span>
+    <h2>The marketer in me showed up.</h2>
+    <p>Before the colorways, I defined <strong>the customer</strong>.</p>
+    <ol class="band decisions">
+      <li><i>1</i><div><b>18 to 30</b><span>Expressive. Builds outfits from <strong>thrifted</strong> and <strong>handmade</strong> pieces.</span></div></li>
+      <li><i>2</i><div><b>Loves “too much”</b><span>Clashing colors, <strong>nostalgia</strong>, and play.</span></div></li>
+      <li><i>3</i><div><b>Buys the feeling</b><span>Prints that feel <strong>collectible</strong>, like a 90s childhood.</span></div></li>
+    </ol>
+    <p class="note">Experimental designer tier · NYC, LA, London, Seoul</p>
   </section>
 
-  <section id="bead" class="case-section">
-    <h2 data-short="Bead curtain print">Print 2: The bead curtain</h2>
-    <p>
-      An illustrated jazz singer in a red gown, lit by a spotlight and framed by hanging mid-century bead strands on a
-      marbled ground. The beads became the repeat.
-    </p>
-    <div class="row row-solo">
-      <Media src="/images/textiles/bead-singer.webp" alt="Illustration of a jazz singer in a red gown at a microphone, framed by hanging bead strands" ratio="portrait" />
-    </div>
-    <p>I built the <strong>repeat</strong> from the beads, then tested it in <strong>two palettes</strong>.</p>
-    <div class="row row-2">
-        <Media src="/images/textiles/bead-mockups.webp" alt="Design mockups of the bead strand repeat on a marbled ground and on black" ratio="wide" caption="The bead repeat, on marble and on black." />
-        <Media src="/images/textiles/bead-palettes.webp" alt="Two color palettes, icy aqua to muted teal and pale amber to spicy paprika, with matching colorways" ratio="wide" caption="Palettes: Icy Aqua, Pearl Aqua, Muted Teal / Pale Amber, Sunlit Clay, Spicy Paprika." />
+  <section class="chapter">
+    <span class="num">03 · Colorways</span>
+    <h2>Three tries, one winner.</h2>
+    <p>Pink, burgundy, and jewel tones first. The <strong>creamsicle</strong> version won.</p>
+    <figure class="band"><img src="/images/textiles/creamsicle-colorways.webp" alt="Three colorways in pink, burgundy and jewel tones, beside the final creamsicle orange, aqua and cream version" loading="lazy" /></figure>
+    <figure class="band"><img src="/images/textiles/creamsicle-bodice-flat.webp" alt="The printed bodice shown flat against a gray wall" loading="lazy" class="narrow" /><figcaption>The final <strong>bodice</strong></figcaption></figure>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">04 · The bead curtain</span>
+    <h2>A jazz singer in the spotlight.</h2>
+    <p>Framed by mid-century <strong>bead strands</strong>. The beads became the <strong>repeat</strong>.</p>
+    <figure class="band"><img src="/images/textiles/bead-singer.webp" alt="Illustration of a jazz singer in a red gown at a microphone, framed by hanging bead strands" loading="lazy" class="narrow" /></figure>
+    <div class="band cols">
+      <figure><img src="/images/textiles/bead-mockups.webp" alt="Design mockups of the bead strand repeat on a marbled ground and on black" loading="lazy" /><figcaption>The repeat, on <strong>marble</strong> and <strong>black</strong></figcaption></figure>
+      <figure><img src="/images/textiles/bead-palettes.webp" alt="Two color palettes, icy aqua to muted teal and pale amber to spicy paprika" loading="lazy" /><figcaption><strong>Aqua</strong> and <strong>amber</strong> palettes</figcaption></figure>
     </div>
   </section>
-</CaseLayout>
+</ProductLayout>
+
+<style>
+  img.narrow { max-width: 460px; margin: 0 auto; }
+</style>

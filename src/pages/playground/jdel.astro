@@ -1,69 +1,57 @@
 ---
-import CaseLayout from '../../layouts/CaseLayout.astro';
-import Img from '../../components/Img.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 import Video from '../../components/Video.astro';
 
 const palette = ['#362D23', '#68280D', '#322127', '#6C4947', '#97644C', '#9A724F'];
 ---
-<CaseLayout
+<ProductLayout
   slug="jdel"
   section="playground"
   eyebrow="Passion project · Beauty"
-  title="JDel Fragrance"
-  summary="The perfume brand I’ve dreamed about since I was a kid, named for my mom and me. I used AI image generation to take it from idea to a high-fidelity bottle."
+  title="JDel"
+  tagline="The perfume brand I’ve dreamed about since I was a kid, <strong>named for my mom and me</strong>."
   hero="/images/jdel/bottle.webp"
   heroAlt="Amber glass perfume bottle with a gold cap, pearl collar, woven leather handle, and a JDel hang tag on draped satin"
-  snapshot={[
-    ['Category', 'Fragrance'],
-    ['My role', 'Brand, palette, typography, prompts'],
-    ['Tools', 'AI image generation'],
-    ['Status', 'Concept'],
+  summary={[
+    ['The idea', 'A <strong>fragrance brand</strong>: elegant, timeless, warm.'],
+    ['What I did', '<strong>Brand</strong>, <strong>palette</strong>, <strong>type</strong>, and prompts.'],
+    ['The tool', '<strong>AI image generation</strong>, steered by my design choices.'],
   ]}
 >
-  <section id="story" class="case-section">
-    <h2 data-short="Fragrance and me">Fragrance and me</h2>
-    <p>
-      As a kid, my mom’s perfume collection made me feel like a kid in a candy store. My favorite was a bottle shaped
-      like a kokeshi doll. Then came a high heel, a cat, and even an Eiffel Tower. When my mom finished a bottle, it
-      joined my Barbie collection. Each one felt like a tiny masterpiece.
-    </p>
-    <p>
-      That game turned into a real hobby: layering my own combinations and tailoring them to the season. In the fall,
-      it’s Lush’s Sticky Dates, a hint of Calvin Klein’s Escape, and a rollerball from my mom’s collection.
-    </p>
-    <p>
-      It also became a dream: my own perfume brand. I even have the name. <strong>JDel</strong> blends my name with my
-      mom’s, a tribute to the women who made me who I am.
-    </p>
+  <section class="chapter">
+    <span class="num">Why this brand</span>
+    <p class="pull">“My mom’s perfume collection made me feel like a <span class="hl">kid in a candy store</span>.”</p>
+    <p>A kokeshi doll, a high heel, a cat, an Eiffel Tower. Every empty bottle joined my <strong>Barbie collection</strong>.</p>
   </section>
 
-  <section id="process" class="case-section">
-    <h2 data-short="Process">The process</h2>
-    <p>
-      I wanted JDel to feel <strong>elegant and timeless</strong>, with warm brown tones and a bottle that draws you in,
-      like the ones I collected. I hand-picked the palette and typography, then wrote those choices directly into my
-      prompts and varied them until the renders felt cohesive and luxury-driven.
-    </p>
-    <ul class="swatches" aria-label="JDel palette">
+  <section class="chapter tinted">
+    <span class="num">01 · The name</span>
+    <h2>Her name and mine.</h2>
+    <p>That childhood game became a hobby: <strong>layering scents</strong> by season. Then a dream. <strong>JDel</strong> blends my name with my mom’s, a tribute to the women who made me who I am.</p>
+  </section>
+
+  <section class="chapter">
+    <span class="num">02 · The process</span>
+    <h2>Design first, then prompt.</h2>
+    <p>I picked the <strong>palette</strong> and <strong>typography</strong> by hand, wrote them into my prompts, and varied them until the renders felt <strong>luxury</strong>.</p>
+    <ul class="band swatches" aria-label="JDel palette">
       {palette.map((c) => <li style={`--sw:${c}`}><span>{c}</span></li>)}
     </ul>
-    <div class="pal-vid"><Video name="jdel-palette" label="JDel brand palette card with six warm brown swatches, followed by a bottle sketch" caption="Palette card and the first bottle sketch." /></div>
+    <div class="band pal-vid"><Video name="jdel-palette" label="JDel brand palette card with six warm brown swatches, followed by a bottle sketch" caption="Palette card and first sketch" /></div>
+    <div class="learn"><b>What I learned</b><p>AI is a tool. The taste still has to come from me.</p></div>
   </section>
 
-  <section id="why" class="case-section">
-    <h2 data-short="Why it matters">Why it matters</h2>
-    <p>
-      JDel is how I practice <strong>brand concepting</strong>: story first, then palette and type, then product. It’s
-      also how I use <strong>AI</strong>: as a tool I steer with deliberate design choices.
-    </p>
-    <p>For now, <a href="/projects/releaf">ReLeaf Candles</a> is the first chapter. One day, JDel will be real too.</p>
+  <section class="chapter tinted">
+    <span class="num">Next chapter</span>
+    <h2>ReLeaf first. JDel someday.</h2>
+    <p>For now, <a href="/projects/releaf">ReLeaf Candles</a> is the first chapter. One day, <strong>JDel will be real too</strong>.</p>
   </section>
-</CaseLayout>
+</ProductLayout>
 
 <style>
-  .swatches { list-style: none; padding: 0; margin: 24px 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
-  .swatches li { aspect-ratio: 1; border-radius: 14px; background: var(--sw); display: flex; align-items: flex-end; padding: 8px; }
-  .swatches span { font-size: 0.72rem; background: rgba(255, 255, 255, 0.88); padding: 2px 6px; border-radius: 6px; }
-  .pal-vid { max-width: 340px; }
+  .swatches { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .swatches li { aspect-ratio: 1; border-radius: 18px; background: var(--sw); display: flex; align-items: flex-end; padding: 10px; }
+  .swatches span { font-size: 0.75rem; background: rgba(255, 255, 255, 0.88); padding: 2px 6px; border-radius: 6px; }
+  .chapter > .band.pal-vid { max-width: 380px; }
   @media (max-width: 640px) { .swatches { grid-template-columns: repeat(3, 1fr); } }
 </style>
