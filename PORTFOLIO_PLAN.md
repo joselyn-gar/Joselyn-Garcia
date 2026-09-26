@@ -1,275 +1,69 @@
-# Joselyn Garcia Portfolio: Site Plan
+# Joselyn Garcia Portfolio: Site Plan (final)
 
-Planning doc. No code yet. Everything here is a draft to react to.
+This replaces the first draft. The dark/floral direction is retired. The site is built (see README.md).
 
----
+## Goals
+- Simple and work-first. Let the case studies talk.
+- A quiet board-game theme, because I love board games.
+- Always one click from Email, LinkedIn, and Resume.
+- Feels at home for beauty, consumer goods, and tech teams, without naming any company.
 
-## 1. Goals
-
-**What should a recruiter feel in 10 seconds?**
-"She thinks like a marketer, designs like a UX person, and has taste."
-
-- Show range: strategy, UX, brand, making things by hand.
-- Stay simple. Four nav items. No dead ends.
-- Every page ends with a way to reach me.
-- Audience: recruiters and hiring teams in beauty, consumer goods, and tech. The site should *feel* at home in that world without naming any company.
-
-**Always visible:** Resume (PDF), LinkedIn, Email.
-
----
-
-## 2. Sitemap
-
-Matches the nav in the current mockup: **Home · About Me · Projects · Playground**
-
+## Sitemap
 ```
-Home (/)
-├── Hero: "Hi, I'm Joselyn" + rotating "I'm driven by..."
-├── Featured work (3 cards)
-├── Playground teaser
-└── Contact strip
-
-Projects (/projects)
-├── Lyft Case Competition        /projects/lyft
-├── ReLeaf Candles               /projects/releaf
-├── WashU Website Redesign       /projects/washu-redesign
-└── Circular STL: #WhatGoesAroundSTL   /projects/circular-stl
-
-Playground (/playground)
-├── Textiles + Designs           /playground/textiles
-├── Social Content               /playground/social
-└── Writing: "Raised on the Blur"      /playground/raised-on-the-blur
-
-About Me (/about)
-├── Quick gist
-├── Toolbox
-└── Away from the desk
-
-Resume → opens PDF in new tab (lives in nav, top right)
+Home (/)                   the board: hero + search in the center, a property tile per project
+About Me (/about)          bio, Clifton Strengths flip cards, toolbox, Chance cards (hobbies)
+Projects (/projects)       title-deed cards
+  Lyft Explore             /projects/lyft
+  ReLeaf Candles           /projects/releaf
+  SKATE for Girls × WashUX /projects/skate-for-girls
+  Circular STL #AroundSTL  /projects/circular-stl
+Playground (/playground)   curved card carousel
+  Textiles + Print Design  /playground/textiles
+  Design + Social          /playground/design-social
+  JDel Fragrance           /playground/jdel
+  Raised on the Blur       /playground/raised-on-the-blur
+Resume (/resume)           opens the PDF once it's added
 ```
 
-**Why split Projects and Playground?**
-Projects = structured case studies with problem, process, result.
-Playground = creative output that speaks visually. Less reading, more looking.
+## The board-game layer (Home + cards only)
+- **Board:** a line-drawn board. Corners: GO = About, Free Parking = Playground, Take a card = Resume, Just visiting = Say hi. Each project is a property tile with its own color band. On phones it stacks.
+- **Title-deed cards:** color band, serif title, real stats in place of rent (Lyft 720% ROI, SKATE 45% couldn't find Donate, Circular STL 4.15/5).
+- **Roll the dice:** rolls a 3D die and jumps to a random project.
+- **Dice cursor:** a small 3D die trails the mouse, tumbles as it moves, lands on a tile's number on hover, and rolls on click. A precise dot marks the real pointer. It's off on touch screens and with reduced motion, and there's a toggle in the footer.
+- **Chance cards:** hobbies and Clifton Strengths flip over on About.
+- Case studies stay minimal: one reading column, a sticky contents list, big images.
+- Board-game inspired, fully original art. No Monopoly name, logo, or card layouts.
 
-The AI paper sits in Playground under "Writing." It could also be a Project. See open question #3.
+## Search: "Ask me anything…"
+A large pill in the hero, plus chips, a nav icon, and ⌘K or /. It searches a local index of projects, pages, and quick answers (tools, contact, UX work, marketing work, beauty + fashion, fun facts). There's no backend.
 
----
-
-## 3. Navigation (Apple-style)
-
-Reference: the dark frosted pill in the current screenshot.
-
-**Layout**
-- Floating pill, centered, fixed to top. ~12px from the edge.
-- Frosted glass: dark translucent fill, `backdrop-filter: blur(20px) saturate(180%)`.
-- Left to right: `Home  About Me  Projects  Playground` then a divider, then `Resume ↗`.
-- Small icon buttons for LinkedIn + Email can sit on the right of the pill, or live in the footer only. Keep the pill light.
-
-**Hover effects** (pick one as primary)
-1. **Sliding highlight.** A soft pill glides under whichever link you hover. Apple and Vercel both do a version of this. *Recommended.*
-2. **Text roll.** The label slides up and a copy rolls in from below.
-3. **Magnetic.** Links lean toward the cursor a few pixels.
-
-**Behavior**
-- Active page keeps the highlight.
-- Scroll down: pill shrinks slightly. Scroll up: returns to full size.
-- Projects hover can open a small dropdown listing the four cases (Apple's mega-menu, but tiny).
-- Mobile: pill collapses to `Joselyn` + menu icon. Tap opens a full-screen sheet with big links.
-
----
-
-## 4. Page by page
-
-### Home
-
-**Hero**
-```
-Hi, I'm Joselyn.
-I'm driven by [people.]
-```
-Rotating words, typed then deleted, one at a time:
-`people.` → `innovation.` → `curiosity.` → `good stories.` → `design that feels human.` → `beauty in the details.`
-
-Sub-line (draft):
-> Marketing + Entrepreneurship at WashU, minoring in Human-Computer Interaction. I research how people think, then design what they'll love.
-
-Buttons: `See my work` (scrolls) · `Resume ↗`
-
-Background idea: your textile/floral pattern from the screenshot, darkened, slow parallax. Ties the hero to your handmade side.
-
-**Featured work:** 3 large cards. Suggest Lyft, Circular STL, WashU Redesign. Hover: image zooms slightly, tag pills fade in (e.g. `UX` `Gamification` `Pitch`).
-
-**Playground teaser:** horizontal scroll strip of textile shots + social posts. "More from the playground →"
-
-**Contact strip:** "Let's make something." + Email · LinkedIn · Resume.
-
----
-
-### Projects index
-Clean grid, 2 columns desktop, 1 mobile. Each card: cover, title, one-line summary, role, tags. Filter chips optional (`Marketing` `UX` `Brand`). Four projects may not need filters.
-
-### Case study template
-Same skeleton for every case so readers learn the pattern once.
-
-| Section | What goes here |
+## Visual system
+| Token | Value |
 |---|---|
-| Hero | Title, cover mockup, one-sentence summary |
-| Snapshot | Role · Team · Timeline · Tools |
-| The problem | 2 to 3 sentences |
-| Research | Methods, key data, quotes |
-| Insight | The "aha" in one bold line |
-| Solution | Mockups, flows, visuals |
-| Results | Numbers, feedback, placement |
-| Reflection | What I'd do next |
-| Next project → | Keeps people moving |
+| Paper + dot grid | #F8F6F1 · #E2DDD2 |
+| Ink | #1A1A1A |
+| Glass nav | rgba(20,20,20,.72) + blur |
+| Lyft | #FF00BF (official pink) · tint #FFD6F2 · small text #B8008A |
+| ReLeaf | #6B7A4F · #DDE6CF |
+| SKATE | #9B3FD1 · #E6DDF6 |
+| Circular STL | #2E7D5B · #D7EDE2 |
+| JDel | #8A5A2B · #F1E1CF |
+| Textiles | #DD6031 · #FBE3D2 |
+| Design + Social | #A67C00 · #FFF1C7 |
+| Writing | #2F5AA8 · #DCE7F7 |
 
-Sticky mini table of contents on desktop for longer cases.
+- Type: Instrument Serif for headlines, Inter for body.
+- Every text/background pair checked for AA contrast. Lyft pink carries large text only, and small pink text uses #B8008A.
+- Motion is soft. `prefers-reduced-motion` turns off the typing loop, the dice, autoplay, and floats.
 
----
+Inspiration: Stefan's "Ask me anything" hero, Pratibha's pastel project cards, Catalist's glass pills, Uniqia's dots and tool cloud, Voyager's curved carousel, and Apple's nav.
 
-### Case: Lyft Case Competition
-What I can see from the mockups:
-- Gamified micromobility. Riders collect **gems** (100 / 300 / 500 pts) placed on the map to steer rides.
-- **Leaderboard** with podium (1, 2, 3) and ranked list.
-- **Brand-sponsored leaderboards** (Nike example) as a revenue stream.
-- Surfaces: Lyft app (dark map), bike dock kiosk screen, handlebar display.
-
-Suggested story: *How might Lyft increase scooter/bike ridership and open a brand partnership channel?*
-Hero visual: the pink gradient 3-up (Nike board, pink board, map).
-
-**Need from you:** the prompt, your team + role, how it placed, any metrics or rebalancing logic behind gem placement.
-
-### Case: ReLeaf Candles
-**Need from you:** everything. Is this a venture you started, a class brand, or a client? Brand visuals, packaging, pricing, sales numbers.
-
-### Case: WashU Website Redesign
-**Need from you:** which site, original screenshots, research (interviews, usability tests), Figma files, before/after.
-A before/after slider would be a strong visual here.
-
-### Case: Circular STL (#WhatGoesAroundSTL)
-Pulled from your report:
-- **Client:** CircularSTL + Circularity District Task Force
-- **Team:** Joselyn Garcia, Maddie Elhaik, Gia Grillo
-- **Problem:** People don't understand what a Circularity District is. CircularSTL's own symposium named messaging as a barrier.
-- **Research:** Compared posters, email, social. Picked Instagram for reach and geo-targeting. Studied Patagonia and Nike Move to Zero.
-- **Solution:** 4-post carousel. Hook → Math ($3,100 in unused household items) → What the District does → Call to action. Tagline: *"What goes around should come back around."*
-- **Testing:** 16-question survey, 31 respondents, April 17 to 21, 2026.
-- **Results:** 3.70/5 compellingness. 4.15/5 favorability. ~80% said the tagline conveyed circularity.
-- **Honest finding:** only 10% felt it was rooted in St. Louis. Some confused it with Goodwill.
-- **Recommendations:** lead with money, go more local, differentiate, cut text per slide, clearer CTA.
-
-That "what didn't work" section is a strength. It shows you test and iterate.
-Visuals: the 4 carousel slides side by side, then a small stat row.
-
----
-
-### Playground: Textiles + Designs
-Masonry grid. Click opens a lightbox with a short caption (material, technique, inspiration). Upcycled tops can live here too, linking to the About hobbies.
-
-### Playground: Social Content
-Grid styled like a phone feed. Embed or screenshot posts/reels. Label each: platform, goal, result (views, saves).
-**Need from you:** handles, top posts, any numbers.
-
-### Playground: Writing, "Raised on the Blur"
-*AI-Generated Media, the Attachment Economy, and Gen Z's Challenge.*
-Treat it like an editorial feature, not a PDF dump.
-- Big title, short abstract.
-- 3 pull stats:
-  - People spot AI content only **~55%** of the time.
-  - Deepfakes grew **3,000%** from 2019 to 2023.
-  - Projected **$40B** in US generative-AI fraud losses by 2027.
-- Framing lens: *Don't Look Up* (2021).
-- The HCI angle: design mitigation around how people actually use platforms.
-- Buttons: `Read the full paper (PDF)` · `View the presentation`.
-
-This piece quietly proves you can connect tech, consumer behavior, and ethics. Useful for tech and beauty brands alike.
-
----
-
-### About Me
-
-**Quick gist (draft)**
-> I'm Joselyn, a second-year at WashU studying Marketing and Entrepreneurship with a minor in Human-Computer Interaction. I like the space where brand meets product: figuring out what people want, then designing and pitching it. I'm happiest working with clients and turning messy research into something clear.
-
-Photo on the side. Keep it casual.
-
-**Toolbox** (logo tiles, hover shows what you use it for)
-Claude · Canva · Figma · Framer · Excel · Adobe Illustrator · Blender · Procreate
-
-**Away from the desk**
-Three cards, each with a photo:
-- ⚾ **Watching baseball.** Dodgers rule.
-- 🧵 **Upcycling.** Turning thrifted pieces into cute tops. → links to Textiles
-- 📌 **Pinterest boards.** Aesthetic hunting and idea collecting. → link to your board
-
----
-
-### Footer (every page)
-`Email` · `LinkedIn` · `Resume` · "Designed and built by Joselyn Garcia, 2026"
-
----
-
-## 5. Visual system
-
-**Color** (pulled from your mockups)
-| Role | Suggestion |
-|---|---|
-| Base dark | `#0E0E10` near-black |
-| Surface | `#1A1A1F` |
-| Light text | `#F5F3F0` warm white |
-| Accent | `#E6197D` hot magenta (from the gems + leaderboard) |
-| Accent 2 | `#FF8FC7` soft pink |
-| Warm tone | `#C2372F` red from the Lyft gradient, used sparingly |
-
-Dark site with pink accents? Or light site with dark nav? See open question #1.
-
-**Type**
-- Headlines: a clean grotesk like *Inter Display* or *SF Pro Display* feel, tight tracking.
-- Optional editorial serif for pull quotes and the writing page (e.g. *Instrument Serif*). Gives a beauty-brand touch.
-
-**Motion**
-- Soft fades and rises on scroll. Nothing bouncy.
-- Respect `prefers-reduced-motion`. Turn off the typing loop and parallax.
-
-**Imagery**
-- Mockups on gradient backgrounds, like your Lyft slides. Consistent across all cases.
-
----
-
-## 6. Build approach (recommendation)
-
-**Option A: Code it in this repo.** Astro + plain CSS, deployed free on Vercel or GitHub Pages. Full control over the nav and hover effects. Case studies written as Markdown, so adding one later is easy.
-
-**Option B: Framer.** Fastest visually. You already know it. Harder to version and extend here.
-
-**Recommendation: A.** It shows off the dev side you mentioned, and I can build and iterate with you directly in this repo.
-
-Accessibility basics baked in: alt text, keyboard nav, contrast checks, focus rings on the nav.
-
----
-
-## 7. Content checklist (what I need from you)
-
-- [ ] Resume PDF
-- [ ] LinkedIn URL and preferred email
-- [ ] Headshot + 3 hobby photos
-- [ ] Lyft: prompt, team, role, result, full mockup set
-- [ ] ReLeaf Candles: all of it
-- [ ] WashU Redesign: before/after, research, Figma
-- [ ] Circular STL: the 4 carousel images at full size
-- [ ] Textile photos with short captions
-- [ ] Social content: handles, top posts, metrics
-- [ ] "Raised on the Blur" presentation slides as images (have the PDF)
+## Still to add (placeholders are in place)
+- [ ] Resume PDF → `public/files/resume.pdf`, then set `resume` in `src/data/site.ts`
+- [ ] LinkedIn URL → `src/data/site.ts` (the link stays hidden until set)
+- [ ] Confirm the email shown (currently Joselyng485@gmail.com)
+- [ ] Original headshot (About uses a crop from the Figma frame)
 - [ ] Pinterest board link
-- [ ] Domain name? (e.g. joselyngarcia.com)
-
----
-
-## 8. Open questions
-
-1. **Dark or light?** Mockups lean dark with pink. Beauty sites often go light and airy. Could do dark home, light case studies.
-2. **Hero background:** textile pattern, a gradient, or clean solid?
-3. **AI paper placement:** Playground "Writing," or a 5th Project?
-4. **Resume:** download PDF, or a web page with a download button?
-5. **Rotating words:** keep my list or swap in your own?
+- [ ] Review the video captions and toolbox one-liners
+- [ ] Optional: textile project titles + course name, JDel prompt iterations
+- [ ] Domain + deploy (Vercel or GitHub Pages)
