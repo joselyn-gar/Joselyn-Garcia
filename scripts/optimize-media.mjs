@@ -31,6 +31,10 @@ const images = [
   ['13.webp', 'textiles/creamsicle-moodboard.webp'], ['14.png', 'textiles/creamsicle-colorways.webp'],
   ['15.png', 'textiles/creamsicle-target.webp'], ['16.webp', 'textiles/creamsicle-bodice.webp'],
   ['17.jpg', 'textiles/creamsicle-bodice-flat.webp', 1000],
+  // Textile gallery
+  ['63.jpg', 'textiles/gallery/shibori-kaleidoscope.webp', 1200], ['64.jpg', 'textiles/gallery/shibori-stripes.webp', 1200],
+  ['65.jpg', 'textiles/gallery/party-animal.webp', 1200], ['66.jpg', 'textiles/gallery/fabric-collage.webp', 1200],
+  ['67.jpg', 'textiles/gallery/shibori-crimson.webp', 1200],
   // Design + social posters
   ['18.webp', 'design/mod-portrait.webp', 1100], ['19.webp', 'design/tinydesk-black.webp', 1100],
   ['20.webp', 'design/tinydesk-blue.webp', 1100], ['21.webp', 'design/kiki-bouba.webp', 1100],
