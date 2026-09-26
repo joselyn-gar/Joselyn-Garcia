@@ -2,7 +2,7 @@
 // Muted, looping video that plays only while on screen. Optional phone or browser frame.
 // Click toggles sound. Poster frame shows until it loads.
 import dims from '../data/dims.json';
-interface Props { name: string; label: string; frame?: 'phone' | 'browser' | 'none'; caption?: string; tag?: string; }
+interface Props { name: string; label: string; frame?: 'phone' | 'browser' | 'none' | 'bare'; caption?: string; tag?: string; }
 const { name, label, frame = 'none', caption, tag } = Astro.props;
 const poster = `/media/${name}.jpg`;
 const size = (dims as Record<string, number[]>)[poster];
@@ -32,7 +32,8 @@ const size = (dims as Record<string, number[]>)[poster];
 
 <style>
   .vid { margin: 0; }
-  .vid-frame { position: relative; overflow: hidden; border-radius: var(--radius); background: #111; box-shadow: var(--shadow); }
+  .vid-frame { position: relative; overflow: hidden; border-radius: var(--radius); background: #111; border: 1.5px solid var(--ink); box-shadow: var(--shadow); }
+  .bare .vid-frame { background: transparent; border: 0; box-shadow: none; border-radius: 28px; }
   .vid video { width: 100%; height: auto; }
   .phone .vid-frame { border-radius: 34px; border: 7px solid #141414; aspect-ratio: 9 / 16; }
   .phone video { height: 100%; object-fit: cover; }

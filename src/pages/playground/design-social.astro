@@ -1,6 +1,6 @@
 ---
 import CaseLayout from '../../layouts/CaseLayout.astro';
-import Img from '../../components/Img.astro';
+import Media from '../../components/Media.astro';
 import Video from '../../components/Video.astro';
 ---
 <CaseLayout
@@ -23,26 +23,11 @@ import Video from '../../components/Video.astro';
       strengthen a brand’s visual story. Click any poster to see it larger.
     </p>
     <div class="wall wide">
-      <figure>
-        <Img src="/images/design/kiki-bouba.webp" alt="Poster: Find the Kiki to your Bouba. Apply for the SVC, due Jan 28, with chrome star and blob shapes and a QR code" />
-        <figcaption><span class="tag">Skandalaris Center</span> Recruiting for the Skandalaris Venture Competition. The bouba/kiki effect (spiky vs. round shapes) pitches finding a co-founder who complements you.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/tinydesk-black.webp" alt="Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black" />
-        <figcaption><span class="tag">WUTV</span> Tiny Desk Concert, direction A.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/tinydesk-blue.webp" alt="Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code" />
-        <figcaption><span class="tag">WUTV</span> Tiny Desk Concert, direction B. Two directions for one brief.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/perform.webp" alt="Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts with a QR code" />
-        <figcaption><span class="tag">WUTV</span> Performer call for Tiny Desk Concerts.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/mod-portrait.webp" alt="Posterized illustration of a 60s mod woman in round sunglasses and a circle-print top, with the photo reference inset" />
-        <figcaption><span class="tag">Personal</span> A posterized 60s mod portrait, drawn from a photo reference.</figcaption>
-      </figure>
+      <div class="poster"><Media src="/images/design/kiki-bouba.webp" alt="Poster: Find the Kiki to your Bouba. Apply for the SVC, due Jan 28, with chrome star and blob shapes and a QR code" ratio="portrait" /><p class="cap"><span class="tag">Skandalaris Center</span> Recruiting for the Skandalaris Venture Competition. The bouba/kiki effect (spiky vs. round shapes) pitches finding a co-founder who complements you.</p></div>
+      <div class="poster"><Media src="/images/design/tinydesk-black.webp" alt="Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black" ratio="portrait" /><p class="cap"><span class="tag">WUTV</span> Tiny Desk Concert, direction A.</p></div>
+      <div class="poster"><Media src="/images/design/tinydesk-blue.webp" alt="Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code" ratio="portrait" /><p class="cap"><span class="tag">WUTV</span> Tiny Desk Concert, direction B. Two directions for one brief.</p></div>
+      <div class="poster"><Media src="/images/design/perform.webp" alt="Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts with a QR code" ratio="portrait" /><p class="cap"><span class="tag">WUTV</span> Performer call for Tiny Desk Concerts.</p></div>
+      <div class="poster"><Media src="/images/design/mod-portrait.webp" alt="Posterized illustration of a 60s mod woman in round sunglasses and a circle-print top, with the photo reference inset" ratio="portrait" /><p class="cap"><span class="tag">Personal</span> A posterized 60s mod portrait, drawn from a photo reference.</p></div>
     </div>
   </section>
 
@@ -63,11 +48,10 @@ import Video from '../../components/Video.astro';
 </CaseLayout>
 
 <style>
-  .wall { columns: 3 260px; column-gap: 18px; margin: 28px auto; }
-  .wall figure { break-inside: avoid; margin: 0 0 22px; }
-  .wall :global(img) { width: 100%; border-radius: 14px; box-shadow: var(--shadow); }
-  .wall figcaption { font-size: 0.86rem; color: var(--ink-2); margin-top: 10px; line-height: 1.45; }
-  .wall .tag { margin-right: 4px; }
+  .wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 18px; margin: 28px 0; }
+  .cap { font-size: 0.86rem; color: var(--ink-2); margin: 10px 0 0; line-height: 1.45; }
+  .cap .tag { margin-right: 4px; }
+  @media (max-width: 760px) { .wall { grid-template-columns: repeat(2, 1fr); } }
   .reels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 24px; }
   @media (max-width: 1000px) { .reels { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 640px) { .reels { grid-template-columns: repeat(2, 1fr); } }

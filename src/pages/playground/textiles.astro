@@ -1,6 +1,7 @@
 ---
 import CaseLayout from '../../layouts/CaseLayout.astro';
 import Img from '../../components/Img.astro';
+import Media from '../../components/Media.astro';
 ---
 <CaseLayout
   slug="textiles"
@@ -32,7 +33,7 @@ import Img from '../../components/Img.astro';
       A loud, joyful geometric print paying homage to designer Matty Bovan. It pulls from 60s and 70s shapes, plaid,
       and the color of a creamsicle.
     </p>
-    <figure class="figure wide"><Img src="/images/textiles/creamsicle-moodboard.webp" alt="Mood board with Matty Bovan looks, retro geometric patterns, plaid, a creamsicle, and an aqua to orange palette" /><figcaption>Mood board.</figcaption></figure>
+    <Media src="/images/textiles/creamsicle-moodboard.webp" alt="Mood board with Matty Bovan looks, retro geometric patterns, plaid, a creamsicle, and an aqua to orange palette" ratio="wide" caption="Mood board." />
 
     <h3>Who it’s for</h3>
     <p>This is where the marketer in me showed up. Before the colorways, I defined the customer.</p>
@@ -43,10 +44,10 @@ import Img from '../../components/Img.astro';
     </div>
     <p class="muted">Market tier: experimental designer. Geographic focus: NYC, LA, London, Seoul, and anywhere with strong art, music, and DIY culture.</p>
 
-    <figure class="figure wide"><Img src="/images/textiles/creamsicle-colorways.webp" alt="Three colorways in pink, burgundy and jewel tones, beside the final creamsicle orange, aqua and cream version" /><figcaption>Three colorways, and the final creamsicle version on the right.</figcaption></figure>
-    <div class="grid-2 wide">
-      <figure class="figure"><Img src="/images/textiles/creamsicle-bodice.webp" alt="The final print on a bodice, shown on a dress form and on a model" /><figcaption>Intended use: a bodice.</figcaption></figure>
-      <figure class="figure"><Img src="/images/textiles/creamsicle-bodice-flat.webp" alt="The printed bodice shown flat against a gray wall" /><figcaption>The final bodice mockup.</figcaption></figure>
+    <Media src="/images/textiles/creamsicle-colorways.webp" alt="Three colorways in pink, burgundy and jewel tones, beside the final creamsicle orange, aqua and cream version" ratio="wide" caption="Three colorways, and the final creamsicle version on the right." />
+    <Media src="/images/textiles/creamsicle-bodice.webp" alt="The final print on a bodice, shown on a dress form and on a model" ratio="wide" caption="Intended use: a bodice." />
+    <div class="row row-solo">
+      <Media src="/images/textiles/creamsicle-bodice-flat.webp" alt="The printed bodice shown flat against a gray wall" ratio="portrait" caption="The final bodice mockup." />
     </div>
   </section>
 
@@ -56,12 +57,12 @@ import Img from '../../components/Img.astro';
       An illustrated jazz singer in a red gown, lit by a spotlight and framed by hanging mid-century bead strands on a
       marbled ground. The beads became the repeat.
     </p>
-    <div class="grid-2 wide">
-      <figure class="figure"><Img src="/images/textiles/bead-singer.webp" alt="Illustration of a jazz singer in a red gown at a microphone, framed by hanging bead strands" /></figure>
-      <div>
-        <figure class="figure"><Img src="/images/textiles/bead-mockups.webp" alt="Design mockups of the bead strand repeat on a marbled ground and on black" /><figcaption>The bead repeat, on marble and on black.</figcaption></figure>
-        <figure class="figure"><Img src="/images/textiles/bead-palettes.webp" alt="Two color palettes, icy aqua to muted teal and pale amber to spicy paprika, with matching colorways" /><figcaption>Palettes: Icy Aqua, Pearl Aqua, Muted Teal / Pale Amber, Sunlit Clay, Spicy Paprika.</figcaption></figure>
-      </div>
+    <div class="row row-solo">
+      <Media src="/images/textiles/bead-singer.webp" alt="Illustration of a jazz singer in a red gown at a microphone, framed by hanging bead strands" ratio="portrait" />
+    </div>
+    <div class="row row-2">
+        <Media src="/images/textiles/bead-mockups.webp" alt="Design mockups of the bead strand repeat on a marbled ground and on black" ratio="wide" caption="The bead repeat, on marble and on black." />
+        <Media src="/images/textiles/bead-palettes.webp" alt="Two color palettes, icy aqua to muted teal and pale amber to spicy paprika, with matching colorways" ratio="wide" caption="Palettes: Icy Aqua, Pearl Aqua, Muted Teal / Pale Amber, Sunlit Clay, Spicy Paprika." />
     </div>
   </section>
 </CaseLayout>

@@ -1,6 +1,7 @@
 ---
 import CaseLayout from '../../layouts/CaseLayout.astro';
 import Img from '../../components/Img.astro';
+import Media from '../../components/Media.astro';
 import Video from '../../components/Video.astro';
 ---
 <CaseLayout
@@ -66,10 +67,7 @@ import Video from '../../components/Video.astro';
       <div class="feature"><h3>Friendly competition</h3><p>Strava and Nike Run Club leaderboards keep people coming back.</p></div>
       <div class="feature"><h3>Branded map moments</h3><p>Lyft Media already swaps vehicle icons during movie premieres.</p></div>
     </div>
-    <figure class="figure wide">
-      <Img src="/images/lyft/moodboard.webp" alt="Mood board: Pokémon GO map, Strava leaderboard, Lyft Media event icons, Nike Run Club leaderboard, and a hidden gem video thumbnail" />
-      <figcaption>Mood board of similar platforms: Pokémon GO, Strava, Snap Map, Nike Run Club, and Lyft Media’s event mode.</figcaption>
-    </figure>
+    <Media src="/images/lyft/moodboard.webp" alt="Mood board: Pokémon GO map, Strava leaderboard, Lyft Media event icons, Nike Run Club leaderboard, and a hidden gem video thumbnail" ratio="wide" caption="Mood board of similar platforms: Pokémon GO, Strava, Snap Map, Nike Run Club, and Lyft Media’s event mode." />
   </section>
 
   <section id="solution" class="case-section">
@@ -79,10 +77,7 @@ import Video from '../../components/Video.astro';
       Gem Pinpoints, sponsored and community hot spots, appear on the map using the same icon mechanic Lyft Media
       already uses for event sponsorships.
     </p>
-    <figure class="figure wide">
-      <Img src="/images/lyft/evolution.webp" alt="Three phones: today's Lyft bikes map, the gem concept map, and the final dark map with a sponsored gem" />
-      <figcaption>From today’s map, to the gem concept, to the final dark-mode map with a sponsored location.</figcaption>
-    </figure>
+    <Media src="/images/lyft/evolution.webp" alt="Three phones: today's Lyft bikes map, the gem concept map, and the final dark map with a sponsored gem" ratio="wide" caption="From today’s map, to the gem concept, to the final dark-mode map with a sponsored location." />
     <div class="features">
       <div class="feature"><h3>Gem Pinpoints</h3><p>Sponsored and community hot spots on the map, pointing riders toward places worth seeing.</p></div>
       <div class="feature"><h3>Gem Points</h3><p>An optional points layer earned per ride, built to plug into Lyft’s existing rewards programs.</p></div>
@@ -92,21 +87,16 @@ import Video from '../../components/Video.astro';
       Lyft already runs its own rewards: a points-based Lyft Rewards program since 2018, and Lyft Cash Rewards,
       launched in late 2025. The points layer would integrate with that infrastructure instead of running separately.
     </p>
-    <figure class="figure wide">
-      <Img src="/images/lyft/payout.webp" alt="Brand-sponsored and Lyft leaderboards beside a base reward payout: 1st $50, 2nd $30, 3rd $15 in Lyft credit" />
-      <figcaption>Base reward payout in Lyft credit: 1st $50, 2nd $30, 3rd $15. A sponsoring brand can add a prize on top.</figcaption>
-    </figure>
+    <Media src="/images/lyft/payout.webp" alt="Brand-sponsored and Lyft leaderboards beside a base reward payout: 1st $50, 2nd $30, 3rd $15 in Lyft credit" ratio="wide" caption="Base reward payout in Lyft credit: 1st $50, 2nd $30, 3rd $15. A sponsoring brand can add a prize on top." />
   </section>
 
   <section id="design" class="case-section">
     <h2 data-short="Final design">The final screens</h2>
-    <figure class="figure wide">
-      <Img src="/images/lyft/final-screens.webp" alt="Final screens: a brand-sponsored leaderboard, the Lyft leaderboard, and the map with a 300-point gem" />
-    </figure>
+    <Media src="/images/lyft/final-screens.webp" alt="Final screens: a brand-sponsored leaderboard, the Lyft leaderboard, and the map with a 300-point gem" ratio="wide" />
     <p>It also lives beyond the phone, on the dock kiosk and the bike’s handlebar screen.</p>
-    <div class="grid-2 wide">
-      <figure class="figure"><Img src="/images/lyft/kiosk-map.webp" alt="Bike dock kiosk showing a sponsored leaderboard next to the app map" /></figure>
-      <figure class="figure"><Img src="/images/lyft/handlebar.webp" alt="Lyft bike handlebar screen showing the gem map" /></figure>
+    <div class="row row-2">
+      <Media src="/images/lyft/kiosk-map.webp" alt="Bike dock kiosk showing a sponsored leaderboard next to the app map" ratio="wide" />
+      <Media src="/images/lyft/handlebar.webp" alt="Lyft bike handlebar screen showing the gem map" ratio="wide" />
     </div>
   </section>
 
@@ -114,13 +104,13 @@ import Video from '../../components/Video.astro';
     <h2 data-short="Campaign">Campaign: on the street and in the feed</h2>
     <p class="quote">“Every ride is a hidden gem.”</p>
     <p>Get rewarded for exploring. The launch idea pairs out-of-home screens near docks with creator-style social video.</p>
-    <div class="grid-2 wide">
-      <figure class="figure"><Img src="/images/lyft/campaign.webp" alt="Campaign key visual: Every ride is a hidden gem, with a Lyft scooter" /></figure>
-      <figure class="figure"><Img src="/images/lyft/billboard.webp" alt="Digital billboard mockup of the campaign outside a building" /></figure>
+    <div class="row row-2">
+      <Media src="/images/lyft/campaign.webp" alt="Campaign key visual: Every ride is a hidden gem, with a Lyft scooter" ratio="wide" />
+      <Media src="/images/lyft/billboard.webp" alt="Digital billboard mockup of the campaign outside a building" ratio="wide" />
     </div>
     <div class="campaign-vids">
       <Video name="lyft-ride-concept" label="Concept video: riders exploring the city while a gem floats overhead and the leaderboard updates" caption="How we imagine it: every ride earns points toward the regional leaderboard." />
-      <Video name="lyft-explore-with-me" frame="phone" label="Creator-style social video: Come explore with me, Lyft Explore edition" caption="Social concept: “Come explore with me, Lyft Explore edition.”" />
+      <Video name="lyft-explore-with-me" frame="bare" label="Creator-style social video: Come explore with me, Lyft Explore edition" caption="Social concept: “Come explore with me, Lyft Explore edition.”" />
     </div>
   </section>
 

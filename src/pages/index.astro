@@ -6,14 +6,14 @@ import DeedCard from '../components/DeedCard.astro';
 import Img from '../components/Img.astro';
 import { caseStudies, playground } from '../data/projects';
 
-const words = ['people.', 'innovation.', 'curiosity.', 'good stories.', 'design that feels human.', 'beauty in the details.'];
+const words = ['curiosity and creativity.', 'innovation and impact.', 'purpose and passion.'];
 ---
 <Base active="home">
   <Board>
     <div class="hero">
       <h1>
         Hi, I’m Joselyn.<br />
-        <span class="driven">I’m driven by <RotatingText words={words} /></span>
+        <span class="driven">I’m driven by<br /><RotatingText words={words} /></span>
       </h1>
       <p class="sub">
         Marketing + Entrepreneurship at WashU, minoring in Human-Computer Interaction.
@@ -57,11 +57,11 @@ const words = ['people.', 'innovation.', 'curiosity.', 'good stories.', 'design 
       <a class="btn ghost" href="/playground">Visit the playground</a>
     </div>
     <div class="strip">
-      <a href="/playground/textiles" class="strip-item" data-face="5"><Img src="/images/textiles/creamsicle-bodice-flat.webp" alt="Creamsicle print bodice mockup" zoom={false} /><span>Textiles</span></a>
-      <a href="/playground/design-social" class="strip-item" data-face="6"><Img src="/images/design/kiki-bouba.webp" alt="Find the Kiki to your Bouba poster" zoom={false} /><span>Posters</span></a>
-      <a href="/playground/jdel" class="strip-item" data-face="1"><Img src="/images/jdel/bottle.webp" alt="JDel perfume bottle render" zoom={false} /><span>JDel</span></a>
-      <a href="/playground/textiles" class="strip-item" data-face="5"><Img src="/images/textiles/bead-singer.webp" alt="Jazz singer bead curtain print" zoom={false} /><span>Print design</span></a>
-      <a href="/playground/design-social" class="strip-item" data-face="6"><Img src="/images/design/tinydesk-black.webp" alt="WUTV Tiny Desk concert poster" zoom={false} /><span>WUTV</span></a>
+      <a href="/playground/textiles" class="strip-item" data-face="5"><Img src="/images/textiles/creamsicle-bodice-flat.webp" alt="Creamsicle print bodice mockup" zoom={false} eager /><span>Textiles</span></a>
+      <a href="/playground/design-social" class="strip-item" data-face="6"><Img src="/images/design/kiki-bouba.webp" alt="Find the Kiki to your Bouba poster" zoom={false} eager /><span>Posters</span></a>
+      <a href="/playground/jdel" class="strip-item" data-face="1"><Img src="/images/jdel/bottle.webp" alt="JDel perfume bottle render" zoom={false} eager /><span>JDel</span></a>
+      <a href="/playground/textiles" class="strip-item" data-face="5"><Img src="/images/textiles/bead-singer.webp" alt="Jazz singer bead curtain print" zoom={false} eager /><span>Print design</span></a>
+      <a href="/playground/design-social" class="strip-item" data-face="6"><Img src="/images/design/tinydesk-black.webp" alt="WUTV Tiny Desk concert poster" zoom={false} eager /><span>WUTV</span></a>
       <a href="/playground/raised-on-the-blur" class="strip-item type" data-face="2"><span class="type-q">“Raised on the Blur”</span><span>Writing</span></a>
     </div>
   </section>
@@ -70,7 +70,8 @@ const words = ['people.', 'innovation.', 'curiosity.', 'good stories.', 'design 
 <style>
   .hero { max-width: 680px; }
   .hero h1 { font-size: clamp(2.5rem, 5.4vw, 4.4rem); margin-bottom: 0.35em; }
-  .driven { display: inline-block; min-height: 1.1em; }
+  .driven { display: inline-block; min-height: 2.1em; }
+  .driven :global(.rt) { font-size: 0.8em; }
   .sub { color: var(--ink-2); font-size: 1.05rem; max-width: 560px; margin: 0 auto 26px; }
   .ask {
     display: flex; align-items: center; gap: 8px; max-width: 560px; margin: 0 auto; padding: 8px 8px 8px 24px;
@@ -88,8 +89,9 @@ const words = ['people.', 'innovation.', 'curiosity.', 'good stories.', 'design 
   .deeds { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
 
   .strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: 16px; overflow-x: auto; padding: 6px 2px 18px; scroll-snap-type: x mandatory; }
-  .strip-item { position: relative; display: block; height: 280px; border-radius: var(--radius); overflow: hidden; scroll-snap-align: start; text-decoration: none; border: 1.5px solid var(--ink); background: var(--white); }
-  .strip-item :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+  .strip-item { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; scroll-snap-align: start; text-decoration: none; border: 1.5px solid var(--ink); background: var(--white); }
+  .strip-item { background: var(--paper-2); }
+  .strip-item :global(img) { width: 100%; height: 100%; object-fit: contain; padding: 14px 14px 48px; transition: transform 0.6s var(--ease); }
   .strip-item:hover :global(img) { transform: scale(1.05); }
   .strip-item > span:last-child { position: absolute; left: 12px; bottom: 12px; background: var(--white); border-radius: 999px; padding: 4px 12px; font-size: 0.82rem; font-weight: 600; }
   .strip-item.type { display: grid; place-items: center; background: var(--write-tint); }

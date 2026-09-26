@@ -1,6 +1,7 @@
 ---
 import CaseLayout from '../../layouts/CaseLayout.astro';
 import Img from '../../components/Img.astro';
+import Media from '../../components/Media.astro';
 import Video from '../../components/Video.astro';
 import Steps from '../../components/Steps.astro';
 ---
@@ -41,9 +42,7 @@ import Steps from '../../components/Steps.astro';
       { label: 'Twist it', text: 'Clean the jar and twist the bottom to reveal drainage holes and a hidden seed compartment.' },
       { label: 'Grow it', text: 'Add the provided soil and click the lid onto the base as a water plate. Or bury the whole thing: it biodegrades in a few months.' },
     ]} />
-    <figure class="figure wide">
-      <Img src="/images/releaf/how-it-works.webp" alt="Illustrated three-step guide: light the candle, twist the bottom to reveal seeds, add soil and watch it grow" />
-    </figure>
+    <Media src="/images/releaf/how-it-works.webp" alt="Illustrated three-step guide: light the candle, twist the bottom to reveal seeds, add soil and watch it grow" ratio="wide" />
   </section>
 
   <section id="product" class="case-section">
@@ -52,9 +51,7 @@ import Steps from '../../components/Steps.astro';
       My love for fragrance shows up here. We started with classic aromatherapy scents: <strong>rosemary, spearmint,
       eucalyptus, and lavender</strong>, plus calendula. Later I want to experiment with seasonal blends.
     </p>
-    <figure class="figure wide">
-      <Img src="/images/releaf/lineup.webp" alt="Four ReLeaf candles, Spearmint, Rosemary, Calendula and Lavender, on a white podium with mailer boxes" />
-    </figure>
+    <Media src="/images/releaf/lineup.webp" alt="Four ReLeaf candles, Spearmint, Rosemary, Calendula and Lavender, on a white podium with mailer boxes" ratio="square" />
   </section>
 
   <section id="prototypes" class="case-section">
@@ -77,9 +74,9 @@ import Steps from '../../components/Steps.astro';
       The mark is a single line that reads as both a flame and a sprouting leaf, the whole product story in one shape.
       The palette pulls from parchment, sage, and soil. Tagline: <strong>“Light your peace, plant your joy.”</strong>
     </p>
-    <div class="grid-2 wide">
-      <figure class="figure"><Img src="/images/releaf/logo.webp" alt="ReLeaf Candles primary logo: Candles That Have a Second Life" /></figure>
-      <figure class="figure"><Img src="/images/releaf/brand-guide.webp" alt="Brand guide: signature and pictorial logos, six-color palette, RoxboroughCF and Belleza fonts" /></figure>
+    <div class="row row-2">
+      <Media src="/images/releaf/logo.webp" alt="ReLeaf Candles primary logo: Candles That Have a Second Life" ratio="wide" />
+      <Media src="/images/releaf/brand-guide.webp" alt="Brand guide: signature and pictorial logos, six-color palette, RoxboroughCF and Belleza fonts" ratio="wide" />
     </div>
     <ul class="palette" aria-label="Brand palette">
       {['#f1ead8', '#d5c7ad', '#bec5a4', '#8a8e75', '#68604c', '#2d2f22'].map((c) => <li style={`--sw:${c}`}><span>{c}</span></li>)}
@@ -89,17 +86,13 @@ import Steps from '../../components/Steps.astro';
   <section id="packaging" class="case-section">
     <h2 data-short="Packaging">Packaging</h2>
     <p>The mailer box tells the candle-to-plant story before you even open it, with socials on the side.</p>
-    <figure class="figure wide">
-      <Img src="/images/releaf/packaging.webp" alt="Packaging mockups: a mailer box with a candle-to-plant cycle graphic and a lid card reading Light your peace, plant your joy" />
-    </figure>
+    <Media src="/images/releaf/packaging.webp" alt="Packaging mockups: a mailer box with a candle-to-plant cycle graphic and a lid card reading Light your peace, plant your joy" ratio="wide" />
   </section>
 
   <section id="social" class="case-section">
     <h2 data-short="Social">Social media</h2>
     <p>I ran ReLeaf’s Instagram and TikTok: the launch post, trade show stories, and a mission series.</p>
-    <figure class="figure wide">
-      <Img src="/images/releaf/social.webp" alt="Three phones: a mini tradeshow story collage, the @releafcandles Instagram profile, and the launch post" />
-    </figure>
+    <Media src="/images/releaf/social.webp" alt="Three phones: a mini tradeshow story collage, the @releafcandles Instagram profile, and the launch post" ratio="wide" />
   </section>
 
   <section id="traction" class="case-section">
@@ -109,8 +102,8 @@ import Steps from '../../components/Steps.astro';
       a heartbeat. Networking became one of my favorite parts of the journey. After every competition and pitch, I left
       knowing more and more excited for what’s next.
     </p>
-    <div class="grid-2 wide">
-      <figure class="figure"><Img src="/images/releaf/tradeshow.webp" alt="The ReLeaf team in green polos at their trade show booth with a banner and chalkboard sign" /></figure>
+    <div class="row row-2">
+      <Media src="/images/releaf/tradeshow.webp" alt="The ReLeaf team in green polos at their trade show booth with a banner and chalkboard sign" ratio="square" />
       <Video name="releaf-booth" label="Walkthrough of the ReLeaf trade show booth" caption="Booth walkthrough." />
     </div>
     <div class="stats">
@@ -139,6 +132,6 @@ import Steps from '../../components/Steps.astro';
   .palette { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
   .palette li { aspect-ratio: 1; border-radius: 14px; background: var(--sw); display: flex; align-items: flex-end; padding: 8px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }
   .palette span { font-size: 0.72rem; background: rgba(255, 255, 255, 0.85); padding: 2px 6px; border-radius: 6px; }
-  .journey { max-width: 520px; margin-top: 20px; }
+  .journey { max-width: 380px; margin-top: 20px; }
   @media (max-width: 640px) { .palette { grid-template-columns: repeat(3, 1fr); } }
 </style>

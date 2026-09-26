@@ -1,6 +1,6 @@
 ---
 import CaseLayout from '../../layouts/CaseLayout.astro';
-import Img from '../../components/Img.astro';
+import Media from '../../components/Media.astro';
 ---
 <CaseLayout
   slug="circular-stl"
@@ -47,11 +47,11 @@ import Img from '../../components/Img.astro';
       Around, where “around” quietly hints at circularity. The four-post carousel follows a rule of four: a relatable
       hook, a statistic, what the District offers, and a call to action.
     </p>
-    <ol class="carousel wide">
-      <li><Img src="/images/stl/slide-1.webp" alt="Post 1: Let's talk junk. Your stuff is worth way more." /><span><b>1. The hook</b> Reframe how people see their unused things.</span></li>
-      <li><Img src="/images/stl/slide-2.webp" alt="Post 2: The average household has $3,100 in unused items" /><span><b>2. The math</b> $3,100 in unused items per household (OfferUp 2025).</span></li>
-      <li><Img src="/images/stl/slide-3.webp" alt="Post 3: The Circularity District, where STL can donate, repair and circulate, all in one place" /><span><b>3. What it does</b> Donate, repair, circulate, all in one place.</span></li>
-      <li><Img src="/images/stl/slide-4.webp" alt="Post 4: In St. Louis, what goes around should come back around" /><span><b>4. The call</b> Build a circular economy rooted in St. Louis.</span></li>
+    <ol class="carousel">
+      <li><Media ratio="portrait" src="/images/stl/slide-1.webp" alt="Post 1: Let's talk junk. Your stuff is worth way more." /><span><b>1. The hook</b> Reframe how people see their unused things.</span></li>
+      <li><Media ratio="portrait" src="/images/stl/slide-2.webp" alt="Post 2: The average household has $3,100 in unused items" /><span><b>2. The math</b> $3,100 in unused items per household (OfferUp 2025).</span></li>
+      <li><Media ratio="portrait" src="/images/stl/slide-3.webp" alt="Post 3: The Circularity District, where STL can donate, repair and circulate, all in one place" /><span><b>3. What it does</b> Donate, repair, circulate, all in one place.</span></li>
+      <li><Media ratio="portrait" src="/images/stl/slide-4.webp" alt="Post 4: In St. Louis, what goes around should come back around" /><span><b>4. The call</b> Build a circular economy rooted in St. Louis.</span></li>
     </ol>
     <p>
       Color did deliberate work: red for urgency on the statistics, green for sustainability and the positive outcome,
@@ -95,7 +95,6 @@ import Img from '../../components/Img.astro';
 <style>
   .carousel { list-style: none; padding: 0; margin: 28px auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   .carousel li { display: flex; flex-direction: column; gap: 10px; }
-  .carousel :global(img) { border-radius: 14px; box-shadow: var(--shadow); }
   .carousel span { font-size: 0.86rem; color: var(--ink-2); line-height: 1.4; }
   .carousel b { display: block; color: var(--ink); }
   @media (max-width: 860px) { .carousel { grid-template-columns: repeat(2, 1fr); } }
