@@ -43,17 +43,23 @@ import ProductLayout from '../../layouts/ProductLayout.astro';
   </section>
 
   <section class="chapter tinted">
-    <span class="num">04 · The bead curtain</span>
-    <h2>A jazz singer in the spotlight.</h2>
-    <p>Framed by mid-century <strong>bead strands</strong>. The beads became the <strong>repeat</strong>.</p>
-    <figure class="band"><img src="/images/textiles/bead-singer.webp" alt="Illustration of a jazz singer in a red gown at a microphone, framed by hanging bead strands" loading="lazy" class="narrow" /></figure>
-    <div class="band cols">
-      <figure><img src="/images/textiles/bead-mockups.webp" alt="Design mockups of the bead strand repeat on a marbled ground and on black" loading="lazy" /><figcaption>The repeat, on <strong>marble</strong> and <strong>black</strong></figcaption></figure>
-      <figure><img src="/images/textiles/bead-palettes.webp" alt="Two color palettes, icy aqua to muted teal and pale amber to spicy paprika" loading="lazy" /><figcaption><strong>Aqua</strong> and <strong>amber</strong> palettes</figcaption></figure>
+    <h2>Pieces I have made.</h2>
+    <div class="band gallery">
+      <img src="/images/textiles/gallery/wrap-top.webp" alt="Burgundy polka dot wrap top with a black waistband on a dress form" loading="lazy" />
+      <img src="/images/textiles/gallery/party-animal.webp" alt="Embroidered Party Animal panel with a colorful giraffe, beads, and a chenille border" loading="lazy" />
+      <img src="/images/textiles/gallery/shibori-kaleidoscope.webp" alt="Blue, red, and yellow shibori-dyed fabric in a kaleidoscope pattern" loading="lazy" />
+      <img src="/images/textiles/gallery/sunburst.webp" alt="Yellow and crimson sunburst dyed fabric" loading="lazy" />
+      <img src="/images/textiles/gallery/shibori-crimson.webp" alt="Crimson and black shibori-dyed fabric with a diamond center" loading="lazy" />
+      <img src="/images/textiles/gallery/fabric-collage.webp" alt="Layered fabric collage of corduroy, velvet, tweed, and embroidery thread" loading="lazy" />
+      <img src="/images/textiles/gallery/shibori-stripes.webp" alt="Periwinkle and crimson striped shibori-dyed fabric" loading="lazy" />
+      <img src="/images/textiles/gallery/shibori-ochre.webp" alt="Ochre and black shibori-dyed fabric" loading="lazy" />
     </div>
   </section>
 </ProductLayout>
 
 <style>
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 860px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+  .gallery img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
   img.narrow { max-width: 460px; margin: 0 auto; }
 </style>
