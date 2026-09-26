@@ -12,9 +12,14 @@ import Video from '../../components/Video.astro';
   summary={[
     ['The problem', 'Lyft bikes averaged <strong>2 rides a day</strong>, and <strong>~90%</strong> of revenue came from rideshare.'],
     ['What I did', 'Headed <strong>ideation</strong>, designed the <strong>slides</strong>, and made <strong>every mockup</strong>.'],
-    ['The result', 'A gamified feature projected at <strong>720% ROI</strong>.'],
+    ['The result', 'A feature concept projected at <strong>720% ROI</strong>.'],
   ]}
 >
+  <section class="chapter">
+    <span class="num">Why this problem</span>
+    <p class="pull">“We wanted a <em>creative</em> answer to a real problem Lyft faces, and to help them stand out where Uber isn’t the default: <span class="hl">bikes and scooters</span>.”</p>
+  </section>
+
   <section class="chapter">
     <span class="num">01 · Research</span>
     <h2>Start with the business.</h2>
@@ -28,7 +33,20 @@ import Video from '../../components/Video.astro';
   </section>
 
   <section class="chapter tinted">
-    <span class="num">02 · The wedge</span>
+    <span class="num">02 · Ideation</span>
+    <h2>The ideas we threw out.</h2>
+    <p>It took time. We explored the obvious answers first, but <strong>something was missing</strong>.</p>
+    <ol class="band ideas">
+      <li class="out"><b>Rewards program</b><span>Lyft already runs one.</span></li>
+      <li class="out"><b>Aviation ideas</b><span>Explored, then set aside.</span></li>
+      <li class="out"><b>New car perks</b><span>Rideshare, where Uber already competes.</span></li>
+      <li class="kept"><b>Gamified exploration</b><span>Inspired by <strong>gamification trends</strong>. This is where it clicked.</span></li>
+    </ol>
+    <div class="learn"><b>What I learned</b><p>Good ideas take time. Ruling out the obvious ones showed us what was missing.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">03 · The wedge</span>
     <h2>Don’t compete on bikes.</h2>
     <p>Lime and Bird offer the <strong>same bikes, maps, and prices</strong>. Lyft stands for <strong>community and exploration</strong>, so I built on that.</p>
     <figure class="band">
@@ -38,8 +56,8 @@ import Video from '../../components/Video.astro';
     <div class="learn"><b>What I learned</b><p>You can’t win on features alone. Build on what the brand already stands for.</p></div>
   </section>
 
-  <section class="chapter">
-    <span class="num">03 · The solution</span>
+  <section class="chapter tinted">
+    <span class="num">04 · The solution</span>
     <h2>Every ride is a hidden gem.</h2>
     <p>Lyft Explore lives inside the <strong>existing Lyft map</strong>. No new app, no new hardware.</p>
     <figure class="band">
@@ -58,11 +76,16 @@ import Video from '../../components/Video.astro';
       <figure><img src="/images/lyft/kiosk-map.webp" alt="Bike dock kiosk showing a sponsored leaderboard next to the app map" loading="lazy" /><figcaption>On the <strong>dock kiosk</strong></figcaption></figure>
       <figure><img src="/images/lyft/handlebar.webp" alt="Lyft bike handlebar screen showing the gem map" loading="lazy" /><figcaption>On the <strong>handlebar screen</strong></figcaption></figure>
     </div>
+    <div class="band mycall">
+      <span class="num">The question I asked myself</span>
+      <p class="pull">“Won’t gamification keep people glued to their phones?”</p>
+      <p class="pull answer">The app is the guide, not the destination. Points only come from <span class="hl">riding to real places</span>.</p>
+    </div>
     <div class="learn"><b>What I learned</b><p>Designing inside real infrastructure is harder, and far more convincing.</p></div>
   </section>
 
-  <section class="chapter tinted">
-    <span class="num">04 · Campaign</span>
+  <section class="chapter">
+    <span class="num">05 · Campaign</span>
     <h2>On the street and in the feed.</h2>
     <p><strong>Billboards</strong> near the docks, plus <strong>creator-style video</strong> that shows what a ride feels like.</p>
     <div class="band cols">
@@ -76,8 +99,8 @@ import Video from '../../components/Video.astro';
     <div class="learn"><b>What I learned</b><p>A feature needs a story before anyone will use it.</p></div>
   </section>
 
-  <section class="chapter">
-    <span class="num">05 · Results</span>
+  <section class="chapter tinted">
+    <span class="num">06 · Results</span>
     <h2>The business case.</h2>
     <div class="band bigstats">
       <div><b>720%</b><span>projected ROI</span></div>
@@ -91,14 +114,28 @@ import Video from '../../components/Video.astro';
     <span class="num">Takeaways</span>
     <h2>What I’m taking with me.</h2>
     <ol class="band takeaways-big" style="max-width:var(--text)">
-      <li>Keep revenue at the center of every creative decision.</li>
-      <li>Borrow from brand values before borrowing from competitors.</li>
-      <li>Next time, test with real riders. This ran on secondary research.</li>
+      <li>Rule out the obvious ideas before settling.</li>
+      <li>Build on what the brand already stands for.</li>
+      <li>Test with real riders next time. This ran on secondary research.</li>
     </ol>
   </section>
 </ProductLayout>
 
 <style>
+  .hl { color: var(--accent-text); }
+  .pull em { font-style: normal; color: var(--accent-text); }
+  .ideas { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: left; }
+  .ideas li { padding: 22px; border-radius: 20px; background: var(--white); }
+  .ideas b { display: block; font-family: var(--serif); font-size: 1.15rem; margin-bottom: 6px; }
+  .ideas span { font-size: 0.95rem; color: var(--ink-2); }
+  .ideas .out { opacity: 0.55; }
+  .ideas .out b { text-decoration: line-through; text-decoration-thickness: 2px; }
+  .ideas .kept { background: var(--accent-text); color: #fff; box-shadow: 0 16px 40px rgba(255, 0, 191, 0.25); }
+  .ideas .kept span, .ideas .kept strong { color: #fff; }
+  .mycall { margin-top: 88px; padding: 48px 32px; border-radius: 28px; background: var(--white); }
+  .mycall .num { margin-bottom: 18px; }
+  .mycall .answer { color: var(--ink-2); font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+  @media (max-width: 860px) { .ideas { grid-template-columns: repeat(2, 1fr); } }
   .vids { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; align-items: center; text-align: left; }
   @media (max-width: 760px) { .vids { grid-template-columns: 1fr; } }
 </style>
