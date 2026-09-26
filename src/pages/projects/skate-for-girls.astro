@@ -1,0 +1,130 @@
+---
+import CaseLayout from '../../layouts/CaseLayout.astro';
+import Img from '../../components/Img.astro';
+import Video from '../../components/Video.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+---
+<CaseLayout
+  slug="skate-for-girls"
+  eyebrow="UX consulting · WashUX"
+  title="SKATE for Girls × WashUX"
+  summary="A website redesign for a nonprofit that teaches math through figure skating, built as practical recommendations the client can ship on their existing Wix site."
+  hero="/images/skate/final.webp"
+  heroAlt="The redesigned SKATE for Girls homepage in purple and aqua"
+  snapshot={[
+    ['My role', 'Homepage design lead + UX research'],
+    ['Team', 'Dhruv Shah, Joselyn Garcia, Dana Sandoval, Jahnavi Patel'],
+    ['Client', 'SKATE for Girls (nonprofit)'],
+    ['Methods', 'Surveys, user interview, lo-fi to mid-fi'],
+  ]}
+>
+  <section id="overview" class="case-section">
+    <h2 data-short="Overview">Overview</h2>
+    <p>
+      SKATE for Girls (<strong>S</strong>olving <strong>K</strong>inetic <strong>A</strong>nd <strong>T</strong>ransforming
+      <strong>E</strong>ducation) is a free program that teaches math to girls in grades 4 to 8 through figure skating and
+      movement.
+    </p>
+    <p>
+      We took a consulting approach centered on practical, attainable improvements. Working within the client’s existing
+      Wix platform, we looked for ways to improve the experience while making sure every recommendation could realistically
+      be implemented.
+    </p>
+    <div class="callout"><p><strong>The constraint:</strong> built for Wix. Every recommendation had to be something the client could ship themselves.</p></div>
+    <p>
+      I <strong>led the homepage design</strong>, <strong>initiated the customer discovery interviews</strong>, and
+      <strong>curated the user survey</strong> that identified our key areas of focus.
+    </p>
+  </section>
+
+  <section id="goals" class="case-section">
+    <h2 data-short="Goals">Objectives</h2>
+    <div class="features">
+      <div class="feature"><h3>1. Increase donations</h3><p>Make giving easy to find and easy to do.</p></div>
+      <div class="feature"><h3>2. Emphasize impact</h3><p>Show donors what their contribution turns into.</p></div>
+      <div class="feature"><h3>3. Clarify the mission</h3><p>Help a first-time visitor understand SFG in seconds.</p></div>
+    </div>
+  </section>
+
+  <section id="research" class="case-section">
+    <h2 data-short="Research">Research</h2>
+    <p>
+      We ran two studies to gauge general impressions of the site, focused on the three pages tied to donor engagement:
+      <strong>Home</strong> (first impression), <strong>About</strong> (legitimacy), and <strong>Impact</strong> (what a
+      donation actually does).
+    </p>
+    <div class="stats">
+      <div class="stat"><b>38</b><span>Google Form responses from WashU students</span></div>
+      <div class="stat"><b>45%</b><span>couldn’t find the Donate button at first glance</span></div>
+      <div class="stat"><b>40%</b><span>felt parts of the About page were unnecessary</span></div>
+    </div>
+    <p>We also held a one-on-one user-testing interview with a 19-year-old former competitive skater and current coach.</p>
+    <div class="quotes">
+      <blockquote>“It was difficult to figure out what this company was about and what they exactly do.”</blockquote>
+      <blockquote>“I see where the button is, but it’s not user-friendly. There’s just a cluster of options.”</blockquote>
+      <blockquote>“Do I fill out this form to donate as well?”</blockquote>
+    </div>
+  </section>
+
+  <section id="findings" class="case-section">
+    <h2 data-short="Findings → fixes">From findings to fixes</h2>
+    <table class="table">
+      <thead><tr><th>What we heard</th><th>What we changed</th></tr></thead>
+      <tbody>
+        <tr><td>Respondents were overwhelmingly drawn to the acronym and the image on the Home page.</td><td>Replace the ice-surface photo with an image of SFG participants, a more direct call to action.</td></tr>
+        <tr><td>45% couldn’t identify the Donate button at a glance.</td><td>Emphasize Donate on the Home page and add a sticky button in the nav so it’s always visible.</td></tr>
+        <tr><td>40% felt parts of About were unnecessary, mainly press mentions and long paragraphs.</td><td>Keep every component, condense the mission to what matters most, and move press mentions into a carousel.</td></tr>
+        <tr><td>Some statistics felt too low or not objective enough.</td><td>Flagged for the client to revisit which statistics lead the Impact page.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="sketches" class="case-section">
+    <h2 data-short="Sketches">Low-fidelity sketches</h2>
+    <p>
+      We sketched lo-fi mockups and iterated on them through collaborative feedback sessions with the client. On the
+      Donate page, the second version introduced <strong>tiered giving</strong>: $50 covers snacks and water, $75 covers
+      skate rental and ice time, and $100 covers all fees for one student. An abstract gift becomes a concrete outcome.
+    </p>
+    <figure class="figure wide"><Img src="/images/skate/donate-sketches.webp" alt="Two hand-drawn Donate page sketches, the second with $50, $75 and $100 giving tiers, an event ticket card and a merch card" /></figure>
+    <p>
+      The About page sketches answer the 40% finding directly: a one-sentence mission in large type, an autoplaying mission
+      video, and a press slider that animates horizontally as you scroll.
+    </p>
+    <figure class="figure wide"><Img src="/images/skate/about-sketches.webp" alt="Hand-drawn About page sketches with a one-sentence mission, a mission video, and an In the press logo slider" /></figure>
+  </section>
+
+  <section id="options" class="case-section">
+    <h2 data-short="Options">Exploring options</h2>
+    <p>For the Impact page, we tested four placements for testimonials alongside program statistics before picking one.</p>
+    <figure class="figure wide"><Img src="/images/skate/impact-options.webp" alt="Four grayscale Impact page wireframes with different testimonial placements above Across SFG's Programs statistics" /></figure>
+  </section>
+
+  <section id="homepage" class="case-section">
+    <h2 data-short="Homepage">The homepage: wireframe to final</h2>
+    <p>
+      My lead piece. The redesign emphasizes clear storytelling, stronger visual hierarchy, and a better flow: an
+      impact statement up top, Move / Skate / Learn pillars, the S.K.A.T.E. acronym, student stories, and Join, Mentor,
+      and Donate at the end. Drag to compare.
+    </p>
+    <BeforeAfter
+      before="/images/skate/home-wireframe.webp"
+      after="/images/skate/final.webp"
+      beforeAlt="Grayscale mid-fidelity homepage wireframe"
+      afterAlt="Final purple and aqua homepage design"
+    />
+    <Video name="skate-prototype" frame="browser" label="Screen recording scrolling through the redesigned SKATE for Girls homepage prototype" caption="The prototype in motion." />
+  </section>
+
+  <section id="reflection" class="case-section">
+    <h2 data-short="Reflection">Reflection</h2>
+    <p>
+      The final deliverable was a prototype and a set of actionable recommendations SKATE for Girls can implement
+      directly on Wix, built to showcase their mission and impact and to catch the attention of potential donors.
+    </p>
+    <p>
+      This project strengthened my ability to translate user research into strategic design decisions, collaborate with
+      stakeholders, and deliver user-centered solutions within real-world constraints.
+    </p>
+  </section>
+</CaseLayout>

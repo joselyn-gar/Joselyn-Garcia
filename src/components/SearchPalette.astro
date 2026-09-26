@@ -1,0 +1,133 @@
+---
+// "What do you want to know?" palette. Opens from the hero pill, chips, the nav icon, or Cmd/Ctrl+K.
+// Searches a local index (projects, pages, quick answers). No backend.
+import { searchIndex } from '../data/search';
+---
+<dialog class="sp" data-palette aria-label="Search the site">
+  <form method="dialog" class="sp-box" data-palette-form>
+    <div class="sp-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input
+        type="search"
+        name="q"
+        placeholder="What do you want to know?"
+        autocomplete="off"
+        spellcheck="false"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="sp-results"
+        aria-autocomplete="list"
+        data-palette-input
+      />
+      <kbd>esc</kbd>
+    </div>
+    <ul id="sp-results" class="sp-results" role="listbox" data-palette-results></ul>
+    <p class="sp-empty" data-palette-empty hidden>No match yet. Try “UX”, “campaign”, “beauty”, or “resume”.</p>
+  </form>
+</dialog>
+
+<script is:inline type="application/json" id="search-index" set:html={JSON.stringify(searchIndex)}></script>
+
+<style is:global>
+  .sp { border: 0; padding: 0; background: transparent; width: min(100% - 28px, 640px); margin: 12vh auto auto; overflow: visible; }
+  .sp::backdrop { background: rgba(26, 26, 26, 0.28); backdrop-filter: blur(4px); }
+  .sp[open] { animation: sp-in 0.28s var(--ease); }
+  @keyframes sp-in { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
+  .sp-box { background: var(--white); border-radius: 24px; box-shadow: var(--shadow-lg); overflow: hidden; }
+  .sp-field { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); color: var(--ink-3); }
+  .sp-field input { flex: 1; border: 0; outline: 0; font: inherit; font-size: 1.1rem; color: var(--ink); background: transparent; }
+  .sp-field input::-webkit-search-cancel-button { display: none; }
+  .sp-field kbd { font: 600 0.72rem var(--sans); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }
+  .sp-results { list-style: none; margin: 0; padding: 8px; max-height: min(60vh, 460px); overflow: auto; }
+  .sp-group { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding: 12px 12px 6px; }
+  .sp-item a { display: block; padding: 11px 12px; border-radius: 14px; text-decoration: none; }
+  .sp-item a b { display: block; font-weight: 600; font-size: 0.98rem; }
+  .sp-item a span { display: block; font-size: 0.88rem; color: var(--ink-3); line-height: 1.45; margin-top: 2px; }
+  .sp-item[aria-selected='true'] a { background: var(--paper-2); }
+  .sp-empty { padding: 18px 22px; margin: 0; color: var(--ink-3); }
+</style>
+
+<script>
+  type Entry = { title: string; href?: string; group: string; keywords: string; answer?: string };
+  const index: Entry[] = JSON.parse(document.getElementById('search-index')!.textContent!);
+  const dlg = document.querySelector<HTMLDialogElement>('[data-palette]')!;
+  const input = dlg.querySelector<HTMLInputElement>('[data-palette-input]')!;
+  const list = dlg.querySelector<HTMLUListElement>('[data-palette-results]')!;
+  const empty = dlg.querySelector<HTMLElement>('[data-palette-empty]')!;
+  let sel = 0;
+  let shown: Entry[] = [];
+
+  const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const score = (e: Entry, q: string) => {
+    if (!q) return e.group === 'Quick answers' ? 2 : 1;
+    const hay = norm(`${e.title} ${e.keywords} ${e.answer ?? ''}`);
+    const title = norm(e.title);
+    let s = 0;
+    for (const w of norm(q).split(/\s+/).filter(Boolean)) {
+      if (title.startsWith(w)) s += 6;
+      else if (title.includes(w)) s += 4;
+      else if (hay.includes(w)) s += 2;
+      else if (w.length > 3 && hay.includes(w.slice(0, -1))) s += 1;
+      else return 0;
+    }
+    return s;
+  };
+
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+  const render = () => {
+    const q = input.value.trim();
+    shown = index.map((e) => [e, score(e, q)] as const).filter(([, s]) => s > 0).sort((a, b) => b[1] - a[1]).map(([e]) => e).slice(0, 9);
+    sel = Math.min(sel, Math.max(shown.length - 1, 0));
+    let html = '';
+    let group = '';
+    shown.forEach((e, i) => {
+      if (e.group !== group) { group = e.group; html += `<li class="sp-group" role="presentation">${group}</li>`; }
+      html += `<li class="sp-item" role="option" id="sp-${i}" aria-selected="${i === sel}"><a href="${e.href ?? '#'}"><b>${esc(e.title)}</b>${e.answer ? `<span>${esc(e.answer)}</span>` : ''}</a></li>`;
+    });
+    list.innerHTML = html;
+    empty.hidden = shown.length > 0;
+    input.setAttribute('aria-activedescendant', shown.length ? `sp-${sel}` : '');
+  };
+
+  const open = (q = '') => {
+    input.value = q;
+    sel = 0;
+    render();
+    if (!dlg.open) dlg.showModal();
+    input.focus();
+    input.setSelectionRange(q.length, q.length);
+  };
+
+  input.addEventListener('input', () => { sel = 0; render(); });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { e.preventDefault(); dlg.close(); return; }
+    if (e.key === 'ArrowDown') { e.preventDefault(); sel = Math.min(sel + 1, shown.length - 1); render(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); sel = Math.max(sel - 1, 0); render(); }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const href = shown[sel]?.href;
+      if (href) location.href = href;
+    }
+  });
+  list.addEventListener('mousemove', (e) => {
+    const li = (e.target as HTMLElement).closest<HTMLElement>('.sp-item');
+    if (!li) return;
+    const i = Number(li.id.slice(3));
+    if (i !== sel) { sel = i; list.querySelectorAll('.sp-item').forEach((n, k) => n.setAttribute('aria-selected', String(k === sel))); }
+  });
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+
+  document.addEventListener('click', (e) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>('[data-search-open]');
+    if (t) { e.preventDefault(); open(t.dataset.q ?? ''); }
+  });
+  // the hero pill is a real input: typing there hands the text to the palette
+  document.querySelectorAll<HTMLInputElement>('[data-search-proxy]').forEach((p) => {
+    p.addEventListener('input', () => { const v = p.value; p.value = ''; open(v); });
+    p.closest('form')?.addEventListener('submit', (e) => { e.preventDefault(); open(p.value); });
+  });
+  addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); dlg.open ? dlg.close() : open(); }
+    if (e.key === '/' && !dlg.open && !(e.target as HTMLElement).closest('input, textarea')) { e.preventDefault(); open(); }
+  });
+</script>

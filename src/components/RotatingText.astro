@@ -1,0 +1,40 @@
+---
+// Types a word, pauses, deletes it, moves on. Screen readers get the full list once.
+interface Props { words: string[]; }
+const { words } = Astro.props;
+---
+<span class="rt" data-rotate={JSON.stringify(words)}>
+  <span class="sr-only">{words.join(', ')}</span>
+  <span class="rt-word" aria-hidden="true">{words[0]}</span><span class="rt-caret" aria-hidden="true"></span>
+</span>
+
+<style>
+  .rt { white-space: nowrap; }
+  @media (max-width: 600px) { .rt { white-space: normal; } }
+  .rt-word { font-style: italic; color: var(--lyft-text); }
+  .rt-caret { display: inline-block; width: 2px; height: 0.8em; margin-left: 3px; background: currentColor; vertical-align: -0.05em; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .rt-caret { display: none; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-rotate]').forEach((el) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const words: string[] = JSON.parse(el.dataset.rotate!);
+    const out = el.querySelector<HTMLElement>('.rt-word')!;
+    let w = 0, i = words[0].length, deleting = true;
+    const step = () => {
+      const word = words[w];
+      if (deleting) {
+        i--;
+        if (i <= 0) { deleting = false; w = (w + 1) % words.length; }
+      } else {
+        i++;
+        if (i >= words[w].length) { deleting = true; out.textContent = words[w]; return setTimeout(step, 2000); }
+      }
+      out.textContent = (deleting ? word : words[w]).slice(0, Math.max(i, 0)) || '​';
+      setTimeout(step, deleting ? 40 : 75);
+    };
+    setTimeout(step, 2200);
+  });
+</script>

@@ -1,0 +1,36 @@
+---
+// A pure-CSS 3D die. Set --s for size. Rotate .cube to show a face (see faceRotation in dice.ts).
+interface Props { class?: string; size?: number; label?: string; }
+const { class: cls = '', size = 22, label } = Astro.props;
+// pip grid cells (1-9, reading order) per face
+const pips: Record<number, number[]> = { 1: [5], 2: [3, 7], 3: [3, 5, 7], 4: [1, 3, 7, 9], 5: [1, 3, 5, 7, 9], 6: [1, 3, 4, 6, 7, 9] };
+---
+<span class={`die ${cls}`} style={`--s:${size}px`} role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : 'true'}>
+  <span class="cube">
+    {[1, 2, 3, 4, 5, 6].map((n) => (
+      <span class={`face f${n}`}>
+        {pips[n].map((c) => <i style={`grid-area:p${c}`}></i>)}
+      </span>
+    ))}
+  </span>
+</span>
+
+<style is:global>
+  .die { display: inline-block; width: var(--s); height: var(--s); perspective: calc(var(--s) * 6); }
+  .die .cube { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.7s var(--ease); }
+  .die .face {
+    position: absolute; inset: 0; display: grid; padding: 16%;
+    grid-template-areas: 'p1 p2 p3' 'p4 p5 p6' 'p7 p8 p9';
+    grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+    background: #fbf9f4; border-radius: 22%;
+    box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.12), inset 0 -2px 4px rgba(26, 26, 26, 0.08);
+    backface-visibility: hidden;
+  }
+  .die .face i { width: 72%; height: 72%; margin: auto; border-radius: 50%; background: var(--ink); }
+  .die .f1 { transform: translateZ(calc(var(--s) / 2)); }
+  .die .f6 { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+  .die .f3 { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+  .die .f4 { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+  .die .f2 { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+  .die .f5 { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+</style>

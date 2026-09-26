@@ -1,0 +1,144 @@
+---
+import CaseLayout from '../../layouts/CaseLayout.astro';
+import Img from '../../components/Img.astro';
+import Video from '../../components/Video.astro';
+import Steps from '../../components/Steps.astro';
+---
+<CaseLayout
+  slug="releaf"
+  eyebrow="Startup · Founder"
+  title="ReLeaf Candles"
+  summary="Candles that have a second life. Burn it, twist the base open, and your candle becomes a planter."
+  hero="/images/releaf/hero.webp"
+  heroAlt="The Canduela candle on a wood slice beside the same jar turned into a lavender planter"
+  snapshot={[
+    ['My role', 'Founder + CEO'],
+    ['Started', 'High school Virtual Enterprise'],
+    ['Milestones', 'SVC finalist, IdeaBounce win'],
+    ['Next', 'Pilot program in California'],
+  ]}
+>
+  <section id="problem" class="case-section">
+    <h2 data-short="The problem">The problem</h2>
+    <p>
+      My entrepreneurial spark lit up in high school, when I joined Virtual Enterprise, a class that runs a business
+      from start to finish. I became CEO, and my team dug into the problem of mass consumption.
+    </p>
+    <p>
+      It blew my mind to learn that <strong>millions of empty candle jars end up in landfills every year</strong>. As a
+      candle fanatic, I saw it firsthand. Those gorgeous jars pile up, and most people toss them or let them gather dust.
+      Some eco-conscious people turn them into planters, but drilling holes and figuring out drainage is more hassle
+      than it’s worth.
+    </p>
+    <p class="quote">What if candle jars could have a second life?</p>
+  </section>
+
+  <section id="how" class="case-section">
+    <h2 data-short="How it works">How it works</h2>
+    <p>ReLeaf kits come with everything you need to grow something once your candle is done burning.</p>
+    <Steps steps={[
+      { label: 'Light it', text: 'Enjoy your candle like any other.' },
+      { label: 'Twist it', text: 'Clean the jar and twist the bottom to reveal drainage holes and a hidden seed compartment.' },
+      { label: 'Grow it', text: 'Add the provided soil and click the lid onto the base as a water plate. Or bury the whole thing: it biodegrades in a few months.' },
+    ]} />
+    <figure class="figure wide">
+      <Img src="/images/releaf/how-it-works.webp" alt="Illustrated three-step guide: light the candle, twist the bottom to reveal seeds, add soil and watch it grow" />
+    </figure>
+  </section>
+
+  <section id="product" class="case-section">
+    <h2 data-short="Product line">The product line</h2>
+    <p>
+      My love for fragrance shows up here. We started with classic aromatherapy scents: <strong>rosemary, spearmint,
+      eucalyptus, and lavender</strong>, plus calendula. Later I want to experiment with seasonal blends.
+    </p>
+    <figure class="figure wide">
+      <Img src="/images/releaf/lineup.webp" alt="Four ReLeaf candles, Spearmint, Rosemary, Calendula and Lavender, on a white podium with mailer boxes" />
+    </figure>
+  </section>
+
+  <section id="prototypes" class="case-section">
+    <h2 data-short="Prototypes">From idea to prototype</h2>
+    <p>
+      Fine-tuning the first candle kit MVP was no walk in the park. Some days nothing worked, and doubt showed up
+      weekly. But failure kept turning into progress. I learned about manufacturing, the patent process, and how useful
+      Excel is for financial projections. A big moment was finding a <strong>biodegradable, heat-resistant material</strong> for the jars.
+    </p>
+    <Steps steps={[
+      { label: 'Idea', text: '3D models of jar, lid, and twist-base variations.', src: '/images/releaf/cad.webp', alt: '3D CAD models of several jar, lid and base variations with annotations' },
+      { label: 'First print', text: 'Early clay-toned prototypes, tested with soil.', src: '/images/releaf/first-print.webp', alt: 'Early clay-toned prototype jars, one planted, at a booth' },
+      { label: 'Refined', text: 'The Canduela candle, and the same jar as a planter.', src: '/images/releaf/hero.webp', alt: 'Refined Canduela candle and lavender planter' },
+    ]} />
+  </section>
+
+  <section id="brand" class="case-section">
+    <h2 data-short="Brand identity">Brand identity</h2>
+    <p>
+      The mark is a single line that reads as both a flame and a sprouting leaf, the whole product story in one shape.
+      The palette pulls from parchment, sage, and soil. Tagline: <strong>“Light your peace, plant your joy.”</strong>
+    </p>
+    <div class="grid-2 wide">
+      <figure class="figure"><Img src="/images/releaf/logo.webp" alt="ReLeaf Candles primary logo: Candles That Have a Second Life" /></figure>
+      <figure class="figure"><Img src="/images/releaf/brand-guide.webp" alt="Brand guide: signature and pictorial logos, six-color palette, RoxboroughCF and Belleza fonts" /></figure>
+    </div>
+    <ul class="palette" aria-label="Brand palette">
+      {['#f1ead8', '#d5c7ad', '#bec5a4', '#8a8e75', '#68604c', '#2d2f22'].map((c) => <li style={`--sw:${c}`}><span>{c}</span></li>)}
+    </ul>
+  </section>
+
+  <section id="packaging" class="case-section">
+    <h2 data-short="Packaging">Packaging</h2>
+    <p>The mailer box tells the candle-to-plant story before you even open it, with socials on the side.</p>
+    <figure class="figure wide">
+      <Img src="/images/releaf/packaging.webp" alt="Packaging mockups: a mailer box with a candle-to-plant cycle graphic and a lid card reading Light your peace, plant your joy" />
+    </figure>
+  </section>
+
+  <section id="social" class="case-section">
+    <h2 data-short="Social">Social media</h2>
+    <p>I ran ReLeaf’s Instagram and TikTok: the launch post, trade show stories, and a mission series.</p>
+    <figure class="figure wide">
+      <Img src="/images/releaf/social.webp" alt="Three phones: a mini tradeshow story collage, the @releafcandles Instagram profile, and the launch post" />
+    </figure>
+  </section>
+
+  <section id="traction" class="case-section">
+    <h2 data-short="Traction">Trade shows + traction</h2>
+    <p>
+      The most rewarding part was hearing people’s reactions. At mock trade shows, people told us they’d buy the kit in
+      a heartbeat. Networking became one of my favorite parts of the journey. After every competition and pitch, I left
+      knowing more and more excited for what’s next.
+    </p>
+    <div class="grid-2 wide">
+      <figure class="figure"><Img src="/images/releaf/tradeshow.webp" alt="The ReLeaf team in green polos at their trade show booth with a banner and chalkboard sign" /></figure>
+      <Video name="releaf-booth" label="Walkthrough of the ReLeaf trade show booth" caption="Booth walkthrough." />
+    </div>
+    <div class="stats">
+      <div class="stat"><b>Finalist</b><span>Skandalaris Venture Competition at WashU, as a freshman</span></div>
+      <div class="stat"><b>Winner</b><span>IdeaBounce, through live pitching</span></div>
+      <div class="stat"><b>Official</b><span>Now a real company, with a pilot program planned in California</span></div>
+    </div>
+    <div class="journey">
+      <Video name="releaf-journey" label="Highlight reel of the ReLeaf journey: trade shows, pitching on stage, and awards" caption="The journey so far: trade shows, pitches, and a few awards along the way." />
+    </div>
+  </section>
+
+  <section id="learned" class="case-section">
+    <h2 data-short="What I learned">What I learned</h2>
+    <p>
+      ReLeaf taught me how a business actually runs. <strong>Customer discovery</strong> taught me to listen closely to
+      pain points. <strong>Salesmanship</strong> taught me to communicate value with clarity and confidence. Most of all,
+      it grew my passion for product innovation and thoughtful design, and showed me how creativity and sustainability
+      can work together to make something people genuinely enjoy.
+    </p>
+    <p>ReLeaf Candles is the first chapter. One day, <a href="/playground/jdel">JDel</a> will be real too.</p>
+  </section>
+</CaseLayout>
+
+<style>
+  .palette { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .palette li { aspect-ratio: 1; border-radius: 14px; background: var(--sw); display: flex; align-items: flex-end; padding: 8px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }
+  .palette span { font-size: 0.72rem; background: rgba(255, 255, 255, 0.85); padding: 2px 6px; border-radius: 6px; }
+  .journey { max-width: 520px; margin-top: 20px; }
+  @media (max-width: 640px) { .palette { grid-template-columns: repeat(3, 1fr); } }
+</style>

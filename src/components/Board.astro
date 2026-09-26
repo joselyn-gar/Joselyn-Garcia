@@ -1,0 +1,149 @@
+---
+// The home board: a line-drawn game board with a property tile per project around the edge
+// and the hero in the middle. Collapses to a stack on small screens.
+import { items } from '../data/projects';
+import { site } from '../data/site';
+import Die from './Die.astro';
+
+const by = (slug: string) => items.find((i) => i.slug === slug)!;
+// clockwise, starting top-left after the GO corner
+const edges = {
+  top: [by('lyft'), by('releaf')],
+  right: [by('skate-for-girls'), by('circular-stl')],
+  bottom: [by('design-social'), by('textiles')],
+  left: [by('raised-on-the-blur'), by('jdel')],
+};
+const tiles = [
+  ...edges.top.map((p, i) => ({ p, side: 'top', area: `t${i + 1}` })),
+  ...edges.right.map((p, i) => ({ p, side: 'right', area: `r${i + 1}` })),
+  ...edges.bottom.map((p, i) => ({ p, side: 'bottom', area: `b${i + 1}` })),
+  ...edges.left.map((p, i) => ({ p, side: 'left', area: `l${i + 1}` })),
+];
+---
+<section class="board-wrap wrap" aria-label="Portfolio board">
+  <div class="board">
+    <a class="corner go" href="/about" style="grid-area:go" data-face="1">
+      <span class="corner-big">GO</span>
+      <span class="corner-sub">About me <span aria-hidden="true">→</span></span>
+    </a>
+    <a class="corner park" href="/playground" style="grid-area:park" data-face="6">
+      <span class="corner-sub">Free parking</span>
+      <span class="corner-big">Play&shy;ground</span>
+    </a>
+    <a class="corner resume" href="/resume" style="grid-area:res" data-face="5">
+      <span class="corner-sub">Take a card</span>
+      <span class="corner-big">Resume</span>
+    </a>
+    <a class="corner contact" href={`mailto:${site.email}`} style="grid-area:con" data-face="4">
+      <span class="corner-sub">Just visiting?</span>
+      <span class="corner-big">Say hi</span>
+    </a>
+
+    {tiles.map(({ p, side, area }) => (
+      <a class={`tile ${side}`} href={p.href} style={`grid-area:${area};--c:var(--${p.color});--t:var(--${p.color}-tint)`} data-face={p.face}>
+        <span class="band" aria-hidden="true"></span>
+        <span class="tile-body">
+          <span class="tile-kind">{p.kind}</span>
+          <span class="tile-title">{p.short}</span>
+          <span class="tile-tags">{p.tags.slice(0, 2).join(' · ')}</span>
+        </span>
+      </a>
+    ))}
+
+    <div class="center" style="grid-area:mid">
+      <slot />
+      <button class="roll" type="button" data-roll aria-label="Roll the dice for a random project">
+        <Die size={30} />
+        <span>Roll the dice</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .board-wrap { padding-top: 96px; }
+  .board {
+    --edge: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: 170px 1fr 1fr 170px;
+    grid-template-rows: 132px minmax(210px, auto) minmax(210px, auto) 132px;
+    grid-template-areas:
+      'go   t1  t2  park'
+      'l2   mid mid r1'
+      'l1   mid mid r2'
+      'con  b2  b1  res';
+    border: var(--edge); border-radius: 22px; overflow: hidden;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: var(--shadow);
+  }
+  .board > * { border: 0.75px solid var(--ink); margin: -0.375px; }
+  .center { border-width: 1.5px !important; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 48px clamp(20px, 5vw, 64px) 84px; background: var(--paper); }
+
+  .corner, .tile { position: relative; display: flex; text-decoration: none; color: var(--ink); transition: background 0.3s, transform 0.35s var(--ease); }
+  .corner { flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 2px; padding: 12px; background: var(--paper-2); }
+  .corner-big { font-family: var(--serif); font-size: 2.3rem; line-height: 1; hyphens: manual; }
+  .corner-sub { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .go .corner-big { font-family: var(--sans); font-weight: 800; letter-spacing: 0.04em; font-size: 2.6rem; color: var(--lyft-text); }
+  .corner:hover { background: var(--white); }
+
+  .tile { background: var(--white); }
+  .tile:hover, .tile:focus-visible { background: var(--t); z-index: 2; }
+  .band { position: absolute; background: var(--c); transition: all 0.35s var(--ease); }
+  .top .band { left: 0; right: 0; bottom: 0; height: 22px; }
+  .bottom .band { left: 0; right: 0; top: 0; height: 22px; }
+  .left .band { top: 0; bottom: 0; right: 0; width: 22px; }
+  .right .band { top: 0; bottom: 0; left: 0; width: 22px; }
+  .tile:hover .band { height: 30px; }
+  .left:hover .band, .right:hover .band { width: 30px; height: auto; }
+  .tile-body { display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 16px 22px; width: 100%; }
+  .top .tile-body { padding-bottom: 34px; }
+  .bottom .tile-body { padding-top: 34px; }
+  .right .tile-body { padding-left: 38px; }
+  .left .tile-body { padding-right: 38px; }
+  .tile-kind { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+  .tile-title { font-family: var(--serif); font-size: 1.75rem; line-height: 1.05; }
+  .tile-tags { font-size: 0.8rem; color: var(--ink-3); }
+
+  .roll {
+    position: absolute; right: 18px; bottom: 16px; display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--line); background: var(--white); border-radius: 999px; padding: 7px 14px 7px 8px;
+    font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: transform 0.25s var(--ease), border-color 0.2s;
+  }
+  .roll:hover { transform: translateY(-2px); border-color: var(--ink); }
+
+  @media (max-width: 1080px) {
+    .board { grid-template-columns: 130px 1fr 1fr 130px; }
+    .tile-title { font-size: 1.4rem; }
+    .corner-big { font-size: 1.8rem; }
+  }
+  @media (max-width: 860px) {
+    .board-wrap { padding-top: 84px; }
+    .board {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: none;
+      grid-template-areas: 'mid mid' 't1 t2' 'r1 r2' 'b1 b2' 'l1 l2' 'go park' 'res con';
+    }
+    .center { padding: 40px 20px 76px; }
+    .tile .band { left: 0 !important; right: 0 !important; top: 0 !important; bottom: auto !important; width: auto !important; height: 12px !important; }
+    .tile .tile-body { padding: 26px 16px 16px !important; }
+    .tile-title { font-size: 1.3rem; }
+    .corner { padding: 18px 10px; }
+    .roll { left: 50%; right: auto; transform: translateX(-50%); }
+    .roll:hover { transform: translateX(-50%) translateY(-2px); }
+  }
+</style>
+
+<script>
+  import { roll } from '../scripts/dice';
+  import { items } from '../data/projects';
+
+  document.querySelectorAll<HTMLButtonElement>('[data-roll]').forEach((btn) => {
+    const cube = btn.querySelector<HTMLElement>('.cube')!;
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      const pick = items[Math.floor(Math.random() * items.length)];
+      await roll(cube, pick.face, 3, 1100);
+      location.href = pick.href;
+    });
+  });
+</script>

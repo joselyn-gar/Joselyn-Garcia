@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Resume" description="Joselyn Garcia's resume.">
+  {site.resume && <meta http-equiv="refresh" content={`0;url=${site.resume}`} slot="head" />}
+  <section class="wrap page">
+    <p class="eyebrow">Take a card</p>
+    <h1>Resume</h1>
+    {site.resume ? (
+      <p class="lede">Opening the PDF… <a href={site.resume}>Click here if it doesn’t open.</a></p>
+    ) : (
+      <>
+        <p class="lede">A fresh PDF is on its way. In the meantime, I’m happy to send it over.</p>
+        <p><a class="btn" href={`mailto:${site.email}?subject=Resume%20request`}>Email me for a copy</a></p>
+      </>
+    )}
+  </section>
+</Base>
+
+<style>
+  .page { padding: 140px 0 40px; max-width: 720px; }
+</style>

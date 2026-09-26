@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import DeedCard from '../../components/DeedCard.astro';
+import { caseStudies, playground } from '../../data/projects';
+---
+<Base title="Projects" active="projects" description="Case studies by Joselyn Garcia: Lyft Explore, ReLeaf Candles, SKATE for Girls, and Circular STL.">
+  <section class="wrap page-head">
+    <p class="eyebrow">Projects</p>
+    <h1>Every property on the board.</h1>
+    <p class="lede">Four case studies across UX, brand, product, and marketing. Each card shows the headline numbers. Open one for the full story.</p>
+  </section>
+  <section class="wrap" aria-label="Case studies">
+    <div class="deeds">{caseStudies.map((item) => <DeedCard item={item} />)}</div>
+  </section>
+  <section class="wrap more" aria-labelledby="more-h">
+    <h2 id="more-h">More from the playground</h2>
+    <div class="deeds">{playground.map((item) => <DeedCard item={item} />)}</div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 40px; max-width: 760px; margin-left: max(20px, calc((100% - var(--wrap)) / 2)); }
+  .deeds { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+  .more { padding-top: 90px; }
+</style>

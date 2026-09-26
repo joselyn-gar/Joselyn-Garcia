@@ -1,0 +1,143 @@
+---
+// Apple-style frosted glass pill. A soft highlight slides under the hovered link;
+// the active page keeps a thin underline in its property color.
+interface Props { active?: string; color?: string; }
+const { active = '', color = 'ink' } = Astro.props;
+const links = [
+  { href: '/', label: 'Home', key: 'home' },
+  { href: '/about', label: 'About Me', key: 'about' },
+  { href: '/projects', label: 'Projects', key: 'projects' },
+  { href: '/playground', label: 'Playground', key: 'playground' },
+];
+const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
+---
+<header class="nav-shell" data-nav>
+  <nav class="pill" aria-label="Main">
+    <a class="mark" href="/" aria-label="Joselyn Garcia, home">
+      <span class="mark-die" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="mark-name">Joselyn Garcia</span>
+    </a>
+    <ul class="links" data-links>
+      <li class="glide" aria-hidden="true" data-glide></li>
+      {links.map((l) => (
+        <li>
+          <a href={l.href} aria-current={active === l.key ? 'page' : undefined} style={active === l.key ? `--bar:${bar}` : undefined}>
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <span class="divider" aria-hidden="true"></span>
+    <button class="icon" type="button" data-search-open aria-label="Search (Command K)">
+      <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="resume" href="/resume">Resume <span aria-hidden="true">↗</span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="sheet" data-menu>
+      <span class="sr-only">Menu</span><i></i><i></i>
+    </button>
+  </nav>
+  <div class="sheet" id="sheet" hidden data-sheet>
+    <ul>
+      {links.map((l) => <li><a href={l.href} aria-current={active === l.key ? 'page' : undefined}>{l.label}</a></li>)}
+      <li><a href="/resume">Resume ↗</a></li>
+    </ul>
+    <button class="chip" type="button" data-search-open>Search the site</button>
+  </div>
+</header>
+
+<style>
+  .nav-shell { position: fixed; top: 14px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; pointer-events: none; }
+  .pill {
+    pointer-events: auto; display: flex; align-items: center; gap: 4px;
+    padding: 6px 6px 6px 14px; border-radius: 999px;
+    background: var(--glass); color: #f4f2ee;
+    backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    transition: transform 0.35s var(--ease), padding 0.35s var(--ease);
+  }
+  .nav-shell.small .pill { transform: scale(0.94); }
+  .mark { display: flex; align-items: center; gap: 9px; text-decoration: none; margin-right: 8px; }
+  .mark-name { font-family: var(--serif); font-size: 1.12rem; white-space: nowrap; }
+  .mark-die { position: relative; width: 20px; height: 20px; border-radius: 6px; background: #f4f2ee; transition: transform 0.6s var(--ease); }
+  .mark:hover .mark-die { transform: rotate(180deg); }
+  .mark-die i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--ink); }
+  .mark-die i:nth-child(1) { top: 4px; left: 4px; }
+  .mark-die i:nth-child(2) { top: 8px; left: 8px; }
+  .mark-die i:nth-child(3) { bottom: 4px; right: 4px; }
+  .links { position: relative; display: flex; list-style: none; margin: 0; padding: 0; }
+  .links a {
+    position: relative; z-index: 1; display: block; padding: 8px 15px; border-radius: 999px;
+    text-decoration: none; font-size: 0.9rem; color: rgba(244, 242, 238, 0.82); transition: color 0.2s;
+  }
+  .links a:hover, .links a[aria-current='page'] { color: #fff; }
+  .links a[aria-current='page']::after {
+    content: ''; position: absolute; left: 15px; right: 15px; bottom: 3px; height: 2px; border-radius: 2px; background: var(--bar, #fff);
+  }
+  .glide {
+    position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14); opacity: 0;
+    transition: transform 0.35s var(--ease), width 0.35s var(--ease), opacity 0.2s;
+  }
+  .divider { width: 1px; height: 20px; background: rgba(255, 255, 255, 0.18); margin: 0 6px; }
+  .icon, .menu { border: 0; background: transparent; color: inherit; cursor: pointer; border-radius: 999px; display: grid; place-items: center; width: 36px; height: 36px; }
+  .icon:hover { background: rgba(255, 255, 255, 0.14); }
+  .resume {
+    text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 8px 15px; border-radius: 999px;
+    background: #f4f2ee; color: var(--ink); transition: transform 0.25s var(--ease);
+  }
+  .resume:hover { transform: translateY(-1px); }
+  .menu { display: none; position: relative; }
+  .menu { -webkit-tap-highlight-color: transparent; }
+  .menu i { position: absolute; top: calc(50% - 0.75px); left: 10px; right: 10px; height: 1.5px; background: currentColor; transition: transform 0.3s var(--ease); }
+  .menu i:first-of-type { transform: translateY(-4px); }
+  .menu i:last-of-type { transform: translateY(4px); }
+  .menu[aria-expanded='true'] i:first-of-type { transform: rotate(45deg); }
+  .menu[aria-expanded='true'] i:last-of-type { transform: rotate(-45deg); }
+  .sheet {
+    pointer-events: auto; position: fixed; inset: 0; z-index: -1; padding: 110px 28px 40px;
+    background: rgba(248, 246, 241, 0.97); backdrop-filter: blur(12px);
+  }
+  .sheet ul { list-style: none; margin: 0 0 28px; padding: 0; }
+  .sheet a { display: block; font-family: var(--serif); font-size: 2.6rem; text-decoration: none; padding: 6px 0; }
+  .sheet a[aria-current='page'] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  @media (max-width: 820px) {
+    .links, .divider, .resume { display: none; }
+    .menu { display: grid; }
+    .pill { width: calc(100% - 28px); justify-content: space-between; }
+    .mark { margin-right: auto; }
+  }
+</style>
+
+<script>
+  const shell = document.querySelector<HTMLElement>('[data-nav]')!;
+  const list = shell.querySelector<HTMLElement>('[data-links]')!;
+  const glide = shell.querySelector<HTMLElement>('[data-glide]')!;
+  const move = (a: HTMLElement) => {
+    glide.style.width = `${a.offsetWidth}px`;
+    glide.style.transform = `translateX(${a.offsetLeft}px)`;
+    glide.style.opacity = '1';
+  };
+  list.querySelectorAll<HTMLElement>('a').forEach((a) => {
+    a.addEventListener('mouseenter', () => move(a));
+    a.addEventListener('focus', () => move(a));
+  });
+  list.addEventListener('mouseleave', () => (glide.style.opacity = '0'));
+
+  let last = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    shell.classList.toggle('small', y > 80 && y > last);
+    last = y;
+  }, { passive: true });
+
+  const btn = shell.querySelector<HTMLButtonElement>('[data-menu]')!;
+  const sheet = shell.querySelector<HTMLElement>('[data-sheet]')!;
+  const setOpen = (open: boolean) => {
+    btn.setAttribute('aria-expanded', String(open));
+    sheet.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  btn.addEventListener('click', () => setOpen(sheet.hidden));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) setOpen(false); });
+  sheet.querySelectorAll('a, button').forEach((el) => el.addEventListener('click', () => setOpen(false)));
+</script>

@@ -1,0 +1,67 @@
+---
+// Muted, looping video that plays only while on screen. Optional phone or browser frame.
+// Click toggles sound. Poster frame shows until it loads.
+import dims from '../data/dims.json';
+interface Props { name: string; label: string; frame?: 'phone' | 'browser' | 'none'; caption?: string; tag?: string; }
+const { name, label, frame = 'none', caption, tag } = Astro.props;
+const poster = `/media/${name}.jpg`;
+const size = (dims as Record<string, number[]>)[poster];
+---
+<figure class={`vid ${frame}`}>
+  <div class="vid-frame">
+    {frame === 'browser' && <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>}
+    <video
+      src={`/media/${name}.mp4`}
+      poster={poster}
+      width={size?.[0]}
+      height={size?.[1]}
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-label={label}
+      data-autoplay
+    ></video>
+    <button class="sound" type="button" aria-pressed="false" data-sound>
+      <span class="sr-only">Toggle sound for: {label}</span>
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="wave" d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="x" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  {(caption || tag) && <figcaption>{tag && <span class="tag">{tag}</span>} {caption}</figcaption>}
+</figure>
+
+<style>
+  .vid { margin: 0; }
+  .vid-frame { position: relative; overflow: hidden; border-radius: var(--radius); background: #111; box-shadow: var(--shadow); }
+  .vid video { width: 100%; height: auto; }
+  .phone .vid-frame { border-radius: 34px; border: 7px solid #141414; aspect-ratio: 9 / 16; }
+  .phone video { height: 100%; object-fit: cover; }
+  .browser .vid-frame { border-radius: 14px; background: #fff; border: 1px solid var(--line); }
+  .bar { display: flex; gap: 6px; padding: 10px 12px; background: #f1efea; border-bottom: 1px solid var(--line); }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: #d9d4ca; }
+  .sound { position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.9); display: grid; place-items: center; cursor: pointer; }
+  .sound .wave { display: none; }
+  .sound[aria-pressed='true'] .wave { display: block; }
+  .sound[aria-pressed='true'] .x { display: none; }
+  figcaption { font-size: 0.88rem; color: var(--ink-3); margin-top: 10px; line-height: 1.45; }
+</style>
+
+<script>
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver((es) => {
+    for (const e of es) {
+      const v = e.target as HTMLVideoElement;
+      if (e.isIntersecting && !calm) { v.preload = 'auto'; v.play().catch(() => {}); }
+      else v.pause();
+    }
+  }, { threshold: 0.35 });
+  document.querySelectorAll<HTMLVideoElement>('video[data-autoplay]').forEach((v) => io.observe(v));
+  document.querySelectorAll<HTMLButtonElement>('[data-sound]').forEach((b) => {
+    b.addEventListener('click', () => {
+      const v = b.parentElement!.querySelector('video')!;
+      v.muted = !v.muted;
+      if (!v.muted) v.play().catch(() => {});
+      b.setAttribute('aria-pressed', String(!v.muted));
+    });
+  });
+</script>

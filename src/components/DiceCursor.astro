@@ -1,0 +1,95 @@
+---
+// A small 3D die that trails the mouse and tumbles with movement.
+// A precise ink dot marks the real pointer. Off on touch, reduced motion, or via the footer toggle.
+import Die from './Die.astro';
+---
+<div class="dc" data-dice-cursor aria-hidden="true">
+  <div class="dc-die"><Die size={22} /></div>
+  <div class="dc-dot"></div>
+</div>
+
+<style is:global>
+  .dc { position: fixed; inset: 0; pointer-events: none; z-index: 9999; display: none; }
+  html.dice-on .dc { display: block; }
+  html.dice-on, html.dice-on a, html.dice-on button, html.dice-on [role='button'], html.dice-on label { cursor: none; }
+  html.dice-on input, html.dice-on textarea { cursor: text; }
+  .dc-die, .dc-dot { position: absolute; left: 0; top: 0; will-change: transform; }
+  .dc-die { transition: opacity 0.2s; filter: drop-shadow(0 4px 6px rgba(26, 26, 26, 0.22)); }
+  .dc-die .die { transition: transform 0.3s var(--ease); }
+  .dc.hover .dc-die .die { transform: scale(1.45); }
+  .dc.text .dc-die { opacity: 0; }
+  .dc.text .dc-dot { opacity: 0; }
+  .dc-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.9); }
+</style>
+
+<script>
+  import { FACE } from '../scripts/dice';
+
+  const root = document.documentElement;
+  const el = document.querySelector<HTMLElement>('[data-dice-cursor]')!;
+  const die = el.querySelector<HTMLElement>('.dc-die')!;
+  const dot = el.querySelector<HTMLElement>('.dc-dot')!;
+  const cube = el.querySelector<HTMLElement>('.cube')!;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  const KEY = 'dice-cursor';
+
+  const enabled = () => fine.matches && !calm.matches && localStorage.getItem(KEY) !== 'off';
+  const apply = () => {
+    root.classList.toggle('dice-on', enabled());
+    document.querySelectorAll<HTMLButtonElement>('[data-dice-toggle]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(localStorage.getItem(KEY) !== 'off'));
+      b.hidden = !fine.matches || calm.matches;
+    });
+  };
+  apply();
+  fine.addEventListener('change', apply);
+  calm.addEventListener('change', apply);
+  document.addEventListener('click', (e) => {
+    const t = (e.target as HTMLElement).closest('[data-dice-toggle]');
+    if (!t) return;
+    localStorage.setItem(KEY, localStorage.getItem(KEY) === 'off' ? 'on' : 'off');
+    apply();
+  });
+
+  let mx = -100, my = -100, x = -100, y = -100, rx = 0, ry = 0, settled: number | null = null, spinUntil = 0;
+  // nearest angle equivalent to `target` so settling never unwinds several turns
+  const near = (cur: number, target: number) => target + 360 * Math.round((cur - target) / 360);
+  addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px, ${my}px)`;
+  }, { passive: true });
+
+  document.addEventListener('pointerover', (e) => {
+    const t = e.target as HTMLElement;
+    const text = t.closest('input, textarea, [contenteditable]');
+    const hit = t.closest<HTMLElement>('a, button, [data-face], summary, label, [data-zoom]');
+    el.classList.toggle('text', !!text);
+    el.classList.toggle('hover', !!hit && !text);
+    const face = hit?.closest<HTMLElement>('[data-face]')?.dataset.face;
+    settled = hit ? Number(face || 1) : null;
+  });
+
+  addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse') spinUntil = performance.now() + 450;
+  });
+
+  const tick = () => {
+    x += (mx - x) * 0.2;
+    y += (my - y) * 0.2;
+    die.style.transform = `translate(${x + 14}px, ${y + 14}px)`;
+    if (performance.now() < spinUntil) {
+      rx += 24; ry += 17;
+    } else if (settled) {
+      const [fx, fy] = FACE[settled];
+      rx += (near(rx, fx) - rx) * 0.18; ry += (near(ry, fy) - ry) * 0.18;
+    } else {
+      rx += (my - y) * 0.9; ry -= (mx - x) * 0.9;
+    }
+    cube.style.transition = 'none';
+    cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+</script>

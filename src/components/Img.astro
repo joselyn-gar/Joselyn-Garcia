@@ -1,0 +1,17 @@
+---
+// <img> with intrinsic size from dims.json (no layout shift) + optional lightbox zoom.
+import dims from '../data/dims.json';
+interface Props { src: string; alt: string; class?: string; zoom?: boolean; eager?: boolean; sizes?: string; }
+const { src, alt, class: cls, zoom = true, eager = false } = Astro.props;
+const size = (dims as Record<string, number[]>)[src];
+---
+<img
+  src={src}
+  alt={alt}
+  class={cls}
+  width={size?.[0]}
+  height={size?.[1]}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+  data-zoom={zoom ? '' : undefined}
+/>

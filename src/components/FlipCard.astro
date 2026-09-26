@@ -1,0 +1,28 @@
+---
+// A "Chance"-style card: a bold front, flips on hover/focus/tap to reveal the back.
+interface Props { front: string; kicker?: string; back: string; color?: string; }
+const { front, kicker = 'Chance', back, color = 'lyft' } = Astro.props;
+---
+<button class="flip" type="button" style={`--c:var(--${color});--t:var(--${color}-tint);--ct:var(--${color}-text)`} aria-label={`${front}: ${back}`} data-flip>
+  <span class="flip-inner" aria-hidden="true">
+    <span class="flip-face front"><span class="k">{kicker}</span><span class="f">{front}</span><span class="q">?</span></span>
+    <span class="flip-face back"><span class="k">{front}</span><span class="b">{back}</span></span>
+  </span>
+</button>
+
+<style>
+  .flip { position: relative; display: block; width: 100%; aspect-ratio: 5 / 3.4; border: 0; padding: 0; background: none; perspective: 900px; cursor: pointer; text-align: left; }
+  .flip-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.7s var(--ease); }
+  .flip:hover .flip-inner, .flip:focus-visible .flip-inner, .flip.on .flip-inner { transform: rotateY(180deg); }
+  .flip-face { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 20px 22px; border-radius: 18px; border: 1.5px solid var(--ink); backface-visibility: hidden; }
+  .front { background: var(--t); }
+  .back { background: var(--white); transform: rotateY(180deg); }
+  .k { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ct); margin-bottom: 6px; }
+  .f { font-family: var(--serif); font-size: clamp(1.35rem, 2.1vw, 1.9rem); line-height: 1.05; overflow-wrap: anywhere; }
+  .q { position: absolute; right: 18px; bottom: 6px; font-family: var(--serif); font-size: 3.4rem; color: var(--c); opacity: 0.35; }
+  .b { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-flip]').forEach((b) => b.addEventListener('click', () => b.classList.toggle('on')));
+</script>
