@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import DiceCursor from '../components/DiceCursor.astro';
+import SearchPalette from '../components/SearchPalette.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  active?: string;
+  color?: string; // property color key for accents on this page
+  image?: string;
+}
+const { title, description = site.description, active, color = 'ink', image = '/images/lyft/hero.webp' } = Astro.props;
+const fullTitle = title ? `${title} · Joselyn Garcia` : site.title;
+const themed = color !== 'ink'
+  ? `--accent:var(--${color});--accent-text:var(--${color}-text);--tint:var(--${color}-tint)`
+  : undefined;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f8f6f1" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+  </head>
+  <body style={themed}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Nav active={active} color={color} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <SearchPalette />
+    <DiceCursor />
+    <dialog class="lightbox" data-lightbox aria-label="Enlarged image">
+      <button class="lightbox-close" type="button" aria-label="Close">×</button>
+      <img alt="" data-lightbox-img />
+    </dialog>
+  </body>
+</html>
+
+<style is:global>
+  .lightbox { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 92vh; overflow: visible; }
+  .lightbox::backdrop { background: rgba(20, 20, 20, 0.82); }
+  .lightbox img { max-width: 94vw; max-height: 88vh; width: auto; border-radius: 14px; }
+  .lightbox-close { position: absolute; top: -44px; right: 0; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+  img[data-zoom] { cursor: zoom-in; }
+</style>
+
+<script>
+  // Lightbox for any <img data-zoom>
+  const box = document.querySelector<HTMLDialogElement>('[data-lightbox]')!;
+  const big = box.querySelector<HTMLImageElement>('[data-lightbox-img]')!;
+  document.addEventListener('click', (e) => {
+    const img = (e.target as HTMLElement).closest<HTMLImageElement>('img[data-zoom]');
+    if (!img || img.closest('a')) return;
+    big.src = img.currentSrc || img.src;
+    big.alt = img.alt;
+    box.showModal();
+  });
+  box.addEventListener('click', () => box.close());
+
+  // Fade sections in as they scroll into view
+  const io = new IntersectionObserver((entries) => {
+    for (const en of entries) if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+  }, { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>

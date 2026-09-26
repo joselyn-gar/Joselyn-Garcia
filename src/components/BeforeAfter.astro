@@ -1,0 +1,37 @@
+---
+// Drag (or arrow-key) slider comparing two images of the same layout.
+import Img from './Img.astro';
+interface Props { before: string; after: string; beforeAlt: string; afterAlt: string; beforeLabel?: string; afterLabel?: string; }
+const { before, after, beforeAlt, afterAlt, beforeLabel = 'Wireframe', afterLabel = 'Final' } = Astro.props;
+---
+<figure class="ba" data-ba style="--pos:50%">
+  <div class="ba-stage">
+    <Img src={after} alt={afterAlt} zoom={false} class="ba-after" />
+    <div class="ba-before"><Img src={before} alt={beforeAlt} zoom={false} /></div>
+    <span class="ba-label l">{beforeLabel}</span>
+    <span class="ba-label r">{afterLabel}</span>
+    <input class="ba-range" type="range" min="0" max="100" value="50" aria-label={`Drag to compare ${beforeLabel.toLowerCase()} and ${afterLabel.toLowerCase()}`} />
+    <span class="ba-handle" aria-hidden="true"><span>⟷</span></span>
+  </div>
+</figure>
+
+<style>
+  .ba { margin: 32px auto; max-width: 560px; }
+  .ba-stage { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); background: #fff; }
+  .ba-stage :global(img) { width: 100%; }
+  .ba-before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-before :global(img) { height: 100%; object-fit: cover; object-position: top; }
+  .ba-label { position: absolute; top: 14px; padding: 4px 12px; border-radius: 999px; background: rgba(26, 26, 26, 0.8); color: #fff; font-size: 0.78rem; font-weight: 600; }
+  .ba-label.l { left: 14px; } .ba-label.r { right: 14px; }
+  .ba-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+  .ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2); pointer-events: none; }
+  .ba-handle span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: var(--shadow); font-size: 1.1rem; }
+  .ba-range:focus-visible + .ba-handle span { outline: 2.5px solid var(--ink); outline-offset: 2px; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((el) => {
+    const r = el.querySelector<HTMLInputElement>('.ba-range')!;
+    r.addEventListener('input', () => el.style.setProperty('--pos', `${r.value}%`));
+  });
+</script>

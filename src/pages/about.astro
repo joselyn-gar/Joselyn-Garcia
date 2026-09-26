@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import FlipCard from '../components/FlipCard.astro';
+import { site } from '../data/site';
+
+const tools = [
+  ['Figma', 'UI, wireframes, prototypes'], ['Framer', 'interactive sites'], ['Canva', 'social + decks'],
+  ['Adobe Illustrator', 'posters, prints, vector'], ['Photoshop', 'photo + mockups'], ['Procreate', 'sketching + illustration'],
+  ['Blender', '3D renders'], ['Excel', 'financial projections'], ['CapCut', 'reels + recap videos'], ['Claude', 'research + building'],
+];
+const strengths = [
+  ['Arranger', 'I plan the deadlines, meetings, and agendas, then delegate by who’s available and ready.'],
+  ['Learner', 'I love the process of learning, and I can break a hard topic down so it clicks for a teammate.'],
+  ['Achiever', 'I keep the team ahead of deadlines, and I choose impact over doing more for the sake of it.'],
+  ['Individualization', 'I spot where each teammate shines and hand out work to match.'],
+  ['Input', 'I dig deep into research, then brief the team in short, usable summaries.'],
+];
+const hobbies = [
+  { front: 'Watching baseball', back: 'Dodgers rule. That’s the whole card.', color: 'write' },
+  { front: 'Upcycling', back: 'Turning thrifted pieces into cute tops, and crocheting bags when I have the patience.', color: 'tex' },
+  { front: 'Pinterest boards', back: 'Collecting aesthetics and ideas. Half my projects start as a board.', color: 'lyft' },
+  { front: 'Fragrance layering', back: 'Mixing scents by season. Fall is Lush Sticky Dates with a hint of Calvin Klein Escape.', color: 'jdel' },
+  { front: 'Board games', back: 'Hence the dice following your cursor.', color: 'stl' },
+  { front: 'Junk journaling', back: 'Tickets, scraps, and stickers, glued into something that tells a story.', color: 'releaf' },
+];
+---
+<Base title="About" active="about" description="About Joselyn Garcia: WashU Marketing + Entrepreneurship student, HCI minor, founder of ReLeaf Candles.">
+  <section class="wrap intro">
+    <div class="photo">
+      <Img src="/images/about/portrait.webp" alt="Joselyn Garcia smiling in a striped polo on campus" eager />
+      <p class="muted small">Clifton Strengths: Arranger, Learner, Achiever, Individualization, Input</p>
+    </div>
+    <div class="bio">
+      <p class="eyebrow">About me</p>
+      <h1>Hi, I’m Joselyn.</h1>
+      <p class="lede">
+        I’m a sophomore at <strong>Washington University in St. Louis</strong>, studying <strong>Marketing</strong> and
+        <strong>Entrepreneurship</strong> with a minor in <strong>Human-Computer Interaction</strong>.
+      </p>
+      <p>
+        I’ve spent the last few years moving across marketing, product design, and UX, but it always comes back to the
+        same thing: <strong>I enjoy client-facing work, creativity, and turning an idea into something I can see and test.</strong>
+        That’s what led me to found <a href="/projects/releaf">ReLeaf Candles</a>, a startup giving candles a second life
+        through compartment design, and it’s the approach I’ve carried into every project since.
+      </p>
+      <p>
+        Alongside that, I’m involved with WUTV, WUMA, WashUX, and Net Impact, and I work as the
+        <strong>Digital and Website Lead Intern at the Skandalaris Center</strong>, where I focus on improving the user
+        experience and building cohesive wireframes.
+      </p>
+      <p>My mission: make a positive impact in the ventures I lead, the teams I collaborate with, and the industries I pursue.</p>
+      <div class="cta">
+        <a class="btn" href={`mailto:${site.email}`}>Email me</a>
+        <a class="btn ghost" href="/resume">Resume ↗</a>
+        {site.linkedin && <a class="btn ghost" href={site.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block" id="strengths" aria-labelledby="str-h">
+    <p class="eyebrow">Clifton Strengths</p>
+    <h2 id="str-h">How I show up on a team.</h2>
+    <p class="muted">Hover or tap a card to flip it.</p>
+    <div class="cards five">
+      {strengths.map(([s, b], i) => <FlipCard kicker={`Strength ${i + 1}`} front={s} back={b} color={['skate', 'write', 'lyft', 'stl', 'tex'][i]} />)}
+    </div>
+  </section>
+
+  <section class="wrap block" id="toolbox" aria-labelledby="tool-h">
+    <p class="eyebrow">Toolbox</p>
+    <h2 id="tool-h">What I build with.</h2>
+    <ul class="tools">
+      {tools.map(([t, u], i) => <li style={`--d:${(i % 5) * 0.4}s`}><b>{t}</b><span>{u}</span></li>)}
+    </ul>
+  </section>
+
+  <section class="wrap block" id="away" aria-labelledby="away-h">
+    <p class="eyebrow">Chance cards</p>
+    <h2 id="away-h">When I’m away from the desk…</h2>
+    <div class="cards">
+      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} />)}
+    </div>
+    {site.pinterest && <p><a class="btn ghost" href={site.pinterest} target="_blank" rel="noopener">See my Pinterest boards ↗</a></p>}
+  </section>
+
+  <section class="wrap block" id="site" aria-labelledby="site-h">
+    <p class="eyebrow">About this site</p>
+    <h2 id="site-h">Built like a board game.</h2>
+    <p class="muted narrow">
+      I love board games, so the home page is a board and every project is a property. I designed it and coded it in
+      Astro with plain CSS and a bit of JavaScript. The dice cursor is pure CSS 3D, and you can switch it off in the footer.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .intro { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: 56px; padding-top: 130px; align-items: start; }
+  .photo :global(img) { width: 100%; aspect-ratio: 4 / 4.2; object-fit: cover; border-radius: var(--radius-lg); border: 1.5px solid var(--ink); box-shadow: var(--shadow-lg); }
+  .small { font-size: 0.88rem; margin-top: 12px; }
+  .bio p { color: var(--ink-2); }
+  .bio .lede { color: var(--ink); }
+  .cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .block { padding-top: 96px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+  .cards.five { grid-template-columns: repeat(5, 1fr); }
+  .tools { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
+  .tools li { display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; background: var(--white); border: 1.5px solid var(--ink); animation: float 5s ease-in-out var(--d) infinite; }
+  .tools b { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.1; }
+  .tools span { font-size: 0.82rem; color: var(--ink-3); }
+  @keyframes float { 50% { transform: translateY(-5px); } }
+  .narrow { max-width: 640px; }
+  @media (max-width: 1080px) { .cards.five { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 860px) {
+    .intro { grid-template-columns: 1fr; gap: 28px; padding-top: 110px; }
+    .photo { max-width: 360px; }
+    .cards, .cards.five { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) { .cards, .cards.five { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import Carousel3D from '../../components/Carousel3D.astro';
+import DeedCard from '../../components/DeedCard.astro';
+import { playground } from '../../data/projects';
+
+const cards = playground.map((p) => ({ href: p.href, title: p.title, kicker: p.tags.join(' · '), src: p.cover || undefined, color: p.color, face: p.face }));
+---
+<Base title="Playground" active="playground" description="Textiles, posters, reels, a fragrance brand concept, and writing by Joselyn Garcia.">
+  <section class="wrap page-head">
+    <p class="eyebrow">Free parking</p>
+    <h1>The playground.</h1>
+    <p class="lede">The work I make when nobody assigned it, or when a class let me get messy: prints, posters, reels, a perfume brand I dream about, and a paper on AI media.</p>
+  </section>
+  <Carousel3D cards={cards} />
+  <section class="wrap" aria-label="All playground work">
+    <div class="deeds">{playground.map((item) => <DeedCard item={item} />)}</div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding: 130px 0 10px; max-width: 760px; margin-left: max(20px, calc((100% - var(--wrap)) / 2)); }
+  .deeds { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; margin-top: 40px; }
+</style>

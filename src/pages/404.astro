@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Die from '../components/Die.astro';
+---
+<Base title="Page not found">
+  <section class="wrap page">
+    <Die size={64} />
+    <p class="eyebrow">Wrong square</p>
+    <h1>This space isn’t on the board.</h1>
+    <p class="lede">The page you’re looking for moved or never existed.</p>
+    <p><a class="btn" href="/">Go back to GO</a></p>
+  </section>
+</Base>
+
+<style>
+  .page { padding: 150px 0 40px; max-width: 720px; }
+  .page :global(.die) { margin-bottom: 28px; }
+  .page :global(.cube) { transform: rotateX(-24deg) rotateY(38deg); }
+</style>

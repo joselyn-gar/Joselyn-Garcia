@@ -1,0 +1,30 @@
+---
+import { site } from '../data/site';
+---
+<footer class="footer" id="contact">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="eyebrow">Your move</p>
+      <h2>Let’s make something.</h2>
+      <p class="muted">Always up for a conversation about marketing, UX, and brand.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a class="btn" href={`mailto:${site.email}`}>Email me</a></li>
+      {site.linkedin && <li><a class="btn ghost" href={site.linkedin} rel="noopener" target="_blank">LinkedIn ↗</a></li>}
+      <li><a class="btn ghost" href="/resume">Resume ↗</a></li>
+    </ul>
+  </div>
+  <div class="wrap footer-base">
+    <span>Designed and built by Joselyn Garcia · {new Date().getFullYear()}</span>
+    <button class="chip" type="button" data-dice-toggle aria-pressed="true" hidden>🎲 Dice cursor</button>
+  </div>
+</footer>
+
+<style>
+  .footer { margin-top: 80px; padding: 64px 0 28px; border-top: 1px solid var(--line); background: rgba(248, 246, 241, 0.9); }
+  .footer-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+  .footer h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0 0 0.2em; }
+  .footer-links { display: flex; gap: 10px; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+  .footer-base { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 48px; font-size: 0.85rem; color: var(--ink-3); flex-wrap: wrap; }
+  [data-dice-toggle][aria-pressed='false'] { opacity: 0.6; text-decoration: line-through; }
+</style>

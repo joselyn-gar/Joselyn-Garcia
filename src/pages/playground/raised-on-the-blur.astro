@@ -1,0 +1,70 @@
+---
+import CaseLayout from '../../layouts/CaseLayout.astro';
+---
+<CaseLayout
+  slug="raised-on-the-blur"
+  section="playground"
+  eyebrow="Research paper · Writing"
+  title="Raised on the Blur"
+  summary="AI-generated media, the attention economy, and Gen Z’s challenge: how constant exposure to AI content is reshaping the way my generation processes media, and whether the proposed fixes can keep up."
+  snapshot={[
+    ['Type', 'Research paper + presentation'],
+    ['Lens', 'Adam McKay’s Don’t Look Up (2021)'],
+    ['Length', '16 pages'],
+    ['Written', 'Spring 2026'],
+  ]}
+>
+  <section id="opening" class="case-section">
+    <h2 data-short="The question">The question</h2>
+    <p class="quote">“Somewhere on TikTok, Instagram, or Facebook right now, a video is circulating that never happened.”</p>
+    <p>
+      Gen Z are digital natives: the first generation to grow up during the internet’s reign rather than its rise.
+      This paper examines how constant exposure to AI-generated media on social platforms is reshaping the way we process
+      information, and whether the tools being proposed to fix that are actually capable of doing so.
+    </p>
+  </section>
+
+  <section id="numbers" class="case-section">
+    <h2 data-short="By the numbers">By the numbers</h2>
+    <div class="stats">
+      <div class="stat"><b>~55%</b><span>of the time, people correctly identify AI-generated content. Barely better than a coin toss.</span></div>
+      <div class="stat"><b>3,000%</b><span>growth in deepfakes between 2019 and 2023.</span></div>
+      <div class="stat"><b>$40B</b><span>in projected U.S. fraud losses from generative AI by 2027, up from $12.3B in 2023.</span></div>
+    </div>
+  </section>
+
+  <section id="argument" class="case-section">
+    <h2 data-short="The argument">The argument</h2>
+    <p>
+      The paper traces generative AI from 1970s pattern theory to GANs and large language models, then follows the money:
+      platforms built on the attention economy, with algorithms that learn what keeps each user watching and feed it
+      back in an endless loop.
+    </p>
+    <p>
+      <em>Don’t Look Up</em> serves as the lens: a preview of what constant consumption of false media does to a
+      society, and my prediction of where we land if the issue isn’t mitigated.
+    </p>
+    <p>
+      There is no single fix, and pretending otherwise would misrepresent the problem. One concrete step already exists
+      inside frameworks platforms use today: extend the restrictions that limit minors’ access to certain content so
+      they also cover verified generative AI content.
+    </p>
+  </section>
+
+  <section id="hci" class="case-section">
+    <h2 data-short="Why HCI">Why it matters to me</h2>
+    <p>
+      This is where my HCI minor meets my marketing major. <strong>Human-Computer Interaction research can build
+      mitigation strategies around how people actually use generative AI content, not how platforms assume they do.</strong>
+      As the line between real and generated narrows, the question of who draws it becomes more urgent.
+    </p>
+    <div class="links">
+      <a class="btn" href="/files/raised-on-the-blur.pdf" target="_blank" rel="noopener">Read the paper (PDF) ↗</a>
+      <a class="btn ghost" href="/files/raised-on-the-blur-slides.pdf" target="_blank" rel="noopener">View the presentation ↗</a>
+    </div>
+  </section>
+</CaseLayout>
+
+<style>
+  .links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+</style>
