@@ -25,23 +25,36 @@ const images = [
   ['40.png', 'releaf/cad.webp'],
   // SKATE for Girls
   ['32.webp', 'skate/final.webp', 1000], ['33.png', 'skate/donate-sketches.webp'], ['34.png', 'skate/about-sketches.webp'],
-  ['36.png', 'skate/impact-options.webp'], ['38.webp', 'skate/home-wireframe.webp', 1000],
+  ['36.png', 'skate/impact-options.webp'], ['38.webp', 'skate/home-wireframe.webp', 1000], ['59.webp', 'skate/original-home.webp'],
   // Textiles
   ['10.webp', 'textiles/bead-mockups.webp'], ['11.png', 'textiles/bead-palettes.webp'], ['12.webp', 'textiles/bead-singer.webp', 1200],
   ['13.webp', 'textiles/creamsicle-moodboard.webp'], ['14.png', 'textiles/creamsicle-colorways.webp'],
   ['15.png', 'textiles/creamsicle-target.webp'], ['16.webp', 'textiles/creamsicle-bodice.webp'],
   ['17.jpg', 'textiles/creamsicle-bodice-flat.webp', 1000],
+  // Textile gallery
+  ['63.jpg', 'textiles/gallery/shibori-kaleidoscope.webp', 1200], ['64.jpg', 'textiles/gallery/shibori-stripes.webp', 1200],
+  ['65.jpg', 'textiles/gallery/party-animal.webp', 1200], ['66.jpg', 'textiles/gallery/fabric-collage.webp', 1200],
+  ['67.jpg', 'textiles/gallery/shibori-crimson.webp', 1200], ['68.jpg', 'textiles/gallery/sunburst.webp', 1200],
+  ['69.jpg', 'textiles/gallery/shibori-ochre.webp', 1200], ['70.jpg', 'textiles/gallery/wrap-top.webp', 1200],
+  // About: Chance card photos
+  ['73.jpg', 'about/dodgers.webp', 900], ['74.jpg', 'about/jazz.webp', 900],
+  ['75.jpg', 'about/agriculture.webp', 900], ['76.jpg', 'about/video.webp', 900],
   // Design + social posters
   ['18.webp', 'design/mod-portrait.webp', 1100], ['19.webp', 'design/tinydesk-black.webp', 1100],
   ['20.webp', 'design/tinydesk-blue.webp', 1100], ['21.webp', 'design/kiki-bouba.webp', 1100],
-  ['22.webp', 'design/perform.webp', 1100],
+  ['22.webp', 'design/perform.webp', 1100], ['79.webp', 'design/wutv-banner.webp'],
   // JDel
-  ['39.png', 'jdel/bottle.webp'],
+  
 ];
 
-// About photo placeholder: cropped from the Figma About frame until the original arrives.
+// about/vibe-coding.webp: 77.webp trimmed of white margins and padded (done once by hand).
+// [source, output, crop box, output width]
 const crops = [
-  ['7.png', 'about/portrait.webp', { left: 48, top: 238, width: 265, height: 228 }],
+  ['57.webp', 'about/portrait.webp', { left: 520, top: 420, width: 960, height: 915 }, 900],
+  // JDel render, cropped to remove the generator watermark in the bottom-right corner
+  ['58.webp', 'jdel/bottle.webp', { left: 0, top: 0, width: 1170, height: 710 }, 1280],
+  ['59.webp', 'skate/original-nav.webp', { left: 0, top: 0, width: 1882, height: 194 }, 1600],
+  ['32.webp', 'skate/final-hero.webp', { left: 0, top: 0, width: 614, height: 345 }, 614],
 ];
 
 // Circular STL carousel slides, cut from the report's Exhibit 1 page.
@@ -64,7 +77,6 @@ const videos = [
   ['f931ef92', 'asb-home-game', 540],
   ['00221e6a', 'asb-staff-breakfast', 540],
   ['1347a89a', 'releaf-booth', 720],
-  ['ed8cb7db', 'releaf-journey', 640, ['-ss', '20']],
   ['ed8cb7db', 'jdel-palette', 720, ['-t', '11']],
 ];
 
@@ -76,9 +88,9 @@ async function run() {
       const dest = join(OUT, 'images', out); ensure(dest);
       await sharp(join(IMG_SRC, src)).resize({ width: max, withoutEnlargement: true }).webp({ quality: 80 }).toFile(dest);
     }
-    for (const [src, out, box] of crops) {
+    for (const [src, out, box, width] of crops) {
       const dest = join(OUT, 'images', out); ensure(dest);
-      await sharp(join(IMG_SRC, src)).extract(box).webp({ quality: 85 }).toFile(dest);
+      await sharp(join(IMG_SRC, src)).extract(box).resize({ width }).webp({ quality: 85 }).toFile(dest);
     }
   }
   if (STL_SRC) {

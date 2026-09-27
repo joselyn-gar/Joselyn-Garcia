@@ -9,18 +9,20 @@ export type Entry = {
   answer?: string;
 };
 
+const strip = (s: string) => s.replace(/<[^>]+>/g, '');
+
 const work: Entry[] = items.map((i) => ({
   title: i.title,
   href: i.href,
   group: 'Work',
-  keywords: [i.short, i.summary, i.role, ...i.tags, i.kind].join(' '),
-  answer: i.summary,
+  keywords: [i.short, strip(i.summary), i.role, ...i.tags, i.kind].join(' '),
+  answer: strip(i.summary),
 }));
 
 const pages: Entry[] = [
   { title: 'About me', href: '/about', group: 'Pages', keywords: 'about bio who story strengths clifton hobbies' },
   { title: 'All projects', href: '/projects', group: 'Pages', keywords: 'projects case studies work portfolio' },
-  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun textiles posters writing' },
+  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun textiles posters fragrance' },
 ];
 pages.push({ title: 'Resume', href: '/resume', group: 'Pages', keywords: 'resume cv experience pdf' });
 
@@ -30,7 +32,7 @@ const answers: Entry[] = [
     href: `mailto:${site.email}`,
     group: 'Quick answers',
     keywords: 'contact email reach hire linkedin touch',
-    answer: `Email me at ${site.email}.`,
+    answer: `Email me at ${site.email}, or find me on LinkedIn.`,
   },
   {
     title: 'What tools do you use?',
@@ -55,7 +57,7 @@ const answers: Entry[] = [
   },
   {
     title: 'Beauty + fashion',
-    href: '/playground/jdel',
+    href: '/playground#jdel',
     group: 'Quick answers',
     keywords: 'beauty fashion fragrance perfume cosmetics textiles print style',
     answer: 'JDel is my fragrance brand concept. Textiles covers my print design and a bodice mockup.',
@@ -71,15 +73,15 @@ const answers: Entry[] = [
     title: 'Fun facts',
     href: '/about#away',
     group: 'Quick answers',
-    keywords: 'fun facts hobbies dodgers baseball upcycle pinterest fragrance board games',
-    answer: 'Dodgers fan, upcycler of thrifted tops, Pinterest board curator, fragrance layerer, and a board game lover (hence the dice).',
+    keywords: 'fun facts hobbies dodgers baseball jazz video production agriculture board games',
+    answer: 'Dodgers fan, jazz lover, video producer, curious about agriculture operations, and a board game lover (hence the dice).',
   },
   {
     title: 'How did you build this site?',
     href: '/about#site',
     group: 'Quick answers',
-    keywords: 'build site astro code how made developed',
-    answer: 'Designed by me, coded in Astro with plain CSS and a little JavaScript. The dice cursor is pure CSS 3D.',
+    keywords: 'build site code how made developed',
+    answer: 'I designed and built it myself. The dice cursor is pure CSS 3D.',
   },
 ];
 

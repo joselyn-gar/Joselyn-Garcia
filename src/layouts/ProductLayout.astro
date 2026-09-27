@@ -1,0 +1,125 @@
+---
+// Apple-product-page style case study: centered headlines, generous space, one idea per chapter,
+// big borderless visuals, alternating full-bleed bands.
+import Base from './Base.astro';
+import { items, nextItem } from '../data/projects';
+
+interface Props {
+  slug: string;
+  eyebrow: string;
+  title: string;
+  tagline: string;
+  hero: string;
+  heroAlt: string;
+  summary: [string, string][]; // 10-second summary: label, text (may contain <strong>)
+  section?: 'projects' | 'playground';
+}
+const { slug, eyebrow, title, tagline, hero, heroAlt, summary, section = 'projects' } = Astro.props;
+const item = items.find((i) => i.slug === slug)!;
+const next = nextItem(slug);
+---
+<Base title={title} description={tagline} active={section} color={item.color} image={hero}>
+  <article class="product">
+    <header class="p-hero">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="tagline" set:html={tagline}></p>
+      <img class="p-hero-img" src={hero} alt={heroAlt} />
+    </header>
+
+    <section class="p-summary" aria-label="Summary">
+      {summary.map(([k, v]) => <div><h2>{k}</h2><p set:html={v}></p></div>)}
+    </section>
+
+    <slot />
+
+    <a class="p-next" href={next.href} data-face={next.face}>
+      <span class="eyebrow">Next up</span>
+      <span class="p-next-title">{next.title} <span aria-hidden="true">→</span></span>
+    </a>
+  </article>
+</Base>
+
+<style is:global>
+  .product { --band: 1040px; --text: 680px; }
+  .p-hero { padding: 140px 20px 0; text-align: center; }
+  .p-hero h1 { font-size: clamp(3.2rem, 8vw, 6rem); letter-spacing: -0.01em; margin: 0 0 0.2em; }
+  .tagline { font-size: clamp(1.2rem, 2vw, 1.55rem); color: var(--ink-2); max-width: 720px; margin: 0 auto; line-height: 1.4; }
+  .p-hero-img { background: var(--tint); width: min(100%, var(--band)); margin: 56px auto 0; border-radius: 28px; box-shadow: 0 30px 80px rgba(26, 26, 26, 0.16); }
+
+  .p-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: min(100% - 40px, var(--band)); margin: 88px auto 0; text-align: center; }
+  .p-summary h2 { font-family: var(--sans); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
+  .p-summary p { font-size: 1.15rem; color: var(--ink-2); margin: 0; line-height: 1.5; }
+
+  /* chapters: full-bleed bands, centered headline, then content */
+  .chapter { padding: 120px 20px; text-align: center; }
+  .chapter:nth-of-type(even) { background: var(--white); }
+  .chapter.tinted { background: var(--tint); }
+  .chapter > * { max-width: var(--text); margin-left: auto; margin-right: auto; }
+  .chapter > .band { max-width: var(--band); }
+  .chapter .num { display: block; font-family: var(--sans); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-text); margin-bottom: 14px; letter-spacing: 0.04em; }
+  .chapter h2 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); letter-spacing: -0.01em; margin-bottom: 0.35em; text-wrap: balance; }
+  .chapter > p, .tagline, .learn p { text-wrap: pretty; }
+  .chapter > p { font-size: 1.25rem; color: var(--ink-2); line-height: 1.55; }
+  .chapter img, .chapter video { border-radius: 22px; }
+  .band { margin-top: 56px; }
+  .band img { width: 100%; box-shadow: 0 20px 60px rgba(26, 26, 26, 0.12); }
+
+  .bigstats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .bigstats b { display: block; font-family: var(--serif); font-size: clamp(3.2rem, 7vw, 5.2rem); letter-spacing: -0.01em; line-height: 1; color: var(--accent-text); }
+  .bigstats span { display: block; margin-top: 12px; font-size: 1.1rem; color: var(--ink-2); }
+
+  .pull { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.01em; line-height: 1.25; color: var(--ink); }
+  .chapter > p.pull, .band > p.pull { font-size: clamp(1.6rem, 3.2vw, 2.4rem); line-height: 1.25; color: var(--ink); max-width: 820px; }
+  .pull + .pull { margin-top: 28px; }
+  .pull cite { display: block; margin-top: 10px; font: 400 0.95rem var(--sans); color: var(--ink-3); font-style: normal; }
+
+  .learn { margin-top: 64px !important; padding-top: 28px; border-top: 1.5px solid var(--accent); }
+  .learn b { display: block; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 8px; }
+  .learn p { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); }
+
+  .cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; align-items: start; }
+  .cols figcaption, .band figcaption { margin-top: 14px; font-size: 1.05rem; color: var(--ink-2); }
+  .takeaways-big { list-style: none; padding: 0; display: grid; gap: 22px; text-align: left; counter-reset: t; }
+  .takeaways-big li { counter-increment: t; display: grid; grid-template-columns: 56px 1fr; align-items: baseline; font-size: 1.6rem; font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; }
+  .takeaways-big li::before { content: '0' counter(t); color: var(--accent-text); font-size: 1rem; }
+
+  .p-next { display: block; padding: 120px 20px; text-align: center; text-decoration: none; background: var(--tint); }
+  .p-next .eyebrow { display: block; margin-bottom: 8px; }
+  .p-next-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.01em; }
+  .p-next:hover .p-next-title { text-decoration: underline; text-underline-offset: 8px; }
+
+  .decisions { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: left; }
+  .decisions li { display: flex; gap: 14px; }
+  .decisions i { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 0.8rem var(--sans); font-style: normal; }
+  .decisions b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin-bottom: 4px; }
+  .decisions span { color: var(--ink-2); font-size: 1.05rem; line-height: 1.5; }
+  .cols figure, figure.band { margin-left: auto; margin-right: auto; margin-bottom: 0; }
+  .note { font-size: 0.95rem !important; color: var(--ink-3) !important; margin-top: 28px !important; }
+
+  .hl { color: var(--accent-text); }
+  .pull em { font-style: normal; color: var(--accent-text); }
+  .ideas { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: 16px; text-align: left; }
+  .ideas li { padding: 22px; border-radius: 20px; background: var(--white); }
+  .ideas b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.55rem; margin-bottom: 6px; }
+  .ideas span { font-size: 1.02rem; color: var(--ink-2); }
+  .ideas .out { opacity: 0.55; }
+  .ideas .out b { text-decoration: line-through; text-decoration-thickness: 2px; }
+  .ideas .kept { background: var(--accent-text); color: #fff; box-shadow: 0 16px 40px rgba(26, 26, 26, 0.2); }
+  .ideas .kept span, .ideas .kept strong { color: #fff; }
+  .mycall { margin-top: 88px; padding: 48px 32px; border-radius: 28px; background: var(--white); }
+  .mycall .num {  margin-bottom: 18px; }
+  .mycall .answer { color: var(--ink-2); font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+  .ideas .n { display: block; font: 700 0.8rem var(--sans); color: var(--accent-text); margin-bottom: 8px; }
+  .ideas .kept .n { color: #fff; }
+  .bigstats.four { grid-template-columns: repeat(4, 1fr); }
+  .cols.three { grid-template-columns: repeat(3, 1fr); }
+  .cols.four { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 860px) { .ideas, .bigstats.four, .cols.four { grid-template-columns: repeat(2, 1fr); } .cols.three { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) {
+    .decisions { grid-template-columns: 1fr; }
+    .p-summary, .bigstats, .cols { grid-template-columns: 1fr; gap: 28px; }
+    .chapter { padding: 80px 20px; }
+  }
+</style>

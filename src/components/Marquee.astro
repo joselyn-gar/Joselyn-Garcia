@@ -1,0 +1,58 @@
+---
+// Infinite auto-scrolling image row. Pauses on hover, drag or swipe to explore, still for reduced motion.
+interface Item { src: string; alt: string; href?: string; label?: string; }
+interface Props { items: Item[]; height?: string; }
+const { items, height = 'clamp(300px, 42vw, 520px)' } = Astro.props;
+const loop = [...items.map((i) => ({ ...i, dup: false })), ...items.map((i) => ({ ...i, dup: true }))];
+---
+<div class="marquee" data-marquee style={`--h:${height}`}>
+  <ul class="track">
+    {loop.map((i) => (
+      <li aria-hidden={i.dup ? 'true' : undefined}>
+        {i.href ? (
+          <a href={i.href} tabindex={i.dup ? -1 : undefined} draggable="false">
+            <img src={i.src} alt={i.dup ? '' : i.alt} draggable="false" />
+            {i.label && <span class="label">{i.label}</span>}
+          </a>
+        ) : (
+          <img src={i.src} alt={i.dup ? '' : i.alt} draggable="false" />
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .marquee { overflow-x: auto; scrollbar-width: none; cursor: grab; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .marquee::-webkit-scrollbar { display: none; }
+  .marquee.dragging { cursor: grabbing; }
+  .track { display: flex; gap: 20px; width: max-content; list-style: none; margin: 0; padding: 10px 0 30px; }
+  .track li { flex: none; position: relative; }
+  .track a { display: block; text-decoration: none; }
+  .track img { height: var(--h); width: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 20px; box-shadow: 0 18px 44px rgba(26, 26, 26, 0.14); user-select: none; transition: transform 0.5s var(--ease); }
+  .track li:hover img { transform: translateY(-6px); }
+  .label { position: absolute; left: 16px; bottom: 46px; padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); font-weight: 700; font-size: 0.9rem; color: var(--ink); }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((m) => {
+    const track = m.querySelector<HTMLElement>('.track')!;
+    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let paused = false, down = false, moved = false, startX = 0, startLeft = 0;
+    m.addEventListener('mouseenter', () => (paused = true));
+    m.addEventListener('mouseleave', () => { paused = false; down = false; m.classList.remove('dragging'); });
+    m.addEventListener('pointerdown', (e) => { down = true; moved = false; startX = e.clientX; startLeft = m.scrollLeft; m.classList.add('dragging'); });
+    addEventListener('pointerup', () => { down = false; m.classList.remove('dragging'); });
+    m.addEventListener('pointermove', (e) => { if (!down) return; if (Math.abs(e.clientX - startX) > 5) moved = true; m.scrollLeft = startLeft - (e.clientX - startX); });
+    m.addEventListener('click', (e) => { if (moved) { e.preventDefault(); moved = false; } }, true);
+    m.addEventListener('touchstart', () => (paused = true), { passive: true });
+    m.addEventListener('touchend', () => setTimeout(() => (paused = false), 1500), { passive: true });
+    const tick = () => {
+      const half = track.scrollWidth / 2;
+      if (!paused && !down && !calm) m.scrollLeft += 0.6;
+      if (m.scrollLeft >= half) m.scrollLeft -= half;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+</script>

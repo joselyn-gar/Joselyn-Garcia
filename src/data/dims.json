@@ -1,7 +1,35 @@
 {
+ "/images/about/agriculture.webp": [
+  844,
+  1500
+ ],
+ "/images/about/dodgers.webp": [
+  900,
+  675
+ ],
+ "/images/about/jazz.webp": [
+  900,
+  675
+ ],
  "/images/about/portrait.webp": [
-  265,
-  228
+  900,
+  858
+ ],
+ "/images/about/vibe-coding.webp": [
+  1420,
+  1934
+ ],
+ "/images/about/video.webp": [
+  900,
+  1600
+ ],
+ "/images/design/hero-reels.webp": [
+  1600,
+  900
+ ],
+ "/images/design/hero.webp": [
+  1600,
+  544
  ],
  "/images/design/kiki-bouba.webp": [
   1100,
@@ -15,6 +43,10 @@
   1100,
   1423
  ],
+ "/images/design/playground.webp": [
+  1600,
+  1200
+ ],
  "/images/design/tinydesk-black.webp": [
   1100,
   1447
@@ -23,9 +55,13 @@
   1100,
   1424
  ],
+ "/images/design/wutv-banner.webp": [
+  1600,
+  534
+ ],
  "/images/jdel/bottle.webp": [
-  365,
-  357
+  1280,
+  777
  ],
  "/images/lyft/billboard.webp": [
   1600,
@@ -75,6 +111,10 @@
   398,
   207
  ],
+ "/images/releaf/cover.webp": [
+  1600,
+  900
+ ],
  "/images/releaf/first-print.webp": [
   1080,
   1080
@@ -111,9 +151,17 @@
   1600,
   900
  ],
+ "/images/skate/cover.webp": [
+  1600,
+  900
+ ],
  "/images/skate/donate-sketches.webp": [
   1600,
   900
+ ],
+ "/images/skate/final-hero.webp": [
+  614,
+  345
  ],
  "/images/skate/final.webp": [
   614,
@@ -126,6 +174,22 @@
  "/images/skate/impact-options.webp": [
   1600,
   900
+ ],
+ "/images/skate/original-home.webp": [
+  1600,
+  921
+ ],
+ "/images/skate/original-nav.webp": [
+  1600,
+  165
+ ],
+ "/images/stl/cover.webp": [
+  1600,
+  900
+ ],
+ "/images/stl/hero.webp": [
+  1600,
+  486
  ],
  "/images/stl/logo.webp": [
   164,
@@ -179,6 +243,42 @@
   1600,
   900
  ],
+ "/images/textiles/gallery/fabric-collage.webp": [
+  1200,
+  1600
+ ],
+ "/images/textiles/gallery/party-animal.webp": [
+  1125,
+  2000
+ ],
+ "/images/textiles/gallery/shibori-crimson.webp": [
+  1200,
+  1600
+ ],
+ "/images/textiles/gallery/shibori-kaleidoscope.webp": [
+  1200,
+  1600
+ ],
+ "/images/textiles/gallery/shibori-ochre.webp": [
+  1200,
+  1600
+ ],
+ "/images/textiles/gallery/shibori-stripes.webp": [
+  1200,
+  1600
+ ],
+ "/images/textiles/gallery/sunburst.webp": [
+  1200,
+  1600
+ ],
+ "/images/textiles/gallery/wrap-top.webp": [
+  768,
+  1365
+ ],
+ "/images/textiles/playground.webp": [
+  1600,
+  1200
+ ],
  "/media/asb-home-game.jpg": [
   540,
   960
@@ -202,10 +302,6 @@
  "/media/releaf-booth.jpg": [
   720,
   720
- ],
- "/media/releaf-journey.jpg": [
-  640,
-  640
  ],
  "/media/skandalaris-ie-awards.jpg": [
   540,

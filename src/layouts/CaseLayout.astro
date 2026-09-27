@@ -1,7 +1,7 @@
 ---
 // Minimal case-study template: big title, snapshot row, sticky contents list, one reading column.
 import Base from './Base.astro';
-import Img from '../components/Img.astro';
+import Media from '../components/Media.astro';
 import { items, nextItem } from '../data/projects';
 
 interface Props {
@@ -13,8 +13,9 @@ interface Props {
   heroAlt?: string;
   snapshot: [string, string][];
   section?: 'projects' | 'playground';
+  toc?: boolean;
 }
-const { slug, eyebrow, title, summary, hero, heroAlt = '', snapshot, section = 'projects' } = Astro.props;
+const { slug, eyebrow, title, summary, hero, heroAlt = '', snapshot, section = 'projects', toc = true } = Astro.props;
 const item = items.find((i) => i.slug === slug)!;
 const next = nextItem(slug);
 ---
@@ -28,11 +29,11 @@ const next = nextItem(slug);
       <dl class="snapshot">
         {snapshot.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
       </dl>
-      {hero && <div class="case-cover"><Img src={hero} alt={heroAlt} eager /></div>}
+      {hero && <div class="case-cover"><Media src={hero} alt={heroAlt} ratio="wide" eager /></div>}
     </header>
 
-    <div class="case-grid wrap">
-      <nav class="toc" aria-label="On this page" data-toc></nav>
+    <div class:list={["case-grid wrap", { "no-toc": !toc }]}>
+      {toc && <nav class="toc" aria-label="On this page" data-toc></nav>}
       <div class="case-body" data-case-body>
         <slot />
       </div>
@@ -58,11 +59,11 @@ const next = nextItem(slug);
   .snapshot dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
   .snapshot dd { margin: 0; font-size: 0.95rem; }
   .case-cover { margin-top: 36px; }
-  .case-cover :global(img) { width: 100%; max-height: 640px; object-fit: cover; object-position: top; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
 
   .case-grid { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 56px; margin-top: 40px; }
   .case-body { min-width: 0; }
-  .case-body > :global(section > *:not(.wide)) { max-width: var(--read); }
+  .no-toc { grid-template-columns: 1fr; }
+  .case-body > :global(section > *:not(.wide):not(.row):not(.media):not(.carousel):not(.steps):not(.split):not(.wall):not(.reels)) { max-width: var(--read); }
   .case-body :global(.wide) { width: 100%; margin-left: 0; transform: none; }
   .toc { position: sticky; top: 100px; align-self: start; padding-top: 60px; }
   .toc :global(a) { display: block; padding: 6px 0 6px 14px; border-left: 2px solid var(--line); font-size: 0.86rem; color: var(--ink-3); text-decoration: none; transition: color 0.2s, border-color 0.2s; }
@@ -72,7 +73,7 @@ const next = nextItem(slug);
   .next { display: flex; flex-direction: column; gap: 6px; margin-top: 80px; padding: 36px 40px; border-radius: var(--radius-lg); background: var(--t); border: 1.5px solid var(--ink); text-decoration: none; transition: transform 0.4s var(--ease); }
   .next:hover { transform: translateY(-4px); }
   .next .eyebrow { margin: 0; }
-  .next-title { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; }
+  .next-title { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1.1; }
 </style>
 
 <script>

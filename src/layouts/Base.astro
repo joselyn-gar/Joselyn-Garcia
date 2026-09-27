@@ -12,8 +12,9 @@ interface Props {
   active?: string;
   color?: string; // property color key for accents on this page
   image?: string;
+  pageClass?: string;
 }
-const { title, description = site.description, active, color = 'ink', image = '/images/lyft/hero.webp' } = Astro.props;
+const { title, description = site.description, active, color = 'ink', image = '/images/lyft/hero.webp', pageClass } = Astro.props;
 const fullTitle = title ? `${title} · Joselyn Garcia` : site.title;
 const themed = color !== 'ink'
   ? `--accent:var(--${color});--accent-text:var(--${color}-text);--tint:var(--${color}-tint)`
@@ -37,7 +38,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <slot name="head" />
   </head>
-  <body style={themed}>
+  <body style={themed} class={pageClass}>
     <a class="skip-link" href="#main">Skip to content</a>
     <Nav active={active} color={color} />
     <main id="main">

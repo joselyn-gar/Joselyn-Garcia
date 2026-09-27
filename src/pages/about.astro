@@ -1,13 +1,26 @@
 ---
 import Base from '../layouts/Base.astro';
-import Img from '../components/Img.astro';
 import FlipCard from '../components/FlipCard.astro';
 import { site } from '../data/site';
+import icons from '../data/tool-icons.json';
 
+// App-style tiles: official glyph where one is available, brand-colored monogram otherwise.
 const tools = [
-  ['Figma', 'UI, wireframes, prototypes'], ['Framer', 'interactive sites'], ['Canva', 'social + decks'],
-  ['Adobe Illustrator', 'posters, prints, vector'], ['Photoshop', 'photo + mockups'], ['Procreate', 'sketching + illustration'],
-  ['Blender', '3D renders'], ['Excel', 'financial projections'], ['CapCut', 'reels + recap videos'], ['Claude', 'research + building'],
+  { name: 'Figma', use: 'UI, wireframes, prototypes', bg: '#1e1e1e', glyph: 'figma' },
+  { name: 'Framer', use: 'interactive sites', bg: '#0055ff', glyph: 'framer' },
+  { name: 'Canva', use: 'social + decks', bg: 'linear-gradient(135deg,#00c4cc,#7d2ae8)', mono: 'Ca' },
+  { name: 'Illustrator', use: 'posters, prints, vector', bg: '#330000', fg: '#ff9a00', mono: 'Ai' },
+  { name: 'Photoshop', use: 'photo + mockups', bg: '#001e36', fg: '#31a8ff', mono: 'Ps' },
+  { name: 'Procreate', use: 'sketching + illustration', bg: 'linear-gradient(135deg,#1c1c1e,#3a3a3c)', mono: 'Pc' },
+  { name: 'Blender', use: '3D renders', bg: '#e87d0d', glyph: 'blender' },
+  { name: 'Excel', use: 'financial projections', bg: '#217346', mono: 'X' },
+  { name: 'CapCut', use: 'reels + recap videos', bg: '#000000', mono: 'Cc' },
+  { name: 'Claude', use: 'research + building', bg: '#d97757', glyph: 'claude' },
+];
+const now = [
+  ['Skandalaris Center', 'Digital Content + Website Lead Intern'],
+  ['Center for Experiential Learning', 'UX Consultant, B2B platform practicum'],
+  ['WUTV', 'PR Executive, membership 3 → 20'],
 ];
 const strengths = [
   ['Arranger', 'I plan the deadlines, meetings, and agendas, then delegate by who’s available and ready.'],
@@ -17,104 +30,123 @@ const strengths = [
   ['Input', 'I dig deep into research, then brief the team in short, usable summaries.'],
 ];
 const hobbies = [
-  { front: 'Watching baseball', back: 'Dodgers rule. That’s the whole card.', color: 'write' },
-  { front: 'Upcycling', back: 'Turning thrifted pieces into cute tops, and crocheting bags when I have the patience.', color: 'tex' },
-  { front: 'Pinterest boards', back: 'Collecting aesthetics and ideas. Half my projects start as a board.', color: 'lyft' },
-  { front: 'Fragrance layering', back: 'Mixing scents by season. Fall is Lush Sticky Dates with a hint of Calvin Klein Escape.', color: 'jdel' },
-  { front: 'Board games', back: 'Hence the dice following your cursor.', color: 'stl' },
-  { front: 'Junk journaling', back: 'Tickets, scraps, and stickers, glued into something that tells a story.', color: 'releaf' },
+  { front: 'Watching baseball', back: '', color: 'write', img: '/images/about/dodgers.webp' },
+  { front: 'Video production', back: '', color: 'tex', img: '/images/about/video.webp' },
+  { front: 'Jazz', back: '', color: 'lyft', img: '/images/about/jazz.webp' },
+  { front: 'Agriculture operations', back: '', color: 'jdel', img: '/images/about/agriculture.webp', pos: 'center 22%' },
+  { front: 'Board games', back: 'Hence the dice.', color: 'stl' },
+  { front: 'Vibe coding', back: '', color: 'skate', img: '/images/about/vibe-coding.webp', fit: 'contain' },
 ];
 ---
 <Base title="About" active="about" description="About Joselyn Garcia: WashU Marketing + Entrepreneurship student, HCI minor, founder of ReLeaf Candles.">
-  <section class="wrap intro">
-    <div class="photo">
-      <Img src="/images/about/portrait.webp" alt="Joselyn Garcia smiling in a striped polo on campus" eager />
-      <p class="muted small">Clifton Strengths: Arranger, Learner, Achiever, Individualization, Input</p>
-    </div>
-    <div class="bio">
-      <p class="eyebrow">About me</p>
-      <h1>Hi, I’m Joselyn.</h1>
-      <p class="lede">
-        I’m a sophomore at <strong>Washington University in St. Louis</strong>, studying <strong>Marketing</strong> and
-        <strong>Entrepreneurship</strong> with a minor in <strong>Human-Computer Interaction</strong>.
-      </p>
-      <p>
-        I’ve spent the last few years moving across marketing, product design, and UX, but it always comes back to the
-        same thing: <strong>I enjoy client-facing work, creativity, and turning an idea into something I can see and test.</strong>
-        That’s what led me to found <a href="/projects/releaf">ReLeaf Candles</a>, a startup giving candles a second life
-        through compartment design, and it’s the approach I’ve carried into every project since.
-      </p>
-      <p>
-        Alongside that, I’m involved with WUTV, WUMA, WashUX, and Net Impact, and I work as the
-        <strong>Digital and Website Lead Intern at the Skandalaris Center</strong>, where I focus on improving the user
-        experience and building cohesive wireframes.
-      </p>
-      <p>My mission: make a positive impact in the ventures I lead, the teams I collaborate with, and the industries I pursue.</p>
-      <div class="cta">
-        <a class="btn" href={`mailto:${site.email}`}>Email me</a>
-        <a class="btn ghost" href="/resume">Resume ↗</a>
-        {site.linkedin && <a class="btn ghost" href={site.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>}
-      </div>
-    </div>
+  <header class="hero">
+    <p class="eyebrow">About me</p>
+    <h1>Hi, I’m Joselyn.</h1>
+    <p class="tagline">Marketing + Entrepreneurship at <strong>WashU</strong>, minoring in <strong>Human-Computer Interaction</strong>.</p>
+    <img class="portrait" src="/images/about/portrait.webp" alt="Joselyn Garcia smiling in a striped polo on campus" />
+  </header>
+
+  <section class="band-sec">
+    <p class="pull">I love <span class="hl">client-facing work</span>, creativity, and turning an idea into something I can <span class="hl">see and test</span>.</p>
+    <p class="body">That’s what led me to found <a href="/projects/releaf"><strong>ReLeaf Candles</strong></a>, and it’s how I’ve approached every project since: marketing, product, and UX, all aimed at real people.</p>
   </section>
 
-  <section class="wrap block" id="strengths" aria-labelledby="str-h">
+  <section class="band-sec tinted" aria-labelledby="now-h">
+    <p class="eyebrow">Right now</p>
+    <h2 id="now-h">Where you’ll find me.</h2>
+    <ul class="now three">
+      {now.map(([org, role]) => <li><b>{org}</b><span>{role}</span></li>)}
+    </ul>
+    <p class="also">Also: WashUX · WUMA · Net Impact · Hablo español</p>
+  </section>
+
+  <section class="band-sec" id="strengths" aria-labelledby="str-h">
     <p class="eyebrow">Clifton Strengths</p>
     <h2 id="str-h">How I show up on a team.</h2>
-    <p class="muted">Hover or tap a card to flip it.</p>
+    <p class="hint">Hover or tap a card to flip it.</p>
     <div class="cards five">
       {strengths.map(([s, b], i) => <FlipCard kicker={`Strength ${i + 1}`} front={s} back={b} color={['skate', 'write', 'lyft', 'stl', 'tex'][i]} />)}
     </div>
   </section>
 
-  <section class="wrap block" id="toolbox" aria-labelledby="tool-h">
+  <section class="band-sec tinted" id="toolbox" aria-labelledby="tool-h">
     <p class="eyebrow">Toolbox</p>
     <h2 id="tool-h">What I build with.</h2>
-    <ul class="tools">
-      {tools.map(([t, u], i) => <li style={`--d:${(i % 5) * 0.4}s`}><b>{t}</b><span>{u}</span></li>)}
-    </ul>
+    <div class="tool-marquee" aria-label="Tools I use">
+      <ul class="tool-track">
+        {[...tools, ...tools].map((t, i) => (
+          <li aria-hidden={i >= tools.length ? 'true' : undefined}>
+            <span class="app" style={`background:${t.bg};color:${t.fg ?? '#fff'}`} aria-hidden="true">
+              {t.glyph
+                ? <svg viewBox="0 0 24 24" width="34" height="34"><path d={(icons as Record<string, string>)[t.glyph]} fill="currentColor" /></svg>
+                : <span class="mono">{t.mono}</span>}
+            </span>
+            <b>{t.name}</b>
+            <span class="use">{t.use}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 
-  <section class="wrap block" id="away" aria-labelledby="away-h">
+  <section class="band-sec" id="away" aria-labelledby="away-h">
     <p class="eyebrow">Chance cards</p>
-    <h2 id="away-h">When I’m away from the desk…</h2>
-    <div class="cards">
-      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} />)}
+    <h2 id="away-h">Away from the desk.</h2>
+    <p class="hint">Tap a card to flip it.</p>
+    <div class="cards three">
+      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} img={h.img} fit={h.fit} pos={h.pos} />)}
     </div>
     {site.pinterest && <p><a class="btn ghost" href={site.pinterest} target="_blank" rel="noopener">See my Pinterest boards ↗</a></p>}
-  </section>
-
-  <section class="wrap block" id="site" aria-labelledby="site-h">
-    <p class="eyebrow">About this site</p>
-    <h2 id="site-h">Built like a board game.</h2>
-    <p class="muted narrow">
-      I love board games, so the home page is a board and every project is a property. I designed it and coded it in
-      Astro with plain CSS and a bit of JavaScript. The dice cursor is pure CSS 3D, and you can switch it off in the footer.
-    </p>
+    <p class="site-note" id="site">This site is <strong>built like a board game</strong>, because I love them. I designed and built it myself. The dice cursor can be switched off in the footer.</p>
+    <div class="cta">
+      <a class="btn" href={`mailto:${site.email}`}>Email me</a>
+      <a class="btn ghost" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume ↗</a>
+      {site.linkedin && <a class="btn ghost" href={site.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>}
+    </div>
   </section>
 </Base>
 
 <style>
-  .intro { display: grid; grid-template-columns: 0.9fr 1.3fr; gap: 56px; padding-top: 130px; align-items: start; }
-  .photo :global(img) { width: 100%; aspect-ratio: 4 / 4.2; object-fit: cover; border-radius: var(--radius-lg); border: 1.5px solid var(--ink); box-shadow: var(--shadow-lg); }
-  .small { font-size: 0.88rem; margin-top: 12px; }
-  .bio p { color: var(--ink-2); }
-  .bio .lede { color: var(--ink); }
-  .cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
-  .block { padding-top: 96px; }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+  .hero { padding: 150px 20px 0; text-align: center; }
+  .hero h1 { font-size: clamp(3.2rem, 8vw, 6rem); margin-bottom: 0.15em; }
+  .tagline { font-size: clamp(1.15rem, 2vw, 1.45rem); color: var(--ink-2); max-width: 640px; margin: 0 auto; }
+  .portrait { width: min(100%, 520px); aspect-ratio: 1; object-fit: cover; margin: 56px auto 0; border-radius: 28px; box-shadow: 0 30px 80px rgba(26, 26, 26, 0.16); }
+  .band-sec { padding: 120px 20px; text-align: center; }
+  .band-sec.tinted { background: var(--white); }
+  .band-sec > * { max-width: 760px; margin-left: auto; margin-right: auto; }
+  .band-sec h2 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); margin-bottom: 0.5em; }
+  .pull { font-family: var(--serif); font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height: 1.2; color: var(--ink); max-width: 860px !important; }
+  .hl { color: var(--lyft-text); font-style: italic; }
+  .body { font-size: 1.2rem; color: var(--ink-2); margin-top: 24px; }
+  .now { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px !important; text-align: left; }
+  .now.three { grid-template-columns: repeat(3, 1fr); }
+  .now li { padding: 26px 28px; border-radius: 22px; background: var(--paper); }
+  .now b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1.1; margin-bottom: 6px; }
+  .now span { color: var(--ink-2); }
+  .also { margin-top: 28px; color: var(--ink-3); }
+  .hint { color: var(--ink-3); margin-top: -8px; }
+  .cards { display: grid; gap: 18px; margin-top: 32px; max-width: 1100px !important; text-align: left; }
   .cards.five { grid-template-columns: repeat(5, 1fr); }
-  .tools { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
-  .tools li { display: flex; flex-direction: column; padding: 14px 18px; border-radius: 16px; background: var(--white); border: 1.5px solid var(--ink); animation: float 5s ease-in-out var(--d) infinite; }
-  .tools b { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.1; }
-  .tools span { font-size: 0.82rem; color: var(--ink-3); }
-  @keyframes float { 50% { transform: translateY(-5px); } }
-  .narrow { max-width: 640px; }
+  .cards.three { grid-template-columns: repeat(3, 1fr); }
+  .cards.five :global(.f) { font-size: 1.35rem; }
+  .tool-marquee { max-width: none !important; margin: 32px -20px 0 !important; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .tool-track { list-style: none; margin: 0; padding: 12px 0 20px; display: flex; gap: 20px; width: max-content; animation: tools-scroll 38s linear infinite; }
+  .tool-marquee:hover .tool-track { animation-play-state: paused; }
+  @keyframes tools-scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .tool-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .tool-track li[aria-hidden] { display: none; } }
+  .tool-track li { flex: none; width: 180px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 26px 16px 22px; border-radius: 22px; background: var(--paper); }
+  .app { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 18px; box-shadow: 0 10px 24px rgba(26, 26, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.08); margin-bottom: 12px; transition: transform 0.3s var(--ease); }
+  .tool-track li:hover .app { transform: translateY(-4px) rotate(-3deg); }
+  .mono { font: 700 1.55rem/1 var(--sans); letter-spacing: -0.02em; }
+  .tool-track b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
+  .use { font-size: 0.85rem; color: var(--ink-3); margin-top: 2px; }
+  .site-note { margin-top: 56px; color: var(--ink-2); }
+  .cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
   @media (max-width: 1080px) { .cards.five { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 860px) {
-    .intro { grid-template-columns: 1fr; gap: 28px; padding-top: 110px; }
-    .photo { max-width: 360px; }
-    .cards, .cards.five { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 760px) {
+    .now, .now.three { grid-template-columns: 1fr; }
+    .cards.five, .cards.three { grid-template-columns: repeat(2, 1fr); }
+    .band-sec { padding: 80px 20px; }
   }
-  @media (max-width: 520px) { .cards, .cards.five { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .cards.five, .cards.three { grid-template-columns: 1fr; } }
 </style>

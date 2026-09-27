@@ -1,74 +1,71 @@
 ---
-import CaseLayout from '../../layouts/CaseLayout.astro';
-import Img from '../../components/Img.astro';
+import ProductLayout from '../../layouts/ProductLayout.astro';
 import Video from '../../components/Video.astro';
+
+const posters = [
+  ['/images/design/tinydesk-black.webp', 'Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black', '<strong>WUTV</strong> · Tiny Desk, <strong>direction A</strong>'],
+  ['/images/design/tinydesk-blue.webp', 'Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code', '<strong>WUTV</strong> · Same brief, <strong>direction B</strong>'],
+  ['/images/design/kiki-bouba.webp', 'Poster: Find the Kiki to your Bouba. Apply for the SVC, with chrome star and blob shapes', '<strong>Skandalaris</strong> · The <strong>bouba/kiki effect</strong> pitches finding a co-founder'],
+  ['/images/design/perform.webp', 'Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts', '<strong>WUTV</strong> · <strong>Performer call</strong>'],
+];
 ---
-<CaseLayout
+<ProductLayout
   slug="design-social"
   section="playground"
   eyebrow="Posters, reels + recap videos"
   title="Design + Social"
-  summary="Four-plus years of content creation. I currently run social for the WashU Skandalaris Center and WUTV, and I got my start with my high school’s ASB and ReLeaf Candles."
-  snapshot={[
-    ['Clients', 'Skandalaris Center, WUTV'],
-    ['Before that', 'West High ASB, ReLeaf Candles'],
-    ['Formats', 'Reels, TikToks, posters, banners'],
-    ['Editing since', '2020'],
+  tagline="<strong>4+ years</strong> of content. I run social for the <strong>Skandalaris Center</strong> and <strong>WUTV</strong>."
+  hero="/images/design/hero-reels.webp"
+  heroAlt="Three social reels side by side for the Skandalaris Center, WUTV, and West High ASB"
+  summary={[
+    ['Reach', '<strong>1,000+</strong> average views per Skandalaris post.'],
+    ['Growth', 'A WUTV brand refresh grew membership <strong>3 → 20</strong>.'],
+    ['Since', 'Editing video since <strong>2020</strong>.'],
   ]}
 >
-  <section id="posters" class="case-section">
-    <h2 data-short="Posters">Posters + flyers</h2>
-    <p>
-      I design flyers that drive sign-ups, Instagram banners that make a club’s focus obvious, and mock ads that
-      strengthen a brand’s visual story. Click any poster to see it larger.
-    </p>
-    <div class="wall wide">
-      <figure>
-        <Img src="/images/design/kiki-bouba.webp" alt="Poster: Find the Kiki to your Bouba. Apply for the SVC, due Jan 28, with chrome star and blob shapes and a QR code" />
-        <figcaption><span class="tag">Skandalaris Center</span> Recruiting for the Skandalaris Venture Competition. The bouba/kiki effect (spiky vs. round shapes) pitches finding a co-founder who complements you.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/tinydesk-black.webp" alt="Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black" />
-        <figcaption><span class="tag">WUTV</span> Tiny Desk Concert, direction A.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/tinydesk-blue.webp" alt="Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code" />
-        <figcaption><span class="tag">WUTV</span> Tiny Desk Concert, direction B. Two directions for one brief.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/perform.webp" alt="Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts with a QR code" />
-        <figcaption><span class="tag">WUTV</span> Performer call for Tiny Desk Concerts.</figcaption>
-      </figure>
-      <figure>
-        <Img src="/images/design/mod-portrait.webp" alt="Posterized illustration of a 60s mod woman in round sunglasses and a circle-print top, with the photo reference inset" />
-        <figcaption><span class="tag">Personal</span> A posterized 60s mod portrait, drawn from a photo reference.</figcaption>
-      </figure>
+  <section class="chapter">
+    <span class="num">01 · Posters</span>
+    <h2>Made to get sign-ups.</h2>
+    <div class="band posters">
+      {posters.map(([src, alt, cap]) => (
+        <figure><img src={src} alt={alt} loading="lazy" /><figcaption set:html={cap}></figcaption></figure>
+      ))}
     </div>
   </section>
 
-  <section id="video" class="case-section">
-    <h2 data-short="Reels">Reels + recap videos</h2>
-    <p>
-      What started as a hobby in 2020, making film edits for fun, became a real passion. Today I make recap videos and
-      reels that take behind-the-scenes editing, thoughtful sequencing, and an eye for pacing and emotion.
-    </p>
-    <div class="reels wide">
-      <Video name="skandalaris-welcome" frame="phone" tag="Skandalaris" label="Animated welcome post: Welcome! Your journey starts here" caption="Motion welcome post for new followers." />
-      <Video name="skandalaris-ie-awards" frame="phone" tag="Skandalaris" label="TikTok promoting the WashU I&E Awards on April 15" caption="Event promo for the WashU I&E Awards." />
-      <Video name="wutv-tiny-desk" frame="phone" tag="WUTV" label="TikTok: Everything will be okay if you sign up for our Tiny Desk Concert" caption="Sign-up push for the Tiny Desk Concert." />
-      <Video name="asb-home-game" frame="phone" tag="West High ASB" label="First home game recap reel from the stands" caption="First home game recap." />
-      <Video name="asb-staff-breakfast" frame="phone" tag="West High ASB" label="Staff appreciation breakfast recap reel" caption="Staff appreciation breakfast recap." />
+  <section class="chapter tinted">
+    <span class="num">02 · Banners</span>
+    <h2>WUTV, on every screen.</h2>
+    <figure class="band"><img src="/images/design/wutv-banner.webp" alt="WUTV banner: a retro TV with the WUTV logo, We do things, and general body meetings Wednesdays 5:30 PM and Fridays 5:00 PM" loading="lazy" /></figure>
+  </section>
+
+  <section class="chapter">
+    <span class="num">03 · Reels</span>
+    <h2>Pacing is everything.</h2>
+    <p>Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
+    <div class="band reels">
+      <Video name="skandalaris-welcome" frame="phone" label="Animated welcome post: Welcome! Your journey starts here" caption="Skandalaris · Welcome post" />
+      <Video name="skandalaris-ie-awards" frame="phone" label="TikTok promoting the WashU I&E Awards" caption="Skandalaris · I&E Awards" />
+      <Video name="wutv-tiny-desk" frame="phone" label="TikTok: sign up for our Tiny Desk Concert" caption="WUTV · Tiny Desk sign-ups" />
     </div>
   </section>
-</CaseLayout>
+
+  <section class="chapter tinted">
+    <span class="num">Where it started</span>
+    <h2>High school ASB.</h2>
+    <p>Recaps for <strong>West High ASB</strong>, where I first learned to tell a story in 15 seconds.</p>
+    <div class="band reels two">
+      <Video name="asb-home-game" frame="phone" label="First home game recap reel" caption="Home game recap" />
+      <Video name="asb-staff-breakfast" frame="phone" label="Staff appreciation breakfast recap reel" caption="Staff breakfast recap" />
+    </div>
+  </section>
+</ProductLayout>
 
 <style>
-  .wall { columns: 3 260px; column-gap: 18px; margin: 28px auto; }
-  .wall figure { break-inside: avoid; margin: 0 0 22px; }
-  .wall :global(img) { width: 100%; border-radius: 14px; box-shadow: var(--shadow); }
-  .wall figcaption { font-size: 0.86rem; color: var(--ink-2); margin-top: 10px; line-height: 1.45; }
-  .wall .tag { margin-right: 4px; }
-  .reels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 24px; }
-  @media (max-width: 1000px) { .reels { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 640px) { .reels { grid-template-columns: repeat(2, 1fr); } }
+  .posters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; text-align: left; }
+  .posters figure { margin: 0; }
+  img.narrow { max-width: 460px; margin: 0 auto; }
+  .reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: left; }
+  .reels.two { grid-template-columns: repeat(2, 1fr); max-width: 640px; }
+  @media (max-width: 640px) { .posters { grid-template-columns: 1fr; } .reels { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
 </style>
