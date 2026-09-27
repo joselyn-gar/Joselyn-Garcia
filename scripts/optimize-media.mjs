@@ -41,12 +41,14 @@ const images = [
   ['20.webp', 'design/tinydesk-blue.webp', 1100], ['21.webp', 'design/kiki-bouba.webp', 1100],
   ['22.webp', 'design/perform.webp', 1100],
   // JDel
-  ['58.webp', 'jdel/bottle.webp'],
+  
 ];
 
 // [source, output, crop box, output width]
 const crops = [
   ['57.webp', 'about/portrait.webp', { left: 520, top: 420, width: 960, height: 915 }, 900],
+  // JDel render, cropped to remove the generator watermark in the bottom-right corner
+  ['58.webp', 'jdel/bottle.webp', { left: 0, top: 0, width: 1170, height: 710 }, 1280],
   ['59.webp', 'skate/original-nav.webp', { left: 0, top: 0, width: 1882, height: 194 }, 1600],
   ['32.webp', 'skate/final-hero.webp', { left: 0, top: 0, width: 614, height: 345 }, 614],
 ];

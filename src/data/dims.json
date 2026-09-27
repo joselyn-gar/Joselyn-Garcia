@@ -19,6 +19,10 @@
   1100,
   1423
  ],
+ "/images/design/playground.webp": [
+  1600,
+  1200
+ ],
  "/images/design/tinydesk-black.webp": [
   1100,
   1447
@@ -29,7 +33,7 @@
  ],
  "/images/jdel/bottle.webp": [
   1280,
-  800
+  777
  ],
  "/images/lyft/billboard.webp": [
   1600,
@@ -242,6 +246,10 @@
  "/images/textiles/gallery/wrap-top.webp": [
   768,
   1365
+ ],
+ "/images/textiles/playground.webp": [
+  1600,
+  1200
  ],
  "/media/asb-home-game.jpg": [
   540,
