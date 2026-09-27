@@ -13,8 +13,9 @@ interface Props {
   heroAlt: string;
   summary: [string, string][]; // 10-second summary: label, text (may contain <strong>)
   section?: 'projects' | 'playground';
+  heroTall?: boolean; // portrait hero: shown narrower so it fits the screen
 }
-const { slug, eyebrow, title, tagline, hero, heroAlt, summary, section = 'projects' } = Astro.props;
+const { slug, eyebrow, title, tagline, hero, heroAlt, summary, section = 'projects', heroTall = false } = Astro.props;
 const item = items.find((i) => i.slug === slug)!;
 const next = nextItem(slug);
 ---
@@ -24,7 +25,7 @@ const next = nextItem(slug);
       <p class="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p class="tagline" set:html={tagline}></p>
-      <img class="p-hero-img" src={hero} alt={heroAlt} />
+      <img class:list={['p-hero-img', { tall: heroTall }]} src={hero} alt={heroAlt} />
     </header>
 
     <section class="p-summary" aria-label="Summary">
@@ -47,6 +48,7 @@ const next = nextItem(slug);
   .tagline { font-size: clamp(1.2rem, 2vw, 1.55rem); color: var(--ink-2); max-width: 720px; margin: 0 auto; line-height: 1.4; }
   .p-hero-img { background: var(--tint); width: min(100%, var(--band)); margin: 56px auto 0; border-radius: 28px; box-shadow: 0 30px 80px rgba(26, 26, 26, 0.16); }
 
+  .p-hero-img.tall { width: min(100%, 520px); }
   .p-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: min(100% - 40px, var(--band)); margin: 88px auto 0; text-align: center; }
   .p-summary h2 { font-family: var(--sans); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
   .p-summary p { font-size: 1.15rem; color: var(--ink-2); margin: 0; line-height: 1.5; }
