@@ -73,15 +73,15 @@ const answers: Entry[] = [
     title: 'Fun facts',
     href: '/about#away',
     group: 'Quick answers',
-    keywords: 'fun facts hobbies dodgers baseball upcycle pinterest fragrance board games',
-    answer: 'Dodgers fan, upcycler of thrifted tops, Pinterest board curator, fragrance layerer, and a board game lover (hence the dice).',
+    keywords: 'fun facts hobbies dodgers baseball jazz video production agriculture board games',
+    answer: 'Dodgers fan, jazz lover, video producer, curious about agriculture operations, and a board game lover (hence the dice).',
   },
   {
     title: 'How did you build this site?',
     href: '/about#site',
     group: 'Quick answers',
-    keywords: 'build site astro code how made developed',
-    answer: 'Designed by me, coded in Astro with plain CSS and a little JavaScript. The dice cursor is pure CSS 3D.',
+    keywords: 'build site code how made developed',
+    answer: 'I designed and built it myself. The dice cursor is pure CSS 3D.',
   },
 ];
 

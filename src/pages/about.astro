@@ -11,7 +11,6 @@ const tools = [
 const now = [
   ['Skandalaris Center', 'Digital Content + Website Lead Intern'],
   ['Center for Experiential Learning', 'UX Consultant, B2B platform practicum'],
-  ['Adobe', 'Student Ambassador'],
   ['WUTV', 'PR Executive, membership 3 → 20'],
 ];
 const strengths = [
@@ -22,10 +21,10 @@ const strengths = [
   ['Input', 'I dig deep into research, then brief the team in short, usable summaries.'],
 ];
 const hobbies = [
-  { front: 'Watching baseball', back: 'Dodgers rule. That’s the whole card.', color: 'write' },
-  { front: 'Upcycling', back: 'Turning thrifted pieces into cute tops, and crocheting bags when I have the patience.', color: 'tex' },
-  { front: 'Pinterest boards', back: 'Collecting aesthetics and ideas. Half my projects start as a board.', color: 'lyft' },
-  { front: 'Fragrance layering', back: 'Mixing scents by season. Fall is Lush Sticky Dates with a hint of Calvin Klein Escape.', color: 'jdel' },
+  { front: 'Watching baseball', back: 'Dodgers rule. That’s the whole card.', color: 'write', img: '/images/about/dodgers.webp' },
+  { front: 'Video production', back: 'Behind the camera, shooting and editing stories.', color: 'tex', img: '/images/about/video.webp' },
+  { front: 'Jazz', back: 'Live jazz nights, the more brass the better.', color: 'lyft', img: '/images/about/jazz.webp' },
+  { front: 'Agriculture operations', back: 'Rows of orchards, and how the business behind them runs.', color: 'jdel', img: '/images/about/agriculture.webp' },
   { front: 'Board games', back: 'Hence the dice following your cursor.', color: 'stl' },
   { front: 'Vibe coding', back: 'Building things like this site, one idea at a time.', color: 'skate' },
 ];
@@ -46,7 +45,7 @@ const hobbies = [
   <section class="band-sec tinted" aria-labelledby="now-h">
     <p class="eyebrow">Right now</p>
     <h2 id="now-h">Where you’ll find me.</h2>
-    <ul class="now">
+    <ul class="now three">
       {now.map(([org, role]) => <li><b>{org}</b><span>{role}</span></li>)}
     </ul>
     <p class="also">Also: WashUX · WUMA · Net Impact · Hablo español</p>
@@ -73,10 +72,10 @@ const hobbies = [
     <p class="eyebrow">Chance cards</p>
     <h2 id="away-h">Away from the desk.</h2>
     <div class="cards three">
-      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} />)}
+      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} img={h.img} />)}
     </div>
     {site.pinterest && <p><a class="btn ghost" href={site.pinterest} target="_blank" rel="noopener">See my Pinterest boards ↗</a></p>}
-    <p class="site-note" id="site">This site is <strong>built like a board game</strong>, because I love them. I designed and coded it in Astro. The dice cursor can be switched off in the footer.</p>
+    <p class="site-note" id="site">This site is <strong>built like a board game</strong>, because I love them. I designed and built it myself. The dice cursor can be switched off in the footer.</p>
     <div class="cta">
       <a class="btn" href={`mailto:${site.email}`}>Email me</a>
       <a class="btn ghost" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume ↗</a>
@@ -98,6 +97,7 @@ const hobbies = [
   .hl { color: var(--lyft-text); font-style: italic; }
   .body { font-size: 1.2rem; color: var(--ink-2); margin-top: 24px; }
   .now { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px !important; text-align: left; }
+  .now.three { grid-template-columns: repeat(3, 1fr); }
   .now li { padding: 26px 28px; border-radius: 22px; background: var(--paper); }
   .now b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1.1; margin-bottom: 6px; }
   .now span { color: var(--ink-2); }
