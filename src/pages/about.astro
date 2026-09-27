@@ -2,11 +2,20 @@
 import Base from '../layouts/Base.astro';
 import FlipCard from '../components/FlipCard.astro';
 import { site } from '../data/site';
+import icons from '../data/tool-icons.json';
 
+// App-style tiles: official glyph where one is available, brand-colored monogram otherwise.
 const tools = [
-  ['Figma', 'UI, wireframes, prototypes'], ['Framer', 'interactive sites'], ['Canva', 'social + decks'],
-  ['Adobe Illustrator', 'posters, prints, vector'], ['Photoshop', 'photo + mockups'], ['Procreate', 'sketching + illustration'],
-  ['Blender', '3D renders'], ['Excel', 'financial projections'], ['CapCut', 'reels + recap videos'], ['Claude', 'research + building'],
+  { name: 'Figma', use: 'UI, wireframes, prototypes', bg: '#1e1e1e', glyph: 'figma' },
+  { name: 'Framer', use: 'interactive sites', bg: '#0055ff', glyph: 'framer' },
+  { name: 'Canva', use: 'social + decks', bg: 'linear-gradient(135deg,#00c4cc,#7d2ae8)', mono: 'Ca' },
+  { name: 'Illustrator', use: 'posters, prints, vector', bg: '#330000', fg: '#ff9a00', mono: 'Ai' },
+  { name: 'Photoshop', use: 'photo + mockups', bg: '#001e36', fg: '#31a8ff', mono: 'Ps' },
+  { name: 'Procreate', use: 'sketching + illustration', bg: 'linear-gradient(135deg,#1c1c1e,#3a3a3c)', mono: 'Pc' },
+  { name: 'Blender', use: '3D renders', bg: '#e87d0d', glyph: 'blender' },
+  { name: 'Excel', use: 'financial projections', bg: '#217346', mono: 'X' },
+  { name: 'CapCut', use: 'reels + recap videos', bg: '#000000', mono: 'Cc' },
+  { name: 'Claude', use: 'research + building', bg: '#d97757', glyph: 'claude' },
 ];
 const now = [
   ['Skandalaris Center', 'Digital Content + Website Lead Intern'],
@@ -64,7 +73,17 @@ const hobbies = [
     <p class="eyebrow">Toolbox</p>
     <h2 id="tool-h">What I build with.</h2>
     <ul class="tools">
-      {tools.map(([t, u]) => <li><b>{t}</b><span>{u}</span></li>)}
+      {tools.map((t) => (
+        <li>
+          <span class="app" style={`background:${t.bg};color:${t.fg ?? '#fff'}`} aria-hidden="true">
+            {t.glyph
+              ? <svg viewBox="0 0 24 24" width="30" height="30"><path d={(icons as Record<string, string>)[t.glyph]} fill="currentColor" /></svg>
+              : <span class="mono">{t.mono}</span>}
+          </span>
+          <b>{t.name}</b>
+          <span class="use">{t.use}</span>
+        </li>
+      ))}
     </ul>
   </section>
 
@@ -108,14 +127,18 @@ const hobbies = [
   .cards.five { grid-template-columns: repeat(5, 1fr); }
   .cards.three { grid-template-columns: repeat(3, 1fr); }
   .cards.five :global(.f) { font-size: 1.35rem; }
-  .tools { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 900px !important; }
-  .tools li { padding: 14px 20px; border-radius: 16px; background: var(--paper); text-align: left; }
-  .tools b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.1; }
-  .tools span { font-size: 0.88rem; color: var(--ink-3); }
+  .tools { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 34px 18px; max-width: 900px !important; }
+  .tools li { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .app { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 18px; box-shadow: 0 10px 24px rgba(26, 26, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.08); margin-bottom: 12px; transition: transform 0.3s var(--ease); }
+  .tools li:hover .app { transform: translateY(-4px) rotate(-3deg); }
+  .mono { font: 700 1.55rem/1 var(--sans); letter-spacing: -0.02em; }
+  .tools b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
+  .use { font-size: 0.85rem; color: var(--ink-3); margin-top: 2px; }
   .site-note { margin-top: 56px; color: var(--ink-2); }
   .cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
   @media (max-width: 1080px) { .cards.five { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 760px) {
+    .tools { grid-template-columns: repeat(3, 1fr); }
     .now { grid-template-columns: 1fr; }
     .cards.five, .cards.three { grid-template-columns: repeat(2, 1fr); }
     .band-sec { padding: 80px 20px; }
