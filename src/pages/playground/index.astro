@@ -3,13 +3,13 @@ import Base from '../../layouts/Base.astro';
 import { playground } from '../../data/projects';
 
 const img: Record<string, string> = {
-  textiles: '/images/textiles/playground.webp',
-  'design-social': '/images/design/playground.webp',
+  textiles: '/images/textiles/creamsicle-bodice.webp',
+  'design-social': '/images/design/hero.webp',
   jdel: '/images/jdel/bottle.webp',
 };
 const alt: Record<string, string> = {
-  textiles: 'A wrap top, a shibori-dyed fabric, and an embroidered panel',
-  'design-social': 'Two event posters side by side',
+  textiles: 'Creamsicle print bodice on a dress form and a model',
+  'design-social': 'Four event posters side by side',
   jdel: 'JDel amber perfume bottle render',
 };
 ---
@@ -20,47 +20,31 @@ const alt: Record<string, string> = {
     <p class="lede">The creative side: <strong>prints</strong>, <strong>posters</strong>, <strong>reels</strong>, and a <strong>fragrance brand</strong> I dream about.</p>
   </header>
 
-  <section class="wrap rows" aria-label="Playground work">
-    {playground.map((p, i) => (
-      <a class:list={['row', { flip: i % 2 === 1 }]} href={p.href} data-face={p.face} style={`--ct:var(--${p.color}-text);--t:var(--${p.color}-tint)`}>
-        <span class="img"><img src={img[p.slug]} alt={alt[p.slug]} loading="lazy" /></span>
-        <span class="copy">
-          <span class="tags">{p.tags.join(' · ')}</span>
-          <span class="title">{p.title}</span>
-          <span class="sum" set:html={p.summary}></span>
-          <span class="facts">
-            {p.stats.filter(([, v]) => /\d/.test(v)).slice(0, 2).map(([k, v]) => <span><b>{v}</b><small>{k}</small></span>)}
-          </span>
-          <span class="cta">Take a look <span aria-hidden="true">→</span></span>
-        </span>
-      </a>
-    ))}
-  </section>
+  {playground.map((p, i) => (
+    <a class:list={['feature', { tinted: i % 2 === 0 }]} href={p.href} data-face={p.face} style={`--ct:var(--${p.color}-text);--t:var(--${p.color}-tint)`}>
+      <span class="tags">{p.tags.join(' · ')}</span>
+      <span class="title">{p.title}</span>
+      <span class="sum" set:html={p.summary}></span>
+      <span class="cta">Take a look <span aria-hidden="true">→</span></span>
+      <span class:list={['img', `i-${p.slug}`]}><img src={img[p.slug]} alt={alt[p.slug]} loading="lazy" /></span>
+    </a>
+  ))}
 </Base>
 
 <style>
-  .head { padding: 150px 20px 20px; text-align: center; }
+  .head { padding: 150px 20px 90px; text-align: center; }
   .head h1 { font-size: clamp(3.2rem, 8vw, 6rem); margin-bottom: 0.2em; }
   .head .lede { max-width: 620px; margin: 0 auto; }
-  .rows { display: grid; gap: 110px; padding-top: 90px; }
-  .row { display: grid; grid-template-columns: 1.25fr 1fr; gap: 64px; align-items: center; text-decoration: none; color: var(--ink); }
-  .row.flip { grid-template-columns: 1fr 1.25fr; }
-  .row.flip .img { order: 2; }
-  .img { display: block; aspect-ratio: 4 / 3; border-radius: 28px; overflow: hidden; background: var(--t); box-shadow: 0 24px 60px rgba(26, 26, 26, 0.14); }
-  .img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
-  .row:hover .img img { transform: scale(1.04); }
-  .copy { display: block; }
-  .tags { display: block; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ct); }
-  .title { display: block; font-family: var(--serif); font-size: clamp(2.6rem, 4.5vw, 3.6rem); line-height: 1.02; letter-spacing: -0.01em; margin: 10px 0 14px; }
-  .sum { display: block; font-size: 1.15rem; color: var(--ink-2); max-width: 440px; }
-  .facts { display: flex; gap: 40px; margin: 28px 0; }
-  .facts b { display: block; font-family: var(--serif); font-weight: 400; font-size: 2.4rem; line-height: 1; color: var(--ct); }
-  .facts small { display: block; margin-top: 6px; font-size: 0.85rem; color: var(--ink-3); }
-  .cta { font-weight: 700; color: var(--ct); }
-  .row:hover .cta { text-decoration: underline; text-underline-offset: 5px; }
-  @media (max-width: 860px) {
-    .row, .row.flip { grid-template-columns: 1fr; gap: 28px; }
-    .row.flip .img { order: 0; }
-    .rows { gap: 80px; }
-  }
+  .feature { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 110px 20px; text-decoration: none; color: var(--ink); }
+  .feature.tinted { background: var(--t); }
+  .tags { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ct); }
+  .title { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.2rem); line-height: 1; margin: 12px 0 16px; }
+  .sum { font-size: 1.2rem; color: var(--ink-2); max-width: 560px; }
+  .cta { margin-top: 22px; padding: 12px 24px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 700; font-size: 0.98rem; transition: transform 0.3s var(--ease); }
+  .feature:hover .cta { transform: translateY(-2px); }
+  .img { display: block; width: min(100%, 1040px); margin-top: 60px; border-radius: 28px; overflow: hidden; box-shadow: 0 30px 80px rgba(26, 26, 26, 0.16); }
+  .img img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.9s var(--ease); }
+  .i-design-social img { aspect-ratio: auto; }
+  .feature:hover .img img { transform: scale(1.03); }
+  @media (max-width: 760px) { .feature { padding: 80px 20px; } .img { margin-top: 40px; } }
 </style>
