@@ -24,9 +24,9 @@ const hobbies = [
   { front: 'Watching baseball', back: '', color: 'write', img: '/images/about/dodgers.webp' },
   { front: 'Video production', back: '', color: 'tex', img: '/images/about/video.webp' },
   { front: 'Jazz', back: '', color: 'lyft', img: '/images/about/jazz.webp' },
-  { front: 'Agriculture operations', back: '', color: 'jdel', img: '/images/about/agriculture.webp' },
+  { front: 'Agriculture operations', back: '', color: 'jdel', img: '/images/about/agriculture.webp', pos: 'center 22%' },
   { front: 'Board games', back: 'Hence the dice.', color: 'stl' },
-  { front: 'Vibe coding', back: '', color: 'skate', img: '/images/about/vibe-coding.webp' },
+  { front: 'Vibe coding', back: '', color: 'skate', img: '/images/about/vibe-coding.webp', fit: 'contain' },
 ];
 ---
 <Base title="About" active="about" description="About Joselyn Garcia: WashU Marketing + Entrepreneurship student, HCI minor, founder of ReLeaf Candles.">
@@ -73,7 +73,7 @@ const hobbies = [
     <h2 id="away-h">Away from the desk.</h2>
     <p class="hint">Tap a card to flip it.</p>
     <div class="cards three">
-      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} img={h.img} />)}
+      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} img={h.img} fit={h.fit} pos={h.pos} />)}
     </div>
     {site.pinterest && <p><a class="btn ghost" href={site.pinterest} target="_blank" rel="noopener">See my Pinterest boards ↗</a></p>}
     <p class="site-note" id="site">This site is <strong>built like a board game</strong>, because I love them. I designed and built it myself. The dice cursor can be switched off in the footer.</p>

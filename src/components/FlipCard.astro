@@ -1,12 +1,12 @@
 ---
 // A "Chance"-style card: a bold front, flips on hover/focus/tap to reveal the back.
-interface Props { front: string; kicker?: string; back: string; color?: string; img?: string; }
-const { front, kicker = 'Chance', back, color = 'lyft', img } = Astro.props;
+interface Props { front: string; kicker?: string; back: string; color?: string; img?: string; fit?: 'cover' | 'contain'; pos?: string; }
+const { front, kicker = 'Chance', back, color = 'lyft', img, fit = 'cover', pos = 'center' } = Astro.props;
 ---
 <button class="flip" type="button" style={`--c:var(--${color});--t:var(--${color}-tint);--ct:var(--${color}-text)`} aria-label={img ? `${front}: tap to flip` : `${front}: ${back}`} aria-pressed="false" data-flip data-photo={img ? '' : undefined}>
   <span class="flip-inner" aria-hidden="true">
     <span class="flip-face front"><span class="k">{kicker}</span><span class="f">{front}</span><span class="q">?</span></span>
-    {img ? <span class="flip-face back photo" style={`background-image:url(${img})`}></span> : <span class="flip-face back"><span class="k">{front}</span><span class="b">{back}</span></span>}
+    {img ? <span class:list={["flip-face back photo", { contain: fit === "contain" }]} style={`background-image:url(${img});background-position:${pos}`}></span> : <span class="flip-face back"><span class="k">{front}</span><span class="b">{back}</span></span>}
   </span>
 </button>
 
@@ -22,7 +22,8 @@ const { front, kicker = 'Chance', back, color = 'lyft', img } = Astro.props;
   .f { font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.1; overflow-wrap: normal; hyphens: none; }
   .q { position: absolute; right: 18px; bottom: 6px; font-family: var(--serif); font-size: 3.4rem; color: var(--c); opacity: 0.35; }
   .b { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
-  .back.photo { padding: 0; background-size: cover; background-position: center; background-color: var(--white); }
+  .back.photo { padding: 0; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: var(--white); }
+  .back.photo.contain { background-size: contain; }
 </style>
 
 <script>
