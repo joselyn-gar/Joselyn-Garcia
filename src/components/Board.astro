@@ -90,7 +90,7 @@ const tiles = [
 
   .corner, .tile { position: relative; display: flex; text-decoration: none; color: var(--ink); transition: background 0.3s, transform 0.35s var(--ease); }
   .corner { flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 2px; padding: 12px; background: var(--paper-2); }
-  .corner-big { font-family: var(--serif); font-weight: 700; letter-spacing: -0.02em; font-size: 1.8rem; line-height: 1; hyphens: manual; }
+  .corner-big { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; font-size: 2.3rem; line-height: 1; hyphens: manual; }
   .corner-sub { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
   .go .corner-big { font-family: var(--sans); font-weight: 800; letter-spacing: 0.04em; font-size: 2.6rem; color: var(--lyft-text); }
   .corner:hover { background: var(--white); }
@@ -110,7 +110,7 @@ const tiles = [
   .right .tile-body { padding-left: 38px; }
   .left .tile-body { padding-right: 38px; }
   .tile-kind { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
-  .tile-title { font-family: var(--serif); font-weight: 700; letter-spacing: -0.015em; font-size: 1.35rem; line-height: 1.1; }
+  .tile-title { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; font-size: 1.75rem; line-height: 1.05; }
   .tile-tags { font-size: 0.8rem; color: var(--ink-3); }
 
   .roll {
@@ -122,8 +122,8 @@ const tiles = [
 
   @media (max-width: 1080px) {
     .board { grid-template-columns: 130px 1fr 1fr 130px; }
-    .tile-title { font-size: 1.15rem; }
-    .corner-big { font-size: 1.5rem; }
+    .tile-title { font-size: 1.4rem; }
+    .corner-big { font-size: 1.8rem; }
   }
   @media (max-width: 860px) {
     .board-wrap { padding-top: 84px; }
@@ -135,7 +135,7 @@ const tiles = [
     .center { padding: 40px 20px 76px; }
     .tile .band { left: 0 !important; right: 0 !important; top: 0 !important; bottom: auto !important; width: auto !important; height: 12px !important; }
     .tile .tile-body { padding: 26px 16px 16px !important; }
-    .tile-title { font-size: 1.1rem; }
+    .tile-title { font-size: 1.3rem; }
     .corner { padding: 18px 10px; }
     .roll { left: 50%; right: auto; transform: translateX(-50%); }
     .roll:hover { transform: translateX(-50%) translateY(-2px); }

@@ -11,7 +11,7 @@ const { words } = Astro.props;
 <style>
   .rt { white-space: nowrap; }
   @media (max-width: 600px) { .rt { white-space: normal; } }
-  .rt-word { color: var(--lyft-text); }
+  .rt-word { font-style: italic; color: var(--lyft-text); }
   .rt-caret { display: inline-block; width: 2px; height: 0.8em; margin-left: 3px; background: currentColor; vertical-align: -0.05em; animation: blink 1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .rt-caret { display: none; } }

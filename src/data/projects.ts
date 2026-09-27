@@ -40,7 +40,7 @@ export const items: Item[] = [
     summary: 'The <strong>startup I founded</strong>: a candle jar that <strong>twists open into a planter</strong> once the candle burns out.',
     role: 'Founder + CEO',
     tags: ['Product', 'Brand', 'Startup'],
-    cover: '/images/releaf/lineup.webp',
+    cover: '/images/releaf/cover.webp',
     stats: [['Skandalaris Venture Comp.', 'Top 16 of 131'], ['Survey responses', '146'], ['Customers', '26']],
   },
   {
@@ -54,7 +54,7 @@ export const items: Item[] = [
     summary: 'A <strong>UX consulting</strong> redesign for a nonprofit, built to ship on their <strong>existing Wix site</strong>.',
     role: 'Homepage design lead + UX research',
     tags: ['UX research', 'Web design', 'Nonprofit'],
-    cover: '/images/skate/final-hero.webp',
+    cover: '/images/skate/cover.webp',
     stats: [['Survey responses', '38'], ["Couldn't find Donate", '45%'], ['Deliverable', 'Prototype']],
   },
   {
@@ -68,7 +68,7 @@ export const items: Item[] = [
     summary: 'A <strong>social campaign</strong> and <strong>effectiveness study</strong> for St. Louis’s proposed Circularity District.',
     role: 'Campaign strategy, design + research',
     tags: ['Marketing', 'Research', 'Social'],
-    cover: '/images/stl/slide-2.webp',
+    cover: '/images/stl/cover.webp',
     stats: [['Favorability', '4.15 / 5'], ['Tagline landed', '~80%'], ['Respondents', '31']],
   },
   {
