@@ -1,6 +1,7 @@
 ---
 // A small 3D die that trails the mouse and tumbles with movement.
-// A precise ink dot marks the real pointer. Off on touch, reduced motion, or via the footer toggle.
+// A precise ink dot marks the real pointer. Off on touch-only devices or via the footer toggle.
+// With reduced motion it still follows the mouse but never tumbles or spins.
 import Die from './Die.astro';
 ---
 <div class="dc" data-dice-cursor aria-hidden="true">
@@ -30,16 +31,17 @@ import Die from './Die.astro';
   const die = el.querySelector<HTMLElement>('.dc-die')!;
   const dot = el.querySelector<HTMLElement>('.dc-dot')!;
   const cube = el.querySelector<HTMLElement>('.cube')!;
-  const fine = matchMedia('(hover: hover) and (pointer: fine)');
+  // any-*: touchscreen laptops report a coarse primary pointer but still have a mouse/trackpad
+  const fine = matchMedia('(any-hover: hover) and (any-pointer: fine)');
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
   const KEY = 'dice-cursor';
 
-  const enabled = () => fine.matches && !calm.matches && localStorage.getItem(KEY) !== 'off';
+  const enabled = () => fine.matches && localStorage.getItem(KEY) !== 'off';
   const apply = () => {
     root.classList.toggle('dice-on', enabled());
     document.querySelectorAll<HTMLButtonElement>('[data-dice-toggle]').forEach((b) => {
       b.setAttribute('aria-pressed', String(localStorage.getItem(KEY) !== 'off'));
-      b.hidden = !fine.matches || calm.matches;
+      b.hidden = !fine.matches;
     });
   };
   apply();
@@ -72,18 +74,20 @@ import Die from './Die.astro';
   });
 
   addEventListener('pointerdown', (e) => {
-    if (e.pointerType === 'mouse') spinUntil = performance.now() + 450;
+    if (e.pointerType === 'mouse' && !calm.matches) spinUntil = performance.now() + 450;
   });
 
   const tick = () => {
-    x += (mx - x) * 0.2;
-    y += (my - y) * 0.2;
+    const k = calm.matches ? 1 : 0.2;
+    x += (mx - x) * k;
+    y += (my - y) * k;
     die.style.transform = `translate(${x + 14}px, ${y + 14}px)`;
     if (performance.now() < spinUntil) {
       rx += 24; ry += 17;
-    } else if (settled) {
-      const [fx, fy] = FACE[settled];
-      rx += (near(rx, fx) - rx) * 0.18; ry += (near(ry, fy) - ry) * 0.18;
+    } else if (settled || calm.matches) {
+      const [fx, fy] = FACE[settled || 1];
+      const e = calm.matches ? 1 : 0.18;
+      rx += (near(rx, fx) - rx) * e; ry += (near(ry, fy) - ry) * e;
     } else {
       rx += (my - y) * 0.9; ry -= (mx - x) * 0.9;
     }
