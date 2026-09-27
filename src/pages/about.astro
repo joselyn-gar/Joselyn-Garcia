@@ -21,12 +21,12 @@ const strengths = [
   ['Input', 'I dig deep into research, then brief the team in short, usable summaries.'],
 ];
 const hobbies = [
-  { front: 'Watching baseball', back: 'Dodgers rule. That’s the whole card.', color: 'write', img: '/images/about/dodgers.webp' },
-  { front: 'Video production', back: 'Behind the camera, shooting and editing stories.', color: 'tex', img: '/images/about/video.webp' },
-  { front: 'Jazz', back: 'Live jazz nights, the more brass the better.', color: 'lyft', img: '/images/about/jazz.webp' },
-  { front: 'Agriculture operations', back: 'Rows of orchards, and how the business behind them runs.', color: 'jdel', img: '/images/about/agriculture.webp' },
-  { front: 'Board games', back: 'Hence the dice following your cursor.', color: 'stl' },
-  { front: 'Vibe coding', back: 'Building things like this site, one idea at a time.', color: 'skate' },
+  { front: 'Watching baseball', back: '', color: 'write', img: '/images/about/dodgers.webp' },
+  { front: 'Video production', back: '', color: 'tex', img: '/images/about/video.webp' },
+  { front: 'Jazz', back: '', color: 'lyft', img: '/images/about/jazz.webp' },
+  { front: 'Agriculture operations', back: '', color: 'jdel', img: '/images/about/agriculture.webp' },
+  { front: 'Board games', back: 'Hence the dice.', color: 'stl' },
+  { front: 'Vibe coding', back: '', color: 'skate', img: '/images/about/vibe-coding.webp' },
 ];
 ---
 <Base title="About" active="about" description="About Joselyn Garcia: WashU Marketing + Entrepreneurship student, HCI minor, founder of ReLeaf Candles.">
@@ -71,6 +71,7 @@ const hobbies = [
   <section class="band-sec" id="away" aria-labelledby="away-h">
     <p class="eyebrow">Chance cards</p>
     <h2 id="away-h">Away from the desk.</h2>
+    <p class="hint">Tap a card to flip it.</p>
     <div class="cards three">
       {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} img={h.img} />)}
     </div>

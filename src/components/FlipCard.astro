@@ -3,17 +3,18 @@
 interface Props { front: string; kicker?: string; back: string; color?: string; img?: string; }
 const { front, kicker = 'Chance', back, color = 'lyft', img } = Astro.props;
 ---
-<button class="flip" type="button" style={`--c:var(--${color});--t:var(--${color}-tint);--ct:var(--${color}-text)`} aria-label={`${front}: ${back}`} data-flip>
+<button class="flip" type="button" style={`--c:var(--${color});--t:var(--${color}-tint);--ct:var(--${color}-text)`} aria-label={img ? `${front}: tap to flip` : `${front}: ${back}`} aria-pressed="false" data-flip data-photo={img ? '' : undefined}>
   <span class="flip-inner" aria-hidden="true">
     <span class="flip-face front"><span class="k">{kicker}</span><span class="f">{front}</span><span class="q">?</span></span>
-    <span class:list={["flip-face back", { photo: img }]} style={img ? `background-image:url(${img})` : undefined}><span class="k">{front}</span><span class="b">{back}</span></span>
+    {img ? <span class="flip-face back photo" style={`background-image:url(${img})`}></span> : <span class="flip-face back"><span class="k">{front}</span><span class="b">{back}</span></span>}
   </span>
 </button>
 
 <style>
   .flip { position: relative; display: block; width: 100%; aspect-ratio: 5 / 3.4; border: 0; padding: 0; background: none; perspective: 900px; cursor: pointer; text-align: left; }
   .flip-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.7s var(--ease); }
-  .flip:hover .flip-inner, .flip:focus-visible .flip-inner, .flip.on .flip-inner { transform: rotateY(180deg); }
+  .flip:not([data-photo]):hover .flip-inner, .flip:not([data-photo]):focus-visible .flip-inner, .flip.on .flip-inner { transform: rotateY(180deg); }
+  .flip[data-photo]:hover .flip-inner { transform: rotateY(-8deg); }
   .flip-face { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 20px 22px; border-radius: 18px; border: 1.5px solid var(--ink); backface-visibility: hidden; }
   .front { background: var(--t); }
   .back { background: var(--white); transform: rotateY(180deg); }
@@ -21,12 +22,9 @@ const { front, kicker = 'Chance', back, color = 'lyft', img } = Astro.props;
   .f { font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.1; overflow-wrap: normal; hyphens: none; }
   .q { position: absolute; right: 18px; bottom: 6px; font-family: var(--serif); font-size: 3.4rem; color: var(--c); opacity: 0.35; }
   .b { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
-  .back.photo { justify-content: flex-end; background-size: cover; background-position: center; color: #fff; }
-  .back.photo::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.05) 65%); }
-  .back.photo > * { position: relative; }
-  .back.photo .k, .back.photo .b { color: #fff; }
+  .back.photo { padding: 0; background-size: cover; background-position: center; background-color: var(--white); }
 </style>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-flip]').forEach((b) => b.addEventListener('click', () => b.classList.toggle('on')));
+  document.querySelectorAll<HTMLElement>('[data-flip]').forEach((b) => b.addEventListener('click', () => b.setAttribute('aria-pressed', String(b.classList.toggle('on')))));
 </script>
