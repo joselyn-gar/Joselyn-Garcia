@@ -183,3 +183,10 @@ section { scroll-margin-top: 96px; }
 .split.flip { grid-template-columns: 1fr 1.1fr; align-items: start; }
 .split p, .split li { color: var(--ink-2); }
 @media (max-width: 760px) { .split, .split.flip { grid-template-columns: 1fr; } }
+
+/* ---------- Home: kraft tabletop ---------- */
+body.kraft { background-color: #e8dcc6; background-image: radial-gradient(#dccdb2 1px, transparent 1.2px); }
+body.kraft .board .center { background: #f8f3e8; }
+body.kraft .board .tile { background: #fffdf8; }
+body.kraft .board .corner { background: #efe5d2; }
+body.kraft .footer { background: rgba(232, 220, 198, 0.9); }

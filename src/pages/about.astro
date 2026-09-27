@@ -72,19 +72,21 @@ const hobbies = [
   <section class="band-sec tinted" id="toolbox" aria-labelledby="tool-h">
     <p class="eyebrow">Toolbox</p>
     <h2 id="tool-h">What I build with.</h2>
-    <ul class="tools">
-      {tools.map((t) => (
-        <li>
-          <span class="app" style={`background:${t.bg};color:${t.fg ?? '#fff'}`} aria-hidden="true">
-            {t.glyph
-              ? <svg viewBox="0 0 24 24" width="30" height="30"><path d={(icons as Record<string, string>)[t.glyph]} fill="currentColor" /></svg>
-              : <span class="mono">{t.mono}</span>}
-          </span>
-          <b>{t.name}</b>
-          <span class="use">{t.use}</span>
-        </li>
-      ))}
-    </ul>
+    <div class="tool-marquee" aria-label="Tools I use">
+      <ul class="tool-track">
+        {[...tools, ...tools].map((t, i) => (
+          <li aria-hidden={i >= tools.length ? 'true' : undefined}>
+            <span class="app" style={`background:${t.bg};color:${t.fg ?? '#fff'}`} aria-hidden="true">
+              {t.glyph
+                ? <svg viewBox="0 0 24 24" width="34" height="34"><path d={(icons as Record<string, string>)[t.glyph]} fill="currentColor" /></svg>
+                : <span class="mono">{t.mono}</span>}
+            </span>
+            <b>{t.name}</b>
+            <span class="use">{t.use}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 
   <section class="band-sec" id="away" aria-labelledby="away-h">
@@ -127,18 +129,21 @@ const hobbies = [
   .cards.five { grid-template-columns: repeat(5, 1fr); }
   .cards.three { grid-template-columns: repeat(3, 1fr); }
   .cards.five :global(.f) { font-size: 1.35rem; }
-  .tools { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 34px 18px; max-width: 900px !important; }
-  .tools li { display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .app { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 18px; box-shadow: 0 10px 24px rgba(26, 26, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.08); margin-bottom: 12px; transition: transform 0.3s var(--ease); }
-  .tools li:hover .app { transform: translateY(-4px) rotate(-3deg); }
+  .tool-marquee { max-width: none !important; margin: 32px -20px 0 !important; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .tool-track { list-style: none; margin: 0; padding: 12px 0 20px; display: flex; gap: 20px; width: max-content; animation: tools-scroll 38s linear infinite; }
+  .tool-marquee:hover .tool-track { animation-play-state: paused; }
+  @keyframes tools-scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .tool-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .tool-track li[aria-hidden] { display: none; } }
+  .tool-track li { flex: none; width: 180px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 26px 16px 22px; border-radius: 22px; background: var(--paper); }
+  .app { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 18px; box-shadow: 0 10px 24px rgba(26, 26, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.08); margin-bottom: 12px; transition: transform 0.3s var(--ease); }
+  .tool-track li:hover .app { transform: translateY(-4px) rotate(-3deg); }
   .mono { font: 700 1.55rem/1 var(--sans); letter-spacing: -0.02em; }
-  .tools b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
+  .tool-track b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
   .use { font-size: 0.85rem; color: var(--ink-3); margin-top: 2px; }
   .site-note { margin-top: 56px; color: var(--ink-2); }
   .cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
   @media (max-width: 1080px) { .cards.five { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 760px) {
-    .tools { grid-template-columns: repeat(3, 1fr); }
     .now { grid-template-columns: 1fr; }
     .cards.five, .cards.three { grid-template-columns: repeat(2, 1fr); }
     .band-sec { padding: 80px 20px; }
