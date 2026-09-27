@@ -82,7 +82,7 @@ export const items: Item[] = [
     summary: 'Two <strong>surface-design prints</strong>, from mood board to colorways to a <strong>bodice mockup</strong>.',
     role: 'Surface design',
     tags: ['Print', 'Fashion', 'Illustration'],
-    cover: '/images/textiles/bead-singer.webp',
+    cover: '/images/textiles/creamsicle-bodice.webp',
     stats: [['Prints', '2'], ['Colorways', '5+'], ['Final use', 'Bodice']],
   },
   {
@@ -96,7 +96,7 @@ export const items: Item[] = [
     summary: '<strong>Posters</strong>, <strong>reels</strong>, and recap videos for <strong>WUTV</strong> and the <strong>Skandalaris Center</strong>.',
     role: 'Content creator + designer',
     tags: ['Social', 'Posters', 'Video'],
-    cover: '/images/design/kiki-bouba.webp',
+    cover: '/images/design/hero.webp',
     stats: [['Avg. post views', '1,000+'], ['WUTV members', '3 → 20'], ['Creating content', '4+ yrs']],
   },
   {

@@ -19,6 +19,10 @@
   1100,
   1423
  ],
+ "/images/design/playground.webp": [
+  1600,
+  1200
+ ],
  "/images/design/tinydesk-black.webp": [
   1100,
   1447
@@ -79,6 +83,10 @@
   398,
   207
  ],
+ "/images/releaf/cover.webp": [
+  1600,
+  900
+ ],
  "/images/releaf/first-print.webp": [
   1080,
   1080
@@ -115,6 +123,10 @@
   1600,
   900
  ],
+ "/images/skate/cover.webp": [
+  1600,
+  900
+ ],
  "/images/skate/donate-sketches.webp": [
   1600,
   900
@@ -142,6 +154,10 @@
  "/images/skate/original-nav.webp": [
   1600,
   165
+ ],
+ "/images/stl/cover.webp": [
+  1600,
+  900
  ],
  "/images/stl/hero.webp": [
   1600,
@@ -230,6 +246,10 @@
  "/images/textiles/gallery/wrap-top.webp": [
   768,
   1365
+ ],
+ "/images/textiles/playground.webp": [
+  1600,
+  1200
  ],
  "/media/asb-home-game.jpg": [
   540,
