@@ -2,7 +2,6 @@
 import ProductLayout from '../../layouts/ProductLayout.astro';
 import Video from '../../components/Video.astro';
 
-const palette = ['#362D23', '#68280D', '#322127', '#6C4947', '#97644C', '#9A724F'];
 ---
 <ProductLayout
   slug="jdel"
@@ -34,14 +33,11 @@ const palette = ['#362D23', '#68280D', '#322127', '#6C4947', '#97644C', '#9A724F
     <span class="num">02 · The process</span>
     <h2>Design first, then prompt.</h2>
     <p>I picked the <strong>palette</strong> and <strong>typography</strong> by hand, wrote them into my prompts, and varied them until the renders felt <strong>luxury</strong>.</p>
-    <ul class="band swatches" aria-label="JDel palette">
-      {palette.map((c) => <li style={`--sw:${c}`}><span>{c}</span></li>)}
-    </ul>
     <div class="band pal-vid"><Video name="jdel-palette" label="JDel brand palette card with six warm brown swatches, followed by a bottle sketch" caption="Palette card and first sketch" /></div>
     <div class="learn"><b>What I learned</b><p>AI is a tool. The taste still has to come from me.</p></div>
   </section>
 
-  <section class="chapter tinted">
+  <section class="chapter">
     <span class="num">Next chapter</span>
     <h2>ReLeaf first. JDel someday.</h2>
     <p>For now, <a href="/projects/releaf">ReLeaf Candles</a> is the first chapter. One day, <strong>JDel will be real too</strong>.</p>
@@ -49,9 +45,5 @@ const palette = ['#362D23', '#68280D', '#322127', '#6C4947', '#97644C', '#9A724F
 </ProductLayout>
 
 <style>
-  .swatches { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
-  .swatches li { aspect-ratio: 1; border-radius: 18px; background: var(--sw); display: flex; align-items: flex-end; padding: 10px; }
-  .swatches span { font-size: 0.75rem; background: rgba(255, 255, 255, 0.88); padding: 2px 6px; border-radius: 6px; }
-  .chapter > .band.pal-vid { max-width: 380px; }
-  @media (max-width: 640px) { .swatches { grid-template-columns: repeat(3, 1fr); } }
+  .chapter > .band.pal-vid { max-width: 440px; }
 </style>
