@@ -23,6 +23,18 @@
   900,
   1600
  ],
+ "/images/design/asb-duo-day.webp": [
+  900,
+  900
+ ],
+ "/images/design/asb-ice-cream-social.webp": [
+  900,
+  1125
+ ],
+ "/images/design/asb-love-like-a-viking.webp": [
+  900,
+  900
+ ],
  "/images/design/hero-reels.webp": [
   1600,
   900
@@ -223,13 +235,13 @@
   1200,
   1727
  ],
+ "/images/textiles/cover.webp": [
+  1012,
+  1350
+ ],
  "/images/textiles/creamsicle-bodice-flat.webp": [
   1000,
   1751
- ],
- "/images/textiles/creamsicle-bodice.webp": [
-  1600,
-  900
  ],
  "/images/textiles/creamsicle-colorways.webp": [
   1600,
@@ -274,10 +286,6 @@
  "/images/textiles/gallery/wrap-top.webp": [
   768,
   1365
- ],
- "/images/textiles/playground.webp": [
-  1600,
-  1200
  ],
  "/media/asb-home-game.jpg": [
   540,

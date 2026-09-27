@@ -29,7 +29,7 @@ const images = [
   // Textiles
   ['10.webp', 'textiles/bead-mockups.webp'], ['11.png', 'textiles/bead-palettes.webp'], ['12.webp', 'textiles/bead-singer.webp', 1200],
   ['13.webp', 'textiles/creamsicle-moodboard.webp'], ['14.png', 'textiles/creamsicle-colorways.webp'],
-  ['15.png', 'textiles/creamsicle-target.webp'], ['16.webp', 'textiles/creamsicle-bodice.webp'],
+  ['15.png', 'textiles/creamsicle-target.webp'], ['83.webp', 'textiles/cover.webp', 1200],
   ['17.jpg', 'textiles/creamsicle-bodice-flat.webp', 1000],
   // Textile gallery
   ['63.jpg', 'textiles/gallery/shibori-kaleidoscope.webp', 1200], ['64.jpg', 'textiles/gallery/shibori-stripes.webp', 1200],
@@ -43,8 +43,10 @@ const images = [
   ['18.webp', 'design/mod-portrait.webp', 1100], ['19.webp', 'design/tinydesk-black.webp', 1100],
   ['20.webp', 'design/tinydesk-blue.webp', 1100], ['21.webp', 'design/kiki-bouba.webp', 1100],
   ['22.webp', 'design/perform.webp', 1100], ['79.webp', 'design/wutv-banner.webp'],
-  // JDel
-  
+  ['87.webp', 'design/asb-love-like-a-viking.webp', 900], ['88.webp', 'design/asb-duo-day.webp', 900],
+  ['89.png', 'design/asb-ice-cream-social.webp', 900],
+  // Covers
+  ['85.png', 'releaf/cover.webp'], ['86.jpg', 'stl/cover.webp'],
 ];
 
 // about/vibe-coding.webp: 77.webp trimmed of white margins and padded (done once by hand).

@@ -82,7 +82,7 @@ export const items: Item[] = [
     summary: 'Two <strong>surface-design prints</strong>, from mood board to colorways to a <strong>bodice mockup</strong>.',
     role: 'Surface design',
     tags: ['Print', 'Fashion', 'Illustration'],
-    cover: '/images/textiles/creamsicle-bodice.webp',
+    cover: '/images/textiles/cover.webp',
     stats: [['Prints', '2'], ['Colorways', '5+'], ['Final use', 'Bodice']],
   },
   {
