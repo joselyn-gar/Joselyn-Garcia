@@ -1,12 +1,25 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
 import Video from '../../components/Video.astro';
+import InstagramEmbed from '../../components/InstagramEmbed.astro';
 
 const posters = [
   ['/images/design/tinydesk-black.webp', 'Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black', '<strong>WUTV</strong> · Tiny Desk, <strong>direction A</strong>'],
   ['/images/design/tinydesk-blue.webp', 'Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code', '<strong>WUTV</strong> · Same brief, <strong>direction B</strong>'],
   ['/images/design/kiki-bouba.webp', 'Poster: Find the Kiki to your Bouba. Apply for the SVC, with chrome star and blob shapes', '<strong>Skandalaris</strong> · The <strong>bouba/kiki effect</strong> pitches finding a co-founder'],
   ['/images/design/perform.webp', 'Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts', '<strong>WUTV</strong> · <strong>Performer call</strong>'],
+];
+
+const asb = [
+  ['/images/design/asb-love-like-a-viking.webp', 'Spirit week graphic: Love Like a Viking, 2/11 to 2/14, a red heart in a pink bow stamp frame', '<strong>Spirit week</strong> · Love Like a Viking'],
+  ['/images/design/asb-duo-day.webp', 'Duo Day Wednesday graphic with Grease and La La Land couples on a torn paper heart collage', '<strong>Spirit week</strong> · Duo Day'],
+  ['/images/design/asb-ice-cream-social.webp', 'Think Gold Ice Cream Social flyer, February 21, with a retro sundae illustration and dripping frosting', '<strong>Event flyer</strong> · Ice Cream Social'],
+];
+
+const wutvPosts = [
+  { url: 'https://www.instagram.com/reel/Dde_t3GvLN8/', label: 'WUTV reel' },
+  { url: 'https://www.instagram.com/reel/Dc4jpf8OLX8/', label: 'WUTV reel' },
+  { url: 'https://www.instagram.com/p/DdbsiaMjrf7/', label: 'WUTV post' },
 ];
 ---
 <ProductLayout
@@ -40,7 +53,14 @@ const posters = [
   </section>
 
   <section class="chapter">
-    <span class="num">03 · Reels</span>
+    <span class="num">03 · On Instagram</span>
+    <h2>Live on the WUTV feed.</h2>
+    <p>I run the <strong>WUTV</strong> account. Here’s what’s posted right now.</p>
+    <div class="band"><InstagramEmbed posts={wutvPosts} handle="wutv_22" /></div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">04 · Reels</span>
     <h2>Pacing is everything.</h2>
     <p>Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
     <div class="band reels">
@@ -50,10 +70,15 @@ const posters = [
     </div>
   </section>
 
-  <section class="chapter tinted">
+  <section class="chapter">
     <span class="num">Where it started</span>
     <h2>High school ASB.</h2>
-    <p>Recaps for <strong>West High ASB</strong>, where I first learned to tell a story in 15 seconds.</p>
+    <p><strong>Spirit week graphics</strong>, flyers, and recaps for <strong>West High ASB</strong>, where I first learned to tell a story in 15 seconds.</p>
+    <div class="band asb">
+      {asb.map(([src, alt, cap]) => (
+        <figure><span><img src={src} alt={alt} loading="lazy" /></span><figcaption set:html={cap}></figcaption></figure>
+      ))}
+    </div>
     <div class="band reels two">
       <Video name="asb-home-game" frame="phone" label="First home game recap reel" caption="Home game recap" />
       <Video name="asb-staff-breakfast" frame="phone" label="Staff appreciation breakfast recap reel" caption="Staff breakfast recap" />
@@ -66,6 +91,9 @@ const posters = [
   .posters figure { margin: 0; }
   img.narrow { max-width: 460px; margin: 0 auto; }
   .reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: left; }
+  .asb { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; text-align: left; }
+  .asb figure { margin: 0; }
+  .asb span { display: flex; align-items: center; aspect-ratio: 4 / 5; }
   .reels.two { grid-template-columns: repeat(2, 1fr); max-width: 640px; }
-  @media (max-width: 640px) { .posters { grid-template-columns: 1fr; } .reels { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+  @media (max-width: 640px) { .asb { grid-template-columns: 1fr; } .posters { grid-template-columns: 1fr; } .reels { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
 </style>
