@@ -1,6 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Video from '../../components/Video.astro';
 import { playground } from '../../data/projects';
+
+const pages = playground.filter((p) => p.slug !== 'jdel');
+const jdel = playground.find((p) => p.slug === 'jdel')!;
 
 const img: Record<string, string> = {
   textiles: '/images/textiles/playground.webp',
@@ -21,7 +25,7 @@ const alt: Record<string, string> = {
   </header>
 
   <section class="wrap rows" aria-label="Playground work">
-    {playground.map((p, i) => (
+    {pages.map((p, i) => (
       <a class:list={['row', { flip: i % 2 === 1 }]} href={p.href} data-face={p.face} style={`--ct:var(--${p.color}-text);--t:var(--${p.color}-tint)`}>
         <span class="img"><img src={img[p.slug]} alt={alt[p.slug]} loading="lazy" /></span>
         <span class="copy">
@@ -35,6 +39,17 @@ const alt: Record<string, string> = {
         </span>
       </a>
     ))}
+
+    <article class="row jdel" id="jdel" data-face={jdel.face} style={`--ct:var(--jdel-text);--t:var(--jdel-tint)`}>
+      <span class="img"><img src="/images/jdel/bottle.webp" alt="JDel amber perfume bottle with a pearl collar and leather tag" loading="lazy" /></span>
+      <span class="copy">
+        <span class="tags">{jdel.tags.join(' · ')}</span>
+        <span class="title">JDel Fragrance</span>
+        <span class="sum">The perfume brand I’ve dreamed of since I was a kid. My mom’s bottle collection made me feel like a <em>kid in a candy store</em>, and <strong>JDel</strong> blends her name with mine.</span>
+        <span class="sum small">I picked the <strong>palette</strong> and <strong>type</strong> by hand, then steered <strong>AI image generation</strong> with them.</span>
+        <span class="vid"><Video name="jdel-palette" label="JDel brand palette card with six warm brown swatches, followed by a bottle sketch" caption="Palette card and first sketch" /></span>
+      </span>
+    </article>
   </section>
 </Base>
 
@@ -48,7 +63,7 @@ const alt: Record<string, string> = {
   .row.flip .img { order: 2; }
   .img { display: block; aspect-ratio: 4 / 3; border-radius: 28px; overflow: hidden; background: var(--t); box-shadow: 0 24px 60px rgba(26, 26, 26, 0.14); }
   .img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
-  .row:hover .img img { transform: scale(1.04); }
+  a.row:hover .img img { transform: scale(1.04); }
   .copy { display: block; }
   .tags { display: block; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ct); }
   .title { display: block; font-family: var(--serif); font-size: clamp(2.6rem, 4.5vw, 3.6rem); line-height: 1.02; letter-spacing: -0.01em; margin: 10px 0 14px; }
@@ -57,6 +72,11 @@ const alt: Record<string, string> = {
   .facts b { display: block; font-family: var(--serif); font-weight: 400; font-size: 2.4rem; line-height: 1; color: var(--ct); }
   .facts small { display: block; margin-top: 6px; font-size: 0.85rem; color: var(--ink-3); }
   .cta { font-weight: 700; color: var(--ct); }
+  .jdel { cursor: default; }
+  .jdel .img { aspect-ratio: auto; }
+  .jdel .img img { aspect-ratio: 16 / 10; }
+  .sum.small { margin-top: 12px; font-size: 1.02rem; }
+  .vid { display: block; max-width: 260px; margin-top: 22px; }
   .row:hover .cta { text-decoration: underline; text-underline-offset: 5px; }
   @media (max-width: 860px) {
     .row, .row.flip { grid-template-columns: 1fr; gap: 28px; }

@@ -101,7 +101,7 @@ export const items: Item[] = [
   },
   {
     slug: 'jdel',
-    href: '/playground/jdel',
+    href: '/playground#jdel',
     title: 'JDel Fragrance',
     short: 'JDel',
     kind: 'Playground',

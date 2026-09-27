@@ -57,7 +57,7 @@ const answers: Entry[] = [
   },
   {
     title: 'Beauty + fashion',
-    href: '/playground/jdel',
+    href: '/playground#jdel',
     group: 'Quick answers',
     keywords: 'beauty fashion fragrance perfume cosmetics textiles print style',
     answer: 'JDel is my fragrance brand concept. Textiles covers my print design and a bodice mockup.',
