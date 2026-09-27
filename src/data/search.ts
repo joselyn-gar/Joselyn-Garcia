@@ -32,7 +32,7 @@ const answers: Entry[] = [
     href: `mailto:${site.email}`,
     group: 'Quick answers',
     keywords: 'contact email reach hire linkedin touch',
-    answer: `Email me at ${site.email}.`,
+    answer: `Email me at ${site.email}, or find me on LinkedIn.`,
   },
   {
     title: 'What tools do you use?',
