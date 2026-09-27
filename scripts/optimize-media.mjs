@@ -42,7 +42,7 @@ const images = [
   // Design + social posters
   ['18.webp', 'design/mod-portrait.webp', 1100], ['19.webp', 'design/tinydesk-black.webp', 1100],
   ['20.webp', 'design/tinydesk-blue.webp', 1100], ['21.webp', 'design/kiki-bouba.webp', 1100],
-  ['22.webp', 'design/perform.webp', 1100],
+  ['22.webp', 'design/perform.webp', 1100], ['79.webp', 'design/wutv-banner.webp'],
   // JDel
   
 ];

@@ -26,7 +26,6 @@ const posters = [
   <section class="chapter">
     <span class="num">01 · Posters</span>
     <h2>Made to get sign-ups.</h2>
-    <p>Two directions for one brief is how I work: <strong>explore, then pick</strong>.</p>
     <div class="band posters">
       {posters.map(([src, alt, cap]) => (
         <figure><img src={src} alt={alt} loading="lazy" /><figcaption set:html={cap}></figcaption></figure>
@@ -35,7 +34,13 @@ const posters = [
   </section>
 
   <section class="chapter tinted">
-    <span class="num">02 · Reels</span>
+    <span class="num">02 · Banners</span>
+    <h2>WUTV, on every screen.</h2>
+    <figure class="band"><img src="/images/design/wutv-banner.webp" alt="WUTV banner: a retro TV with the WUTV logo, We do things, and general body meetings Wednesdays 5:30 PM and Fridays 5:00 PM" loading="lazy" /></figure>
+  </section>
+
+  <section class="chapter">
+    <span class="num">03 · Reels</span>
     <h2>Pacing is everything.</h2>
     <p>Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
     <div class="band reels">
@@ -45,7 +50,7 @@ const posters = [
     </div>
   </section>
 
-  <section class="chapter">
+  <section class="chapter tinted">
     <span class="num">Where it started</span>
     <h2>High school ASB.</h2>
     <p>Recaps for <strong>West High ASB</strong>, where I first learned to tell a story in 15 seconds.</p>

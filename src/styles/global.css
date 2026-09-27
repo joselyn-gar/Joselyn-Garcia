@@ -21,7 +21,7 @@
   --stl-tint: #d7ede2; --stl: #2e7d5b; --stl-text: #276b4e;
   --jdel-tint: #f1e1cf; --jdel: #8a5a2b; --jdel-text: #7a4f25;
   --tex-tint: #fbe3d2; --tex: #dd6031; --tex-text: #a8411a;
-  --design-tint: #fff1c7; --design: #a67c00; --design-text: #7d5f00;
+  --design-tint: #fbe4ec; --design: #c2366b; --design-text: #a02a58;
   --write-tint: #dce7f7; --write: #2f5aa8; --write-text: #2f5aa8;
 
   --accent: var(--ink);
