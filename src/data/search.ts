@@ -81,7 +81,7 @@ const answers: Entry[] = [
     href: '/about#site',
     group: 'Quick answers',
     keywords: 'build site code how made developed',
-    answer: 'I designed and built it myself. The dice cursor is pure CSS 3D.',
+    answer: 'It’s built like a board game, because I love them. The dice cursor is pure CSS 3D.',
   },
 ];
 

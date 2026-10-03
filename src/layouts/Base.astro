@@ -30,7 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#f8f6f1" />
+    <meta name="theme-color" content="#0a090e" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -58,7 +58,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   .lightbox { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 92vh; overflow: visible; }
   .lightbox::backdrop { background: rgba(20, 20, 20, 0.82); }
   .lightbox img { max-width: 94vw; max-height: 88vh; width: auto; border-radius: 14px; }
-  .lightbox-close { position: absolute; top: -44px; right: 0; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+  .lightbox-close { position: absolute; top: -44px; right: 0; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; color: var(--dark); font-size: 1.4rem; line-height: 1; cursor: pointer; }
   img[data-zoom] { cursor: zoom-in; }
 </style>
 

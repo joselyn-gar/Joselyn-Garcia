@@ -1,103 +1,208 @@
 ---
 import Base from '../layouts/Base.astro';
-import Board from '../components/Board.astro';
+import Board3D from '../components/Board3D.astro';
 import RotatingText from '../components/RotatingText.astro';
-import Marquee from '../components/Marquee.astro';
-import { caseStudies } from '../data/projects';
+import { caseStudies, playground } from '../data/projects';
 
 const words = ['curiosity and creativity.', 'innovation and impact.', 'purpose and passion.'];
+const now = [
+  ['Skandalaris Center', 'Digital Content + Website Lead Intern'],
+  ['Center for Experiential Learning', 'UX Consultant, B2B platform practicum'],
+  ['WUTV', 'PR Executive, membership 3 → 20'],
+];
+const strengths = ['Arranger', 'Learner', 'Achiever', 'Individualization', 'Input'];
+const tools = ['Figma', 'Framer', 'Canva', 'Illustrator', 'Photoshop', 'Procreate', 'Blender', 'Excel', 'CapCut', 'Claude'];
+const tabs = [
+  { id: 'now', label: 'Right now' },
+  { id: 'strengths', label: 'Strengths' },
+  { id: 'tools', label: 'Toolbox' },
+];
+const playImg: Record<string, string> = {
+  textiles: '/images/textiles/cover.webp',
+  'design-social': '/images/design/kiki-bouba.webp',
+  jdel: '/images/jdel/bottle.webp',
+};
 ---
-<Base active="home" pageClass="kraft">
-  <Board>
-    <div class="hero">
-      <h1>
-        Hi, I’m Joselyn.<br />
-        <span class="driven">I’m driven by<br /><RotatingText words={words} /></span>
-      </h1>
-      <p class="sub">
-        I study Marketing + Entrepreneurship at WashU, with a minor in Human-Computer Interaction.
-        I’m a beauty, fashion, and tech enthusiast who studies how people think, then designs what they’ll love.
-      </p>
-      <form class="ask" role="search" action="#" aria-label="Ask me anything">
-        <label class="sr-only" for="ask">Ask me anything</label>
-        <input id="ask" type="text" placeholder="Ask me anything…" autocomplete="off" data-search-proxy />
-        <button type="button" data-search-open aria-label="Open search">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </form>
-      <div class="chips">
-        <button class="chip" type="button" data-search-open data-q="UX">Show me UX work</button>
-        <button class="chip" type="button" data-search-open data-q="campaign">Marketing campaigns</button>
-        <button class="chip" type="button" data-search-open data-q="tools">What tools do you use?</button>
-      </div>
-      <p class="howto"><strong>How to play:</strong> pick a property to open a project, or 🎲 roll the dice.</p>
-    </div>
-  </Board>
+<Base active="home" pageClass="night">
+  <div class="glow" aria-hidden="true"></div>
 
-  <section class="wrap block" aria-labelledby="work-h">
-    <p class="eyebrow center">Case studies</p>
-    <h2 id="work-h" class="big">Selected work.</h2>
-    <div class="work">
+  <section class="hero" aria-label="Intro">
+    <h1>Hi, I’m Joselyn.<br /><span class="driven">I’m driven by <RotatingText words={words} /></span></h1>
+    <form class="ask" role="search" action="#" aria-label="Ask me anything">
+      <label class="sr-only" for="ask">Ask me anything</label>
+      <input id="ask" type="text" placeholder="Ask me anything…" autocomplete="off" data-search-proxy />
+      <button type="button" data-search-open aria-label="Open search">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+    <div class="chips">
+      <button class="chip" type="button" data-search-open data-q="UX">Show me UX work</button>
+      <button class="chip" type="button" data-search-open data-q="campaign">Marketing campaigns</button>
+      <button class="chip" type="button" data-search-open data-q="tools">What tools do you use?</button>
+    </div>
+    <Board3D size={460} />
+  </section>
+
+  <section class="sec about" aria-labelledby="about-h">
+    <img class="portrait" src="/images/about/portrait.webp" alt="Joselyn Garcia smiling in a striped polo on campus" loading="lazy" />
+    <div>
+      <p class="kicker">About me</p>
+      <h2 id="about-h">Nice to meet you.</h2>
+      <p class="lede">I study Marketing + Entrepreneurship at WashU, with a minor in Human-Computer Interaction. I’m a beauty, fashion, and tech enthusiast who studies how people think, then designs what they’ll love.</p>
+      <div class="tabs" data-tabs>
+        <div class="tab-row" role="tablist" aria-label="About me">
+          {tabs.map((t, i) => (
+            <button type="button" role="tab" id={`tab-${t.id}`} aria-controls={`panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
+          ))}
+        </div>
+        <ul class="panel" role="tabpanel" id="panel-now" aria-labelledby="tab-now">
+          {now.map(([org, role]) => <li><b>{org}</b> · {role}</li>)}
+        </ul>
+        <ul class="panel pills" role="tabpanel" id="panel-strengths" aria-labelledby="tab-strengths" hidden>
+          {strengths.map((s) => <li>{s}</li>)}
+        </ul>
+        <ul class="panel pills" role="tabpanel" id="panel-tools" aria-labelledby="tab-tools" hidden>
+          {tools.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+      <a class="pill-btn" href="/about" data-face="1">Learn more about me <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="work-h">
+    <p class="kicker center">Case studies</p>
+    <h2 id="work-h" class="center">Selected work.</h2>
+    <div class="cards">
       {caseStudies.map((p) => (
-        <a class="work-card" href={p.href} data-face={p.face} style={`--c:var(--${p.color});--t:var(--${p.color}-tint);--ct:var(--${p.color}-text)`}>
-          <span class="work-img"><img src={p.cover} alt="" loading="lazy" /></span>
-          <span class="work-meta">
-            <span class="work-tags">{p.tags.slice(0, 2).join(' · ')}</span>
-            <span class="work-title">{p.title}</span>
-            <span class="work-sum" set:html={p.summary}></span>
-            <span class="work-cta">Read case study <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
+        <article class="card" style={`--ct:var(--${p.color})`}>
+          <a class="card-img" href={p.href} tabindex="-1" aria-hidden="true" data-face={p.face}><img src={p.cover} alt="" loading="lazy" /></a>
+          <div class="card-body">
+            <span class="card-tags">{p.tags.slice(0, 2).join(' · ')}</span>
+            <h3>{p.title}</h3>
+            <p set:html={p.summary}></p>
+            <a class="pill-btn small" href={p.href} data-face={p.face}>View case study <span class="sr-only">: {p.title}</span><span aria-hidden="true">→</span></a>
+          </div>
+        </article>
       ))}
     </div>
   </section>
 
-  <section class="block play" aria-labelledby="play-h">
-    <p class="eyebrow center">Playground</p>
-    <h2 id="play-h" class="big">Off the board.</h2>
-    <p class="lede center">Textiles, posters, reels, and a fragrance brand I dream about.</p>
-    <Marquee height="clamp(260px, 30vw, 400px)" items={[
-      { src: '/images/textiles/gallery/wrap-top.webp', alt: 'Wrap top', href: '/playground/textiles', label: 'Textiles' },
-      { src: '/images/design/kiki-bouba.webp', alt: 'Find the Kiki to your Bouba poster', href: '/playground/design-social', label: 'Posters' },
-      { src: '/images/jdel/bottle.webp', alt: 'JDel perfume bottle render', href: '/playground#jdel', label: 'JDel' },
-      { src: '/images/textiles/gallery/shibori-kaleidoscope.webp', alt: 'Shibori dyed fabric', href: '/playground/textiles', label: 'Dye work' },
-      { src: '/images/design/tinydesk-blue.webp', alt: 'WUTV Tiny Desk poster', href: '/playground/design-social', label: 'WUTV' },
-      { src: '/images/textiles/gallery/party-animal.webp', alt: 'Party Animal embroidery', href: '/playground/textiles', label: 'Embroidery' },
-    ]} />
-    <p class="center"><a class="btn ghost" href="/playground">Visit the playground</a></p>
+  <section class="sec" aria-labelledby="play-h">
+    <p class="kicker center">Playground</p>
+    <h2 id="play-h" class="center">Off the board.</h2>
+    <div class="trio">
+      {playground.map((p) => (
+        <a class="trio-card" href={p.href} data-face={p.face}>
+          <img src={playImg[p.slug]} alt="" loading="lazy" />
+          <span><b>{p.title}</b><small>Take a look →</small></span>
+        </a>
+      ))}
+    </div>
+    <p class="center"><a class="pill-btn ghost" href="/playground" data-face="6">Visit the playground <span aria-hidden="true">→</span></a></p>
   </section>
 </Base>
 
 <style>
-  .hero { max-width: 680px; }
-  .howto { margin-top: 18px; font-size: 0.95rem; color: var(--ink-3); }
-  .hero h1 { font-size: clamp(2.5rem, 5.4vw, 4.4rem); margin-bottom: 0.35em; }
-  .driven { display: inline-block; min-height: 2.1em; }
-  .sub { color: var(--ink-2); font-size: 1.05rem; max-width: 560px; margin: 0 auto 26px; }
-  .ask {
-    display: flex; align-items: center; gap: 8px; max-width: 560px; margin: 0 auto; padding: 8px 8px 8px 24px;
-    background: var(--white); border-radius: 999px; border: 1px solid var(--line); box-shadow: var(--shadow-lg);
+  /* one glow for the whole page, fading to nothing well before any edge, so there are no seams */
+  .glow {
+    position: absolute; left: 0; right: 0; top: 0; height: 1500px; pointer-events: none; z-index: 0;
+    background:
+      conic-gradient(from 180deg at 50% -8%, transparent 160deg, rgba(255, 60, 160, 0.14) 172deg, rgba(255, 90, 90, 0.1) 188deg, transparent 200deg),
+      radial-gradient(40% 28% at 46% 55%, rgba(255, 0, 140, 0.4), transparent 100%),
+      radial-gradient(30% 24% at 62% 62%, rgba(255, 60, 60, 0.28), transparent 100%);
+    mask-image: linear-gradient(#000 55%, transparent 100%);
+    filter: blur(14px);
   }
-  .ask input { flex: 1; border: 0; outline: 0; font: inherit; font-size: 1.05rem; background: transparent; color: var(--ink); min-width: 0; }
-  .ask button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--ink); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: 0 0 0 4px rgba(255, 0, 191, 0.12); transition: transform 0.25s var(--ease); }
-  .ask button:hover { transform: scale(1.06); }
-  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+  .hero, .sec { position: relative; z-index: 1; }
 
-  .block { padding-top: 140px; }
+  .hero { padding: 120px 20px 0; text-align: center; color: #fff; }
+  .hero h1 { font-size: clamp(2.4rem, 4.4vw, 3.8rem); margin-bottom: 0.45em; color: #fff; }
+  .driven { display: inline-block; min-height: 1.1em; }
+  .hero :global(.rt-word) { color: #ff7ac0; }
+  .ask {
+    display: flex; align-items: center; gap: 8px; max-width: 520px; margin: 0 auto; padding: 8px 8px 8px 24px;
+    background: #fff; border-radius: 999px; box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+  }
+  .ask input { flex: 1; border: 0; outline: 0; font: inherit; font-size: 1.05rem; background: transparent; color: var(--dark); min-width: 0; }
+  .ask button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--dark); color: #fff; display: grid; place-items: center; cursor: pointer; transition: transform 0.25s var(--ease); }
+  .ask button:hover { transform: scale(1.06); }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 0; }
+  .chips .chip { background: rgba(255, 255, 255, 0.07); color: #fff; border-color: rgba(255, 255, 255, 0.16); }
+  .chips .chip:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.4); }
+  .hero :global(.b3) { margin-top: -16px; }
+
+  .sec { width: min(100% - 40px, 1180px); margin: 0 auto; padding-top: 130px; color: #fff; }
   .center { text-align: center; }
-  .big { text-align: center; font-size: clamp(2.8rem, 6vw, 4.6rem); letter-spacing: -0.01em; margin-bottom: 0.4em; }
-  .play .lede { margin: 0 auto 40px; max-width: 560px; padding: 0 20px; }
-  .play .btn { margin-top: 12px; }
-  .work { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 48px; }
-  .work-card { display: block; text-decoration: none; color: var(--ink); }
-  .work-img { display: block; aspect-ratio: 16 / 10; border-radius: 24px; overflow: hidden; background: var(--t); box-shadow: 0 20px 50px rgba(26, 26, 26, 0.12); }
-  .work-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.7s var(--ease); }
-  .work-card:hover .work-img img { transform: scale(1.04); }
-  .work-meta { display: block; padding: 22px 4px 0; }
-  .work-tags { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ct); }
-  .work-title { display: block; font-family: var(--serif); font-weight: 400; font-size: 2.2rem; letter-spacing: -0.01em; margin: 6px 0 8px; }
-  .work-sum { display: block; color: var(--ink-2); font-size: 1.05rem; max-width: 480px; }
-  .work-cta { display: inline-block; margin-top: 14px; font-weight: 700; color: var(--ct); }
-  .work-card:hover .work-cta { text-decoration: underline; text-underline-offset: 4px; }
-  @media (max-width: 760px) { .work { grid-template-columns: 1fr; } }
+  .kicker { font: 700 0.78rem var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: #ff5fb4; margin-bottom: 12px; }
+  .sec h2 { font-size: clamp(2.6rem, 5vw, 4rem); margin-bottom: 0.5em; color: #fff; }
+  .lede { color: rgba(255, 255, 255, 0.76); font-size: 1.15rem; line-height: 1.6; max-width: 560px; }
+  .pill-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 14px 24px; border-radius: 999px; background: #fff; color: #111; font-weight: 700; text-decoration: none; transition: transform 0.25s var(--ease); }
+  .pill-btn:hover { transform: translateY(-2px); }
+  .pill-btn.small { margin-top: 18px; padding: 10px 18px; font-size: 0.95rem; }
+  .pill-btn.ghost { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.4); }
+
+  .about { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; }
+  .portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 28px; }
+  .tab-row { display: flex; gap: 22px; margin-top: 30px; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+  .tab-row button { padding: 0 0 12px; margin-bottom: -1px; border: 0; border-bottom: 2px solid transparent; background: none; color: rgba(255, 255, 255, 0.6); font: 600 0.98rem var(--sans); cursor: pointer; }
+  .tab-row button[aria-selected='true'] { color: #fff; border-color: #ff5fb4; }
+  .tab-row button:focus-visible { outline: 2px solid #ff5fb4; outline-offset: 4px; border-radius: 4px; }
+  .panel { list-style: none; margin: 0; padding: 18px 0 0; display: grid; gap: 10px; color: rgba(255, 255, 255, 0.8); }
+  .panel[hidden] { display: none; }
+  .panel b { color: #fff; }
+  .panel.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .panel.pills[hidden] { display: none; }
+  .panel.pills li { padding: 7px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); }
+
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 48px; }
+  .card { border-radius: 26px; overflow: hidden; background: #17151c; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07); }
+  .card-img { display: block; aspect-ratio: 16 / 9; overflow: hidden; }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+  .card:hover .card-img img { transform: scale(1.04); }
+  .card-body { padding: 24px 26px 28px; }
+  .card-tags { display: block; font: 700 0.74rem var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ct); filter: brightness(1.45); }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 2rem; line-height: 1.05; margin: 8px 0 10px; color: #fff; }
+  .card p { margin: 0; color: rgba(255, 255, 255, 0.74); }
+  .card p :global(strong) { color: #fff; }
+
+  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+  .trio-card { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden; color: #fff; text-decoration: none; }
+  .trio-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+  .trio-card:hover img { transform: scale(1.05); }
+  .trio-card span { position: absolute; inset: auto 0 0 0; display: grid; gap: 4px; padding: 64px 20px 18px; background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)); }
+  .trio-card b { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; }
+  .trio-card small { font-weight: 700; color: #ff5fb4; }
+
+  @media (max-width: 860px) {
+    .hero { padding-top: 104px; }
+    .about, .cards, .trio { grid-template-columns: 1fr; gap: 28px; }
+    .portrait { max-width: 420px; margin: 0 auto; }
+    .trio-card { aspect-ratio: 4 / 3; }
+    .sec { padding-top: 96px; }
+  }
 </style>
+
+<script>
+  // About tabs: click or arrow keys
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((root) => {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
+      });
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        const next = tabs[(i + d + tabs.length) % tabs.length];
+        select(next);
+        next.focus();
+      });
+    });
+  });
+</script>

@@ -61,7 +61,7 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
   .mark-name { font-family: var(--serif); font-weight: 400; font-size: 1.12rem; white-space: nowrap; }
   .mark-die { position: relative; width: 20px; height: 20px; border-radius: 6px; background: #f4f2ee; transition: transform 0.6s var(--ease); }
   .mark:hover .mark-die { transform: rotate(180deg); }
-  .mark-die i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--ink); }
+  .mark-die i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--dark); }
   .mark-die i:nth-child(1) { top: 4px; left: 4px; }
   .mark-die i:nth-child(2) { top: 8px; left: 8px; }
   .mark-die i:nth-child(3) { bottom: 4px; right: 4px; }
@@ -84,7 +84,7 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
   .icon:hover { background: rgba(255, 255, 255, 0.14); }
   .resume {
     text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 8px 15px; border-radius: 999px;
-    background: #f4f2ee; color: var(--ink); transition: transform 0.25s var(--ease);
+    background: #f4f2ee; color: var(--dark); transition: transform 0.25s var(--ease);
   }
   .resume:hover { transform: translateY(-1px); }
   .menu { display: none; position: relative; }
