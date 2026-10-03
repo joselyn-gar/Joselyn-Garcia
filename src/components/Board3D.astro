@@ -1,0 +1,182 @@
+---
+// The home board in 3D, modeled on the classic board: cream tiles with a color bar on the inner edge,
+// plain corners, the name in the middle, two real dice. Text never overlaps a color bar.
+// Tilted text is decoration; a flat label pops up on hover/focus. Phones get a flat tile list instead.
+import { items } from '../data/projects';
+import { site } from '../data/site';
+import Die from './Die.astro';
+
+interface Props { size?: number; }
+const { size = 460 } = Astro.props;
+const by = (slug: string) => items.find((i) => i.slug === slug)!;
+type T = { area: string; href: string; kind: string; title: string; tags: string; color?: string; face: number; type: 'prop' | 'corner' | 'chance'; big?: string; ext?: boolean };
+const p = (area: string, slug: string): T => {
+  const i = by(slug);
+  return { area, href: i.href, kind: i.kind, title: i.short, tags: i.tags.slice(0, 2).join(' · '), color: i.color, face: i.face, type: 'prop' };
+};
+const tiles: T[] = [
+  { area: 'go', href: '/about', kind: 'Start here', title: 'About me', big: 'GO', tags: 'Who I am', face: 1, type: 'corner' },
+  p('t1', 'lyft'), p('t2', 'releaf'),
+  { area: 'park', href: '/playground', kind: 'Free parking', title: 'Playground', big: 'Play', tags: 'Textiles · posters · reels', face: 6, type: 'corner' },
+  p('r1', 'skate-for-girls'), p('r2', 'circular-stl'),
+  { area: 'res', href: site.resume || '/resume', kind: 'Take a card', title: 'Resume', big: 'CV', tags: 'PDF', face: 5, type: 'corner', ext: true },
+  p('b1', 'design-social'), p('b2', 'textiles'),
+  { area: 'con', href: `mailto:${site.email}`, kind: 'Just visiting?', title: 'Say hi', big: 'Hi', tags: 'Email me', face: 4, type: 'corner' },
+  { area: 'l1', href: '/about#away', kind: 'Chance', title: 'Fun facts', big: '?', tags: 'Dodgers · jazz · board games', face: 3, type: 'chance' },
+  p('l2', 'jdel'),
+];
+const dieSize = Math.round(size / 14);
+---
+<div class="b3" style={`--b:${size}px;--ds:${dieSize}px`} data-b3>
+  <div class="b3-scene" role="group" aria-label="Portfolio board">
+    <div class="b3-board" data-b3-board>
+      <div class="b3-slab" aria-hidden="true"></div>
+      {tiles.map((t) => (
+        <a class:list={['b3-tile', t.type, t.area[0]]} href={t.href} style={`grid-area:${t.area}${t.color ? `;--c:var(--${t.color});--t:var(--${t.color}-tint)` : ''}`}
+          data-face={t.face} data-kind={t.kind} data-title={t.title} data-tags={t.tags} {...(t.ext ? { target: '_blank', rel: 'noopener' } : {})}>
+          <span class="b3-top">
+            {t.type === 'prop' && <span class="b3-bar" aria-hidden="true"></span>}
+            <span class="b3-label">
+              {t.type !== 'prop' && <span class="b3-kind">{t.kind}</span>}
+              {t.big && <span class="b3-big">{t.big}</span>}
+              <span class="b3-name">{t.title}</span>
+            </span>
+          </span>
+        </a>
+      ))}
+      <div class="b3-mid" style="grid-area:mid" aria-hidden="true">
+        <span class="b3-logo">Joselyn Garcia</span>
+      </div>
+      <button class="b3-dice" type="button" data-b3-roll aria-label="Roll the dice for a random project">
+        <span class="d1"><Die size={dieSize} /></span>
+        <span class="d2"><Die size={dieSize} /></span>
+      </button>
+    </div>
+  </div>
+  <div class="b3-tip" data-b3-tip aria-hidden="true"><small></small><b></b><span></span></div>
+  <p class="b3-hint"><strong>How to play:</strong> pick a property to open a project, or roll the dice.</p>
+
+  <nav class="b3-flat" aria-label="Projects">
+    {tiles.map((t) => (
+      <a href={t.href} style={`--c:${t.color ? `var(--${t.color})` : 'var(--ink)'}`} {...(t.ext ? { target: '_blank', rel: 'noopener' } : {})}>
+        <small>{t.kind}</small><b>{t.title}</b>
+      </a>
+    ))}
+  </nav>
+</div>
+
+<style is:global>
+  .b3 { --h: 6px; --edge: calc(var(--b) / 34); position: relative; display: grid; justify-items: center; min-width: 0; width: 100%; }
+  .b3-scene { perspective: 2400px; width: min(calc(var(--b) * 1.45), 100%); max-width: 100vw; height: calc(var(--b) * 0.95); display: grid; place-items: center; }
+  .b3-board {
+    position: relative; width: var(--b); height: var(--b); transform-style: preserve-3d;
+    transform: rotateX(56deg) rotateZ(-45deg); transition: transform 0.6s var(--ease);
+    display: grid; gap: 2px; padding: var(--edge);
+    grid-template-columns: 1.4fr 1fr 1fr 1.4fr; grid-template-rows: 1.4fr 1fr 1fr 1.4fr;
+    grid-template-areas: 'go t1 t2 park' 'l2 mid mid r1' 'l1 mid mid r2' 'con b2 b1 res';
+  }
+  /* the board itself: cream top, thick edge on the two visible sides */
+  .b3-slab { position: absolute; inset: 0; border-radius: 14px; background: #efe6d3; box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.08); transform-style: preserve-3d; }
+  .b3-slab::before, .b3-slab::after { content: ''; position: absolute; }
+  .b3-slab::before { left: 8px; right: 0; top: 100%; height: 26px; transform-origin: top; transform: rotateX(-90deg); background: #b9a988; border-radius: 0 0 8px 8px; }
+  .b3-slab::after { top: 8px; bottom: 0; left: 100%; width: 26px; transform-origin: left; transform: rotateY(90deg); background: #d3c4a5; border-radius: 0 8px 8px 0; }
+
+  /* tiles: slightly raised, neutral sides so the only color is each property's bar */
+  .b3-tile { position: relative; transform-style: preserve-3d; transform: translateZ(var(--h)); transition: transform 0.35s var(--ease); text-decoration: none; color: #1a1a1a; outline: none; }
+  .b3-tile::before, .b3-tile::after { content: ''; position: absolute; }
+  .b3-tile::before { left: 0; right: 0; top: 100%; height: var(--h); transform-origin: top; transform: rotateX(-90deg); background: #d8ccb4; }
+  .b3-tile::after { top: 0; bottom: 0; left: 100%; width: var(--h); transform-origin: left; transform: rotateY(90deg); background: #e4d9c4; }
+  .b3-top { position: absolute; inset: 0; display: flex; overflow: hidden; border-radius: 4px; background: #fffdf7; box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.14); transition: background 0.25s; }
+  .b3-tile.t .b3-top { flex-direction: column-reverse; }
+  .b3-tile.b .b3-top { flex-direction: column; }
+  .b3-tile.l .b3-top { flex-direction: row-reverse; }
+  .b3-tile.r .b3-top { flex-direction: row; }
+  .b3-bar { flex: 0 0 24%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.14); }
+  .b3-label { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35em; padding: 6%; text-align: center; }
+  .b3-name { font: 700 calc(var(--b) / 40) / 1.15 var(--sans); letter-spacing: 0.04em; text-transform: uppercase; text-wrap: balance; }
+  .b3-kind { font: 600 calc(var(--b) / 62) / 1.1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: #6b665d; }
+  .b3-big { font: 800 calc(var(--b) / 13) / 0.9 var(--sans); letter-spacing: -0.02em; }
+  .b3-tile.corner .b3-big { color: var(--lyft); }
+  .b3-tile.corner .b3-name { font-size: calc(var(--b) / 34); }
+  .b3-tile.chance .b3-big { color: var(--lyft); font-size: calc(var(--b) / 10); }
+  .b3-tile.chance .b3-kind { color: #1a1a1a; font-weight: 700; }
+  .b3-tile.chance .b3-name { display: none; }
+
+  .b3-tile:hover, .b3-tile:focus-visible, .b3-tile.lit { transform: translateZ(calc(var(--h) + 16px)); }
+  .b3-tile:hover .b3-top, .b3-tile:focus-visible .b3-top, .b3-tile.lit .b3-top { background: #fff; box-shadow: inset 0 0 0 2px #1a1a1a; }
+
+  .b3-mid { position: relative; display: grid; place-items: center; transform: translateZ(1px); }
+  .b3-logo { font: 800 calc(var(--b) / 25) / 1 var(--sans); letter-spacing: 0.04em; text-transform: uppercase; color: #1a1a1a; white-space: nowrap; transform: rotate(45deg) translateY(-160%); }
+
+  /* dice rest on the board, toward the viewer, clear of the name */
+  .b3-dice { position: absolute; left: 50%; top: 50%; width: 0; height: 0; padding: 0; border: 0; background: none; transform-style: preserve-3d; cursor: pointer; }
+  .b3-dice > span { position: absolute; transform-style: preserve-3d; }
+  .b3-dice .d1 { transform: translate(calc(var(--b) * -0.17), calc(var(--b) * 0.05)) translateZ(calc(var(--ds) / 2)) rotateZ(14deg); }
+  .b3-dice .d2 { transform: translate(calc(var(--b) * -0.11), calc(var(--b) * 0.12)) translateZ(calc(var(--ds) / 2)) rotateZ(-20deg); }
+  .b3-dice .die { perspective: none; transform-style: preserve-3d; }
+  .b3-dice .die .cube { transform: rotateX(-90deg); }
+  .b3-dice:focus-visible { outline: none; }
+  .b3-dice:focus-visible .face { box-shadow: inset 0 0 0 2px var(--lyft); }
+
+  .b3-tip { position: absolute; z-index: 5; pointer-events: none; display: grid; gap: 2px; min-width: 180px; padding: 12px 16px 14px; border-radius: 14px; background: #fff; color: #1a1a1a; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); opacity: 0; transform: translate(-50%, calc(-100% - 6px)) scale(0.96); transition: opacity 0.2s, transform 0.25s var(--ease); }
+  .b3-tip.on { opacity: 1; transform: translate(-50%, calc(-100% - 14px)) scale(1); }
+  .b3-tip small { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5f5b54; }
+  .b3-tip b { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; line-height: 1.05; }
+  .b3-tip span { font-size: 0.85rem; color: #5f5b54; }
+  .b3-hint { margin-top: 18px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.62); }
+  .b3-hint strong { color: #fff; }
+
+  .b3-flat { display: none; }
+  @media (max-width: 860px) {
+    .b3 { --b: min(250px, 62vw) !important; --ds: 18px !important; }
+    .b3-scene { height: calc(var(--b) * 0.9); }
+    .b3-label { display: none; }
+    .b3-hint { display: none; }
+    .b3-flat { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin-top: 8px; }
+    .b3-flat a { display: grid; gap: 2px; min-height: 64px; padding: 14px 14px 12px; border-radius: 14px; background: #fffdf8; color: #1a1a1a; text-decoration: none; border-top: 6px solid var(--c); }
+    .b3-flat small { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #5f5b54; }
+    .b3-flat b { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; line-height: 1.05; }
+  }
+  @media (prefers-reduced-motion: reduce) { .b3-board, .b3-tile { transition: none; } }
+</style>
+
+<script>
+  import { roll } from '../scripts/dice';
+  document.querySelectorAll<HTMLElement>('[data-b3]').forEach((root) => {
+    const tip = root.querySelector<HTMLElement>('[data-b3-tip]')!;
+    const board = root.querySelector<HTMLElement>('[data-b3-board]')!;
+    const tiles = [...root.querySelectorAll<HTMLAnchorElement>('.b3-tile')];
+    const show = (a: HTMLElement) => {
+      const r = a.getBoundingClientRect(), o = root.getBoundingClientRect();
+      tip.querySelector('small')!.textContent = a.dataset.kind!;
+      tip.querySelector('b')!.textContent = a.dataset.title!;
+      tip.querySelector('span')!.textContent = a.dataset.tags!;
+      tip.style.left = `${r.left + r.width / 2 - o.left}px`;
+      tip.style.top = `${r.top - o.top}px`;
+      tip.classList.add('on');
+    };
+    const hide = () => tip.classList.remove('on');
+    tiles.forEach((a) => {
+      a.addEventListener('pointerenter', () => show(a));
+      a.addEventListener('focus', () => show(a));
+      a.addEventListener('pointerleave', hide);
+      a.addEventListener('blur', hide);
+    });
+
+    // dice tumble, the board hops around the properties and lands on one, then opens it
+    const btn = root.querySelector<HTMLButtonElement>('[data-b3-roll]')!;
+    btn.addEventListener('click', async () => {
+      const props = tiles.filter((t) => t.classList.contains('prop'));
+      const pick = props[Math.floor(Math.random() * props.length)];
+      const cubes = [...btn.querySelectorAll<HTMLElement>('.cube')];
+      await Promise.all(cubes.map((c, i) => roll(c, 1 + Math.floor(Math.random() * 6), 2 + i, 1000)));
+      for (let i = 0; i < 6; i++) {
+        const t = props[(props.indexOf(pick) + i - 5 + props.length) % props.length];
+        tiles.forEach((x) => x.classList.toggle('lit', x === t));
+        await new Promise((r) => setTimeout(r, 140));
+      }
+      show(pick);
+      setTimeout(() => (location.href = pick.href), 900);
+    });
+  });
+</script>
