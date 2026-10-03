@@ -107,8 +107,9 @@ const playImg: Record<string, string> = {
   .glow {
     position: absolute; left: 0; right: 0; top: 0; height: 1500px; pointer-events: none; z-index: 0;
     background:
-      conic-gradient(from 180deg at 50% -8%, transparent 160deg, rgba(150, 110, 255, 0.16) 172deg, rgba(255, 170, 90, 0.12) 188deg, transparent 200deg),
-      radial-gradient(42% 30% at 50% 56%, rgba(140, 90, 255, 0.42), transparent 100%);
+      conic-gradient(from 180deg at 50% -8%, transparent 160deg, rgba(255, 60, 160, 0.14) 172deg, rgba(255, 90, 90, 0.1) 188deg, transparent 200deg),
+      radial-gradient(40% 28% at 46% 55%, rgba(255, 0, 140, 0.4), transparent 100%),
+      radial-gradient(30% 24% at 62% 62%, rgba(255, 60, 60, 0.28), transparent 100%);
     mask-image: linear-gradient(#000 55%, transparent 100%);
     filter: blur(14px);
   }
@@ -117,7 +118,7 @@ const playImg: Record<string, string> = {
   .hero { padding: 120px 20px 0; text-align: center; color: #fff; }
   .hero h1 { font-size: clamp(2.4rem, 4.4vw, 3.8rem); margin-bottom: 0.45em; color: #fff; }
   .driven { display: inline-block; min-height: 1.1em; }
-  .hero :global(.rt-word) { color: #c8b2ff; }
+  .hero :global(.rt-word) { color: #ff7ac0; }
   .ask {
     display: flex; align-items: center; gap: 8px; max-width: 520px; margin: 0 auto; padding: 8px 8px 8px 24px;
     background: #fff; border-radius: 999px; box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
