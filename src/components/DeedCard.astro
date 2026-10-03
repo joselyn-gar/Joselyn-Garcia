@@ -29,7 +29,7 @@ const { item } = Astro.props;
 <style>
   .deed {
     position: relative; display: flex; flex-direction: column; overflow: hidden; text-decoration: none; color: var(--ink);
-    background: var(--t); border-radius: var(--radius-lg); border: 1.5px solid var(--ink);
+    background: var(--t); border-radius: var(--radius-lg); border: 1.5px solid color-mix(in srgb, var(--c) 50%, transparent);
     transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
   }
   .deed:hover, .deed:focus-visible { transform: translateY(-6px) rotate(-0.6deg); box-shadow: var(--shadow-lg); }
@@ -38,7 +38,7 @@ const { item } = Astro.props;
   .deed-title { display: block; font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; font-size: 1.9rem; line-height: 1.15; }
   .deed-body { display: flex; flex-direction: column; gap: 14px; padding: 18px 22px 20px; }
   .deed-summary { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
-  .deed-rows { display: grid; gap: 6px; border-top: 1px dashed rgba(26, 26, 26, 0.3); padding-top: 12px; }
+  .deed-rows { display: grid; gap: 6px; border-top: 1px dashed var(--line); padding-top: 12px; }
   .deed-row { display: flex; justify-content: space-between; gap: 12px; font-size: 0.88rem; color: var(--ink-2); }
   .deed-row b { color: var(--ink); font-weight: 650; text-align: right; }
   .deed-cta { font-weight: 600; font-size: 0.92rem; color: var(--ct); }

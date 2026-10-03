@@ -15,7 +15,7 @@ const { front, kicker = 'Chance', back, color = 'lyft', img, fit = 'cover', pos 
   .flip-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.7s var(--ease); }
   .flip:not([data-photo]):hover .flip-inner, .flip:not([data-photo]):focus-visible .flip-inner, .flip.on .flip-inner { transform: rotateY(180deg); }
   .flip[data-photo]:hover .flip-inner { transform: rotateY(-8deg); }
-  .flip-face { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 20px 22px; border-radius: 18px; border: 1.5px solid var(--ink); backface-visibility: hidden; }
+  .flip-face { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 20px 22px; border-radius: 18px; border: 1.5px solid color-mix(in srgb, var(--c) 50%, transparent); backface-visibility: hidden; }
   .front { background: var(--t); }
   .back { background: var(--white); transform: rotateY(180deg); }
   .k { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ct); margin-bottom: 6px; }

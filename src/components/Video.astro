@@ -32,7 +32,7 @@ const size = (dims as Record<string, number[]>)[poster];
 
 <style>
   .vid { margin: 0; }
-  .vid-frame { position: relative; overflow: hidden; border-radius: var(--radius); background: #111; border: 1.5px solid var(--ink); box-shadow: var(--shadow); }
+  .vid-frame { position: relative; overflow: hidden; border-radius: var(--radius); background: #111; border: 1.5px solid var(--line); box-shadow: var(--shadow); }
   .bare .vid-frame { background: transparent; border: 0; box-shadow: none; border-radius: 28px; }
   .vid video { width: 100%; height: auto; }
   .phone .vid-frame { border-radius: 34px; border: 7px solid #141414; aspect-ratio: 9 / 16; }
@@ -40,7 +40,7 @@ const size = (dims as Record<string, number[]>)[poster];
   .browser .vid-frame { border-radius: 14px; background: #fff; border: 1px solid var(--line); }
   .bar { display: flex; gap: 6px; padding: 10px 12px; background: #f1efea; border-bottom: 1px solid var(--line); }
   .bar i { width: 10px; height: 10px; border-radius: 50%; background: #d9d4ca; }
-  .sound { position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.9); display: grid; place-items: center; cursor: pointer; }
+  .sound { position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.9); color: var(--dark); display: grid; place-items: center; cursor: pointer; }
   .sound .wave { display: none; }
   .sound[aria-pressed='true'] .wave { display: block; }
   .sound[aria-pressed='true'] .x { display: none; }
